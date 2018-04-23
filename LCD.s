@@ -1,7 +1,4 @@
 ; LCD.s
-; Student names: change this to your names or look very silly
-; Last modification date: change this to the last modification date or look very silly
-
 ; Runs on LM4F120/TM4C123
 ; Use SSI0 to send an 8-bit code to the ST7735 160x128 pixel LCD.
 
@@ -19,6 +16,9 @@
 ; VCC (pin 2) connected to +3.3 V
 ; Gnd (pin 1) connected to ground
 
+DC                      EQU   0x40004100
+DC_COMMAND              EQU   0
+DC_DATA                 EQU   0x40
 GPIO_PORTA_DATA_R       EQU   0x400043FC
 SSI0_DR_R               EQU   0x40008008
 SSI0_SR_R               EQU   0x4000800C
@@ -51,10 +51,31 @@ SSI_SR_TNF              EQU   0x00000002  ; SSI Transmit FIFO Not Full
 ; NOTE: These functions will crash or stall indefinitely if
 ; the SSI0 module is not initialized and enabled.
 
+
+;***********************************************************************
+; This is a helper that busy-waits until the LCD is no longer busy.
+; Input: None
+; Output: None
+;***********************************************************************
+waitUntilAvailable
+    PUSH {R0, R1}
+    
+    LDR R1, =SSI0_SR_R
+; Check if bit 4 is set, and loop back if it is
+waitLoop    
+    LDR R0, [R1]
+    ANDS R0, #0x10
+    BNE waitLoop
+    
+    POP {R0, R1}
+    BX LR
+	
+;***********************************************************************	
 ; This is a helper function that sends an 8-bit command to the LCD.
 ; Input: R0  8-bit command to transmit
 ; Output: none
 ; Assumes: SSI0 and port A have already been initialized and enabled
+;***********************************************************************
 writecommand
 ;1) Read SSI0_SR_R and check bit 4, 
 ;2) If bit 4 is high, loop back to step 1 (wait for BUSY bit to be low)
@@ -63,24 +84,63 @@ writecommand
 ;5) Read SSI0_SR_R and check bit 4, 
 ;6) If bit 4 is high, loop back to step 5 (wait for BUSY bit to be low)
 
-    
-    
-    BX  LR                          ;   return
+	; save registers
+	PUSH {R1-R3, LR}
+	
+    BL waitUntilAvailable
+	
+	; set DC to 0 to send command to LCD
+	LDR R1, =DC
+	LDR R2, =DC_COMMAND
+	STR R2, [R1]
+	
+	; write command given in R0 to SSIO_DR_R
+	LDR R1, =SSI0_DR_R
+	STR R0, [R1]
 
+    BL waitUntilAvailable
+	
+	; restore and return 
+	POP {R1-R3, LR}
+    BX  LR                         
+
+
+;***********************************************************************
 ; This is a helper function that sends an 8-bit data to the LCD.
 ; Input: R0  8-bit data to transmit
 ; Output: none
 ; Assumes: SSI0 and port A have already been initialized and enabled
+;***********************************************************************
 writedata
 ;1) Read SSI0_SR_R and check bit 1, 
 ;2) If bit 1 is low loop back to step 1 (wait for TNF bit to be high)
 ;3) Set D/C=PA6 to one
 ;4) Write the 8-bit data to SSI0_DR_R
 
-    
-    
-    BX  LR                          ;   return
-
+    ; save registers
+	PUSH {R1, R2}
+	
+    LDR R2, =SSI0_SR_R
+; loop if LCD is busy 
+databusy
+	LDR R1, [R2]
+	; isolate bit 1 of SSIO_SR_R
+	ANDS R1, #0x02
+	BEQ databusy
+	
+	; set PA6 to 1 to send data to LCD
+	LDR R1, =DC
+	LDR R2, =DC_DATA
+	STR R2, [R1]
+	
+	; write data given in R0 to SSIO_DR_R
+	LDR R1, =SSI0_DR_R
+	STR R0, [R1]
+	
+	; restore and return
+	POP {R1, R2} 
+    BX  LR                       
+	
 
 ;***************************************************
 ; This is a library for the Adafruit 1.8" SPI display.
@@ -100,5 +160,5 @@ writedata
 ; MIT license, all text above must be included in any redistribution
 ;****************************************************
 
-    ALIGN                           ; make sure the end of this section is aligned
-    END                             ; end of file
+	ALIGN                           ; make sure the end of this section is aligned
+	END                             ; end of file
