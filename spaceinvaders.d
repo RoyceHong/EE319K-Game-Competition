@@ -5,3 +5,4 @@
 .\spaceinvaders.o: Random.h
 .\spaceinvaders.o: PLL.h
 .\spaceinvaders.o: ADC.h
+.\spaceinvaders.o: Sprites.h
