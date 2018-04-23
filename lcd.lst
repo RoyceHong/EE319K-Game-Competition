@@ -245,7 +245,7 @@ ARM Macro Assembler    Page 4
               40008008 
 Command Line: --debug --xref --cpu=Cortex-M4 --apcs=interwork --depend=.\lcd.d 
 -o.\lcd.o -IC:\Keil\ARM\RV31\INC -IC:\Keil\ARM\CMSIS\Include -IC:\Keil\ARM\Inc\
-Luminary --list=.\lcd.lst LCD.s
+Luminary --predefine="__EVAL SETA 1" --list=.\lcd.lst LCD.s
 
 
 
@@ -390,4 +390,4 @@ Symbol: SSI_SR_TNF
       None
 Comment: SSI_SR_TNF unused
 9 symbols
-347 symbols in table
+348 symbols in table

@@ -72,7 +72,7 @@ int main(void){
   Output_Init();
   ST7735_FillScreen(0x0000);            // set screen to black
   
-  ST7735_DrawBitmap(52, 159, PlayerShip0, 18,8); // player ship middle bottom
+ /* ST7735_DrawBitmap(52, 159, PlayerShip0, 18,8); // player ship middle bottom
   ST7735_DrawBitmap(53, 151, Bunker0, 18,5);
 
   ST7735_DrawBitmap(0, 9, SmallEnemy10pointA, 16,10);
@@ -81,7 +81,7 @@ int main(void){
   ST7735_DrawBitmap(60, 9, SmallEnemy20pointB, 16,10);
   ST7735_DrawBitmap(80, 9, SmallEnemy30pointA, 16,10);
   ST7735_DrawBitmap(100, 9, SmallEnemy30pointB, 16,10);
-
+*/
 
   Delay100ms(50);              // delay 5 sec at 80 MHz
 
