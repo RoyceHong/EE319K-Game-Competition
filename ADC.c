@@ -4,6 +4,8 @@
 
 #include <stdint.h>
 #include "tm4c123gh6pm.h"
+#include "ADC.h"
+
 
 // ADC initialization function 
 // Input: none
@@ -34,7 +36,11 @@ void ADC_Init(void){
     ADC0_SAC_R = 0x03;
     ADC0_IM_R &= ~0x08;             // disable ss3 interrupts
     ADC0_ACTSS_R |= 0x08;           // enable ss3
+    
+    // Initialize player position 
+    Player_Pos Player = {52,  159};
 }
+
 
 //------------ADC_In------------
 // Busy-wait Analog to digital conversion
@@ -52,4 +58,17 @@ uint32_t ADC_In(void){
     // clear sample complete flag 
     ADC0_ISC_R = 0x08;
     return data; 
+}
+
+
+MoveState ADC_Convert(void){
+    uint32_t ADCdata = ADC_In();
+    if(ADCdata <= 1365)
+        return LEFT;
+    else if( (ADCdata > 1365) && (ADCdata < 2730) ){
+        return HOLD;
+    }
+    else{
+        return RIGHT;
+    }
 }

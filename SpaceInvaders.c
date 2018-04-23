@@ -63,6 +63,7 @@ void EnableInterrupts(void);  // Enable interrupts
 void Delay100ms(uint32_t count); // time delay in 0.1 seconds
 
 
+
 // *************************** Capture image dimensions out of BMP**********
 
 int main(void){
