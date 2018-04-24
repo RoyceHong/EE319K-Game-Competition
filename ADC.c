@@ -6,14 +6,17 @@
 #include "tm4c123gh6pm.h"
 #include "ADC.h"
 
-
+//------------ADC_Init------------
 // ADC initialization function 
 // Input: none
 // Output: none
 // measures from PD2, analog channel 5
+//--------------------------------
 void ADC_Init(void){ 
     // activate clock ADC0
     SYSCTL_RCGCADC_R |= 0x01;       
+    __asm{NOP};
+    __asm{NOP};
     __asm{NOP};
     __asm{NOP};
     
@@ -36,9 +39,6 @@ void ADC_Init(void){
     ADC0_SAC_R = 0x03;
     ADC0_IM_R &= ~0x08;             // disable ss3 interrupts
     ADC0_ACTSS_R |= 0x08;           // enable ss3
-    
-    // Initialize player position 
-    Player_Pos Player = {52,  159};
 }
 
 
@@ -47,6 +47,7 @@ void ADC_Init(void){
 // Input: none
 // Output: 12-bit result of ADC conversion
 // measures from PD2, analog channel 5
+//------------------------------
 uint32_t ADC_In(void){
     uint32_t data; 
     // initiate ss3
@@ -61,14 +62,21 @@ uint32_t ADC_In(void){
 }
 
 
-MoveState ADC_Convert(void){
-    uint32_t ADCdata = ADC_In();
-    if(ADCdata <= 1365)
+//------------ADC_Convert------------
+// Converts analog signal to a direction: LEFT, HOLD, RIGHT
+// Input: none
+// Output: enum MoveState {LEFT, HOLD, RIGHT}
+//-----------------------------------
+movestate_t ADC_Convert(void){
+    uint32_t data;
+    data = ADC_In();
+    if(data <= 1365){
         return LEFT;
-    else if( (ADCdata > 1365) && (ADCdata < 2730) ){
-        return HOLD;
+    }
+    else if(data >= 2730){
+        return RIGHT;
     }
     else{
-        return RIGHT;
+        return HOLD;
     }
 }

@@ -5,4 +5,7 @@
 .\spaceinvaders.o: Random.h
 .\spaceinvaders.o: PLL.h
 .\spaceinvaders.o: ADC.h
-.\spaceinvaders.o: Sprites.h
+.\spaceinvaders.o: DisplayMap.h
+.\spaceinvaders.o: Level.h
+.\spaceinvaders.o: Systick.h
+.\spaceinvaders.o: Movement.h

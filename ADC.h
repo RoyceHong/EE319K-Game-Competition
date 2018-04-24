@@ -4,21 +4,15 @@
 
 #ifndef ADC_H
 #define ADC_H
+
 #include <stdint.h>
 
 
-// Player position structure
-typedef struct Player_Pos{
-    int16_t x;
-    int16_t y;
-} Player_Pos;
-
-
 // Move state enum 
-typedef enum move_state {LEFT, HOLD, RIGHT} MoveState;
+typedef enum {LEFT, HOLD, RIGHT} movestate_t;
 
-
-typedef uint8_t FSM; 
+// Flag signifying whether ready to take input or not
+typedef enum {BUSY, READY} flag_t; 
     
 
 // ADC initialization function 
@@ -39,7 +33,8 @@ uint32_t ADC_In(void);
 //------------ADC_Convert------------
 // Converts ADC_In to a position on the LCD
 // Input: none
-// Output: none
-MoveState ADC_Convert(void);
+// Output: move_state {RIGHT, LEFT, HOLD}
+movestate_t ADC_Convert(void);
+
 
 #endif

@@ -55,49 +55,36 @@
 #include "Random.h"
 #include "PLL.h"
 #include "ADC.h"
-#include "Sprites.h"
-
+#include "DisplayMap.h"
+#include "Level.h"
+#include "Systick.h"
+#include "Movement.h"
 
 void DisableInterrupts(void); // Disable interrupts
 void EnableInterrupts(void);  // Enable interrupts
 void Delay100ms(uint32_t count); // time delay in 0.1 seconds
 
 
-
-// *************************** Capture image dimensions out of BMP**********
-
 int main(void){
-  PLL_Init(Bus80MHz);       // Bus clock is 80 MHz 
-  Random_Init(1);
-
-  Output_Init();
-  ST7735_FillScreen(0x0000);            // set screen to black
-  
- /* ST7735_DrawBitmap(52, 159, PlayerShip0, 18,8); // player ship middle bottom
-  ST7735_DrawBitmap(53, 151, Bunker0, 18,5);
-
-  ST7735_DrawBitmap(0, 9, SmallEnemy10pointA, 16,10);
-  ST7735_DrawBitmap(20,9, SmallEnemy10pointB, 16,10);
-  ST7735_DrawBitmap(40, 9, SmallEnemy20pointA, 16,10);
-  ST7735_DrawBitmap(60, 9, SmallEnemy20pointB, 16,10);
-  ST7735_DrawBitmap(80, 9, SmallEnemy30pointA, 16,10);
-  ST7735_DrawBitmap(100, 9, SmallEnemy30pointB, 16,10);
-*/
-
-  Delay100ms(50);              // delay 5 sec at 80 MHz
-
-
-  ST7735_FillScreen(0x0000);            // set screen to black
-  ST7735_SetCursor(1, 1);
-  ST7735_OutString("GAME OVER");
-  ST7735_SetCursor(1, 2);
-  ST7735_OutString("Nice try,");
-  ST7735_SetCursor(1, 3);
-  ST7735_OutString("Earthling!");
-  ST7735_SetCursor(2, 4);
-  LCD_OutDec(1234);
-  while(1){
-  }
+    PLL_Init(Bus80MHz);       // Bus clock is 80 MHz 
+    ST7735_InitR(INITR_REDTAB);
+    Random_Init(1);
+   
+    // Initializations
+    ADC_Init();
+    Buffer_Init();
+    Level_Init();
+    Timer0_Init();
+    SysTick_Init();
+    
+    Delay100ms(5);              // delay 5 sec at 80 MHz
+    
+    EnableInterrupts();
+    
+    while(1){   
+        Move_Player();
+        Move_Enemy();
+    }
 
 }
 
@@ -105,11 +92,11 @@ int main(void){
 // You can use this timer only if you learn how it works
 
 void Delay100ms(uint32_t count){uint32_t volatile time;
-  while(count>0){
+    while(count>0){
     time = 727240;  // 0.1sec at 80 MHz
     while(time){
-	  	time--;
+        time--;
     }
     count--;
-  }
+    }
 }
