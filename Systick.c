@@ -27,7 +27,7 @@ void SysTick_Init(void){
 
 void SysTick_Handler(void){
     CurrentMove = ADC_Convert();
-    Process_Move(Player1, CurrentMove);
+    Process_Move(&Player1, CurrentMove);
 //    MoveStatus = READY;
 }
     

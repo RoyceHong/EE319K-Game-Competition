@@ -4,13 +4,14 @@
 #define DISPLAYMAP_H
 
 #include <stdint.h>
+#include "level.h"
 
 #ifndef DISPLAY_WIDTH
 #define DISPLAY_WIDTH 128
 #endif
 
 #ifndef DISPLAY_HEIGHT
-#define DISPLAY_HEIGHT 160
+#define DISPLAY_HEIGHT 50
 #endif
 
 
@@ -29,11 +30,11 @@ void Buffer_Init(void);
 
 
 // Draw image to background buffer 
-void DrawImage_Buffer(int16_t x,  int16_t y, const uint16_t *image, int16_t w, int16_t h, uint16_t Buff[160][128]);
+void DrawImage_Buffer(sprite_t *object, uint16_t Buff[DISPLAY_HEIGHT][DISPLAY_WIDTH]);
 
 
 // fills current image with black rectangle
-void Image_Clear(int16_t x,  int16_t y, int16_t w, int16_t h, uint16_t Buff[160][128]);
+//void Image_Clear(int16_t x,  int16_t y, int16_t w, int16_t h, uint16_t Buff[DISPLAY_HEIGHT][DISPLAY_WIDTH]);
 
 
 // Timer0 Interrupt Service Routine

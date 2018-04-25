@@ -6,31 +6,33 @@
 #include "level.h"
 #include "DisplayMap.h"
 
+extern uint16_t Buffer1[DISPLAY_HEIGHT][DISPLAY_WIDTH];
 
 // Process_Move
 // Converts direction enum into velocity value
-void Process_Move(sprite_t player, movestate_t xdirection){
+void Process_Move(sprite_t* player, movestate_t xdirection){
     switch(xdirection){
         case LEFT:
-            player.xvel = -1;
+            player -> xvel = -1;
             break;
         case HOLD:
-            player.xvel = 0;
+            player -> xvel = 0;
             break;
         case RIGHT: 
-            player.xvel = 1;
+            player -> xvel = 1;
             break;
     }
 }
     
    
-void Move(sprite_t object){
-    if( ((object.x + object.xvel) > 0) && ((object.x + object.xvel) < DISPLAY_WIDTH) ){
-        object.x = object.x + object.xvel;
+void Move(sprite_t* object){
+    if( ((object -> x + object -> xvel) > 0) && ((object -> x + object -> xvel) < DISPLAY_WIDTH) ){
+        (object -> x) = (object -> x) + (object -> xvel);
     }
-    if( ((object.y + object.yvel) > 0) && ((object.y + object.yvel) < DISPLAY_HEIGHT) ){
-        object.y = object.y + object.yvel;
-    }
+//    if( ((object -> y + object -> yvel) > 0) && ((object -> y + object -> yvel) < DISPLAY_HEIGHT) ){
+ //       object -> y = object -> y + object -> yvel;
+//    }
+    DrawImage_Buffer(object, Buffer1);
 }
 
 /*

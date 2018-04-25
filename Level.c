@@ -6,12 +6,12 @@
 #include "ST7735.h"
 #include "DisplayMap.h"
 
-extern uint16_t Buffer1[160][128];
+extern uint16_t Buffer1[DISPLAY_HEIGHT][DISPLAY_WIDTH];
 
-extern uint16_t Buffer2[160][128];
+//extern uint16_t Buffer2[DISPLAY_HEIGHT][DISPLAY_WIDTH];
 
 // Player1 initial definition 
-sprite_t Player1 = {52,  1,  PlayerRightFrame_1,  16, 11, 0, 0, ALIVE};
+sprite_t Player1 = {30,  10,  PlayerRightFrame_1,  16, 11, 0, 0, ALIVE};
 
 // array definition of enemies 
 sprite_t Enemies[2][6];
@@ -57,12 +57,12 @@ void Level_Init(){
     // Make screen blank 
     ST7735_FillScreen(0x0000);
     // Store player on intial buffer
-    DrawImage_Buffer(Player1.x, Player1.y, Player1.image, Player1.w, Player1.h, Buffer1);
+    DrawImage_Buffer(&Player1, Buffer1);
        
     // Store enemies on initial buffer
     for( i = 0; i < 2; i++ ){
         for( j = 0; j < 6; j++ ){
-            DrawImage_Buffer(Enemies[i][j].x, Enemies[i][j].y, Enemies[i][j].image, Enemies[i][j].w, Enemies[i][j].h, Buffer1);
+            DrawImage_Buffer(&Enemies[i][j], Buffer1);
         }
     }
     

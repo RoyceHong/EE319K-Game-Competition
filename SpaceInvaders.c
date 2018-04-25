@@ -78,16 +78,17 @@ int main(void){
     Timer0_Init();
     SysTick_Init();
     
-    Delay100ms(5);              // delay 5 sec at 80 MHz
+//    Delay100ms(5);              // delay 5 sec at 80 MHz
     
     EnableInterrupts();
     
     while(1){ 
-        Move(Player1);
+//        Buffer_Init();
+        Move(&Player1);
     }
 }
 
-
+/*
 // You can use this timer only if you learn how it works
 void Delay100ms(uint32_t count){uint32_t volatile time;
     while(count>0){
@@ -98,3 +99,4 @@ void Delay100ms(uint32_t count){uint32_t volatile time;
     count--;
     }
 }
+*/
