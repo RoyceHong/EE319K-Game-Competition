@@ -7,11 +7,11 @@
 #include "level.h"
 
 #ifndef DISPLAY_WIDTH
-#define DISPLAY_WIDTH 128
+#define DISPLAY_WIDTH 20
 #endif
 
 #ifndef DISPLAY_HEIGHT
-#define DISPLAY_HEIGHT 50
+#define DISPLAY_HEIGHT 30
 #endif
 
 
@@ -34,7 +34,7 @@ void DrawImage_Buffer(sprite_t *object, uint16_t Buff[DISPLAY_HEIGHT][DISPLAY_WI
 
 
 // fills current image with black rectangle
-//void Image_Clear(int16_t x,  int16_t y, int16_t w, int16_t h, uint16_t Buff[DISPLAY_HEIGHT][DISPLAY_WIDTH]);
+void Image_Clear(sprite_t *object);//, uint16_t Buff[DISPLAY_HEIGHT][DISPLAY_WIDTH]);
 
 
 // Timer0 Interrupt Service Routine

@@ -62,7 +62,7 @@
 
 void DisableInterrupts(void); // Disable interrupts
 void EnableInterrupts(void);  // Enable interrupts
-void Delay100ms(uint32_t count); // time delay in 0.1 seconds
+//void Delay100ms(uint32_t count); // time delay in 0.1 seconds
 
 extern sprite_t Player1;
 
@@ -73,9 +73,9 @@ int main(void){
    
     // Initializations
     ADC_Init();
-    Buffer_Init();
+//    Buffer_Init();
     Level_Init();
-    Timer0_Init();
+//    Timer0_Init();
     SysTick_Init();
     
 //    Delay100ms(5);              // delay 5 sec at 80 MHz
@@ -84,9 +84,12 @@ int main(void){
     
     while(1){ 
 //        Buffer_Init();
+//        Image_Clear(&Player1);
         Move(&Player1);
     }
 }
+
+
 
 /*
 // You can use this timer only if you learn how it works

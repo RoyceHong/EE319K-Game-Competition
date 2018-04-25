@@ -29,29 +29,5 @@ typedef struct sprite_t{
 // Called at the beginning of the game 
 void Level_Init(void);
 
-/*
-// Player structure
-// Defines position, size, and status of the player
-typedef struct player_t{
-    int16_t x;
-    int16_t y;
-    const uint16_t *image;
-    int16_t w;
-    int16_t h;
-    status_t life; 
-} player_t ; 
-
-
-// Enemy structure
-// Defines position, size, and status of the the enemy
-typedef struct enemy_t{
-    int16_t x;
-    int16_t y;
-    const uint16_t *image;
-    int16_t w;
-    int16_t h;
-    status_t life; 
-} enemy_t; 
-*/
 
 #endif

@@ -9,12 +9,6 @@
 void Process_Move(sprite_t *player, movestate_t xdirection);
 
 void Move(sprite_t *object);
-// moves player based on ADC input 
-//void Move_Player(void);
-
-
-// moves enemy at a fixed rate
-//void Move_Enemy(void);
 
 
 #endif
