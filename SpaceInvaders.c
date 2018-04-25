@@ -64,6 +64,7 @@ void DisableInterrupts(void); // Disable interrupts
 void EnableInterrupts(void);  // Enable interrupts
 void Delay100ms(uint32_t count); // time delay in 0.1 seconds
 
+extern sprite_t Player1;
 
 int main(void){
     PLL_Init(Bus80MHz);       // Bus clock is 80 MHz 
@@ -81,16 +82,13 @@ int main(void){
     
     EnableInterrupts();
     
-    while(1){   
-        Move_Player();
-        Move_Enemy();
+    while(1){ 
+        Move(Player1);
     }
-
 }
 
 
 // You can use this timer only if you learn how it works
-
 void Delay100ms(uint32_t count){uint32_t volatile time;
     while(count>0){
     time = 727240;  // 0.1sec at 80 MHz

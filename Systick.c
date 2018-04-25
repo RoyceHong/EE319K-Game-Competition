@@ -4,9 +4,12 @@
 #include "tm4c123gh6pm.h"
 #include <stdint.h>
 #include "adc.h"
+#include "movement.h"
+
+extern sprite_t Player1;
 
 movestate_t CurrentMove;
-flag_t MoveStatus = BUSY;
+// flag_t MoveStatus = BUSY;
 
 // Initializes SysTick
 void SysTick_Init(void){
@@ -24,6 +27,7 @@ void SysTick_Init(void){
 
 void SysTick_Handler(void){
     CurrentMove = ADC_Convert();
-    MoveStatus = READY;
+    Process_Move(Player1, CurrentMove);
+//    MoveStatus = READY;
 }
     

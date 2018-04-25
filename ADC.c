@@ -17,8 +17,6 @@ void ADC_Init(void){
     SYSCTL_RCGCADC_R |= 0x01;       
     __asm{NOP};
     __asm{NOP};
-    __asm{NOP};
-    __asm{NOP};
     
     // set up PD2 as analog input to ADC 
     SYSCTL_RCGCGPIO_R |= 0x08;

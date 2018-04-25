@@ -12,7 +12,7 @@
 typedef enum {LEFT, HOLD, RIGHT} movestate_t;
 
 // Flag signifying whether ready to take input or not
-typedef enum {BUSY, READY} flag_t; 
+// typedef enum {BUSY, READY} flag_t; 
     
 
 // ADC initialization function 

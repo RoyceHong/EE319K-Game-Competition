@@ -3,13 +3,18 @@
 #ifndef MOVEMENT_H
 #define MOVEMENT_H
 
+#include "adc.h"
+#include "level.h"
 
+void Process_Move(sprite_t player, movestate_t xdirection);
+
+void Move(sprite_t object);
 // moves player based on ADC input 
-void Move_Player(void);
+//void Move_Player(void);
 
 
 // moves enemy at a fixed rate
-void Move_Enemy(void);
+//void Move_Enemy(void);
 
 
 #endif
