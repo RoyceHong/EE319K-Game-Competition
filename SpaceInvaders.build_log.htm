@@ -3,51 +3,85 @@
 <pre>
 <h1>µVision Build Log</h1>
 <h2>Project:</h2>
-C:\Keil\EE319KwareSpring2018\lab-10-c-spaceinvader-erick-royce\SpaceInvaders.uvproj
+C:\Users\eli42\Documents\GitHub\lab-10-c-spaceinvader-erick-royce\SpaceInvaders.uvproj
 Project File Date:  04/26/2018
 
 <h2>Output:</h2>
-Rebuild target 'SpaceInvaders'
-assembling startup.s...
-assembling random.s...
-compiling DAC.c...
-compiling ADC.c...
-compiling Timer1.c...
-compiling Sound.c...
-assembling LCD.s...
-assembling Print.s...
-compiling SpaceInvaders.c...
-compiling ST7735.c...
-compiling PLL.c...
-compiling Physics.c...
-compiling Level.c...
-compiling Systick.c...
-compiling Movement.c...
-compiling DisplayMap.c...
+Build target 'SpaceInvaders'
 compiling Bullet.c...
-linking...
-Program Size: Code=3880 RO-data=5396 RW-data=76 ZI-data=1724  
-".\SpaceInvaders.axf" - 0 Error(s), 0 Warning(s).
- 0 errors
-linking...
-Program Size: Code=3880 RO-data=5396 RW-data=76 ZI-data=1724  
-".\SpaceInvaders.axf" - 0 Error(s), 1 Warning(s).
-0: identifier "INITR_GREENTAB" is undefined
-    INITR_GREENTAB,
-ST7735.h(62): error:  #20: identifier "INITR_REDTAB" is undefined
-    INITR_REDTAB,
-ST7735.h(63): error:  #20: identifier "INITR_BLACKTAB" is undefined
-    INITR_BLACKTAB
-ST7735.h(64): error:  #65: expected a ";"
-  };
-ST7735.h(91): warning:  #231-D: declaration is not visible outside of function
-  void ST7735_InitR(enum initRFlags option);
-Bullet.c(90): error:  #247: function "BulletMain" has already been defined
-  void BulletMain(void){  // Later add input asking for max number of bullets
-Bullet.c: 2 warnings, 7 errors
-".\SpaceInvaders.axf" - 7 Error(s), 2 Warning(s).
+Bullet.h(26): error:  #20: identifier "sprite_t" is undefined
+  contact_t hitBoxCheck(bullet_t bullet, sprite_t object);
+Bullet.c: 0 warnings, 1 error
+".\SpaceInvaders.axf" - 1 Error(s), 0 Warning(s).
 Target not created
-
-Bullet.c: 2 warnings, 8 errors
-".\SpaceInvaders.axf" - 8 Error(s), 2 Warning(s).
+</pre>
+</body>
+</html>
+te_t Player1;
+Bullet.c(16): error:  #20: identifier "sprite_t" is undefined
+  extern sprite_t Enemies[ENEMY_ROW][ENEMY_COLUMN];
+Bullet.c(16): error:  #20: identifier "ENEMY_ROW" is undefined
+  extern sprite_t Enemies[ENEMY_ROW][ENEMY_COLUMN];
+Bullet.c(16): error:  #20: identifier "ENEMY_COLUMN" is undefined
+  extern sprite_t Enemies[ENEMY_ROW][ENEMY_COLUMN];
+Bullet.c(54): error:  #20: identifier "DEAD" is undefined
+                  Enemies[i][j].life = DEAD;
+Bullet.c(65): error:  #20: identifier "sprite_t" is undefined
+  contact_t hitBoxCheck(bullet_t bullet, sprite_t object){
+Bullet.c: 0 warnings, 7 errors
+compiling Enemy.c...
+".\SpaceInvaders.axf" - 7 Error(s), 0 Warning(s).
+Target not created
+-struct-or-union type
+                        Buff[(object ->y) +a][(object -> x)+b] = (object -> image[counter]);
+DisplayMap.c(58): error:  #132: expression must have pointer-to-struct-or-union type
+                        Buff[(object ->y) +a][(object -> x)+b] = (object -> image[counter]);
+DisplayMap.c(58): error:  #132: expression must have pointer-to-struct-or-union type
+                        Buff[(object ->y) +a][(object -> x)+b] = (object -> image[counter]);
+DisplayMap.c(65): error:  #20: identifier "sprite_t" is undefined
+  void Image_Clear(sprite_t *object){//, uint16_t Buff[DISPLAY_HEIGHT][DISPLAY_WIDTH]){
+DisplayMap.c(66): error:  #132: expression must have pointer-to-struct-or-union type
+      ST7735_DrawBitmap(object -> x,  object -> y, object -> image,  object -> w, object -> h);
+DisplayMap.c(66): error:  #132: expression must have pointer-to-struct-or-union type
+      ST7735_DrawBitmap(object -> x,  object -> y, object -> image,  object -> w, object -> h);
+DisplayMap.c(66): error:  #132: expression must have pointer-to-struct-or-union type
+      ST7735_DrawBitmap(object -> x,  object -> y, object -> image,  object -> w, object -> h);
+DisplayMap.c(66): error:  #132: expression must have pointer-to-struct-or-union type
+      ST7735_DrawBitmap(object -> x,  object -> y, object -> image,  object -> w, object -> h);
+DisplayMap.c(66): error:  #132: expression must have pointer-to-struct-or-union type
+      ST7735_DrawBitmap(object -> x,  object -> y, object -> image,  object -> w, object -> h);
+DisplayMap.c: 0 warnings, 14 errors
+compiling Bullet.c...
+Bullet.h(26): error:  #20: identifier "sprite_t" is undefined
+  contact_t hitBoxCheck(bullet_t bullet, sprite_t object);
+Bullet.c(15): error:  #20: identifier "sprite_t" is undefined
+  extern sprite_t Player1;
+Bullet.c(16): error:  #20: identifier "sprite_t" is undefined
+  extern sprite_t Enemies[ENEMY_ROW][ENEMY_COLUMN];
+Bullet.c(16): error:  #20: identifier "ENEMY_ROW" is undefined
+  extern sprite_t Enemies[ENEMY_ROW][ENEMY_COLUMN];
+Bullet.c(16): error:  #20: identifier "ENEMY_COLUMN" is undefined
+  extern sprite_t Enemies[ENEMY_ROW][ENEMY_COLUMN];
+Bullet.c(54): error:  #20: identifier "DEAD" is undefined
+                  Enemies[i][j].life = DEAD;
+Bullet.c(65): error:  #20: identifier "sprite_t" is undefined
+  contact_t hitBoxCheck(bullet_t bullet, sprite_t object){
+Bullet.c: 0 warnings, 7 errors
+compiling Player.c...
+Player.c(29): warning:  #1-D: last line of file ends without a newline
+      
+Player.c: 1 warning, 0 errors
+compiling Enemy.c...
+Enemy.c(102): warning:  #1-D: last line of file ends without a newline
+      
+Enemy.c: 1 warning, 0 errors
+".\SpaceInvaders.axf" - 21 Error(s), 2 Warning(s).
+Target not created
+, 5 errors
+compiling Player.c...
+Player.c(28): warning:  #1-D: last line of file ends without a newline
+      
+Player.c: 1 warning, 0 errors
+compiling Enemy.c...
+".\SpaceInvaders.axf" - 21 Error(s), 3 Warning(s).
 Target not created
