@@ -15,11 +15,7 @@
 #endif
 
 #ifndef ENEMY_XTIMER
-#define ENEMY_XTIMER 2666666
-#endif
-
-#ifndef ENEMY_YTIMER
-#define ENEMY_YTIMER 8999999
+#define ENEMY_XTIMER 2000000
 #endif
 
 

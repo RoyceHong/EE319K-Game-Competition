@@ -27,10 +27,11 @@ Section Cross References
     spaceinvaders.o(i.main) refers to level.o(i.Level_Init) for Level_Init
     spaceinvaders.o(i.main) refers to systick.o(i.SysTick_Init) for SysTick_Init
     spaceinvaders.o(i.main) refers to startup.o(.text) for EnableInterrupts
-    spaceinvaders.o(i.main) refers to movement.o(i.Move) for Move
+    spaceinvaders.o(i.main) refers to movement.o(i.MoveX) for MoveX
     spaceinvaders.o(i.main) refers to movement.o(i.Move_Enemy) for Move_Enemy
     spaceinvaders.o(i.main) refers to systick.o(.data) for playerflag
     spaceinvaders.o(i.main) refers to level.o(.data) for Player1
+    spaceinvaders.o(i.main) refers to movement.o(.data) for enemydown
     st7735.o(i.Output_Clear) refers to st7735.o(i.ST7735_FillScreen) for ST7735_FillScreen
     st7735.o(i.Output_Color) refers to st7735.o(i.ST7735_SetTextColor) for ST7735_SetTextColor
     st7735.o(i.Output_Init) refers to st7735.o(i.ST7735_InitR) for ST7735_InitR
@@ -122,17 +123,20 @@ Section Cross References
     level.o(i.Level_Init) refers to st7735.o(i.ST7735_DrawBitmap) for ST7735_DrawBitmap
     level.o(i.Level_Init) refers to level.o(.bss) for Enemies
     level.o(i.Level_Init) refers to level.o(.constdata) for CuteAlien
-    level.o(i.Level_Init) refers to level.o(.data) for Player1
+    level.o(i.Level_Init) refers to level.o(.data) for Bunker1
     level.o(.data) refers to level.o(.constdata) for PlayerRightFrame_1
     systick.o(i.SysTick_Handler) refers to adc.o(i.ADC_Convert) for ADC_Convert
     systick.o(i.SysTick_Handler) refers to movement.o(i.Process_Move) for Process_Move
     systick.o(i.SysTick_Handler) refers to systick.o(.data) for CurrentMove
     systick.o(i.SysTick_Handler) refers to level.o(.data) for Player1
     movement.o(i.Fill_Enemy) refers to level.o(.bss) for Enemies
-    movement.o(i.Move) refers to st7735.o(i.ST7735_DrawBitmap) for ST7735_DrawBitmap
+    movement.o(i.MoveX) refers to st7735.o(i.ST7735_DrawBitmap) for ST7735_DrawBitmap
+    movement.o(i.MoveY) refers to st7735.o(i.ST7735_DrawBitmap) for ST7735_DrawBitmap
     movement.o(i.Move_Enemy) refers to movement.o(i.Fill_Enemy) for Fill_Enemy
-    movement.o(i.Move_Enemy) refers to movement.o(i.Move) for Move
+    movement.o(i.Move_Enemy) refers to movement.o(i.MoveX) for MoveX
+    movement.o(i.Move_Enemy) refers to movement.o(i.MoveY) for MoveY
     movement.o(i.Move_Enemy) refers to level.o(.bss) for Enemies
+    movement.o(i.Move_Enemy) refers to movement.o(.data) for enemydown
     displaymap.o(i.Buffer_Init) refers to displaymap.o(.bss) for Buffer1
     displaymap.o(i.Image_Clear) refers to st7735.o(i.ST7735_DrawBitmap) for ST7735_DrawBitmap
     __main.o(!!!main) refers to rtentry.o(.ARM.Collect$$rtentry$$00000000) for __rt_entry
@@ -304,51 +308,51 @@ Image Symbol Table
     Symbol Name                              Value     Ov Type        Size  Object(Section)
 
     RESET                                    0x00000000   Section      644  startup.o(RESET)
-    ../clib/angel/boardlib.s                 0x00000000   Number         0  boardinit3.o ABSOLUTE
     ../clib/angel/boardlib.s                 0x00000000   Number         0  boardinit2.o ABSOLUTE
+    ../clib/angel/boardlib.s                 0x00000000   Number         0  boardinit3.o ABSOLUTE
     ../clib/angel/boardlib.s                 0x00000000   Number         0  boardinit1.o ABSOLUTE
     ../clib/angel/boardlib.s                 0x00000000   Number         0  boardshut.o ABSOLUTE
     ../clib/angel/handlers.s                 0x00000000   Number         0  __scatter_copy.o ABSOLUTE
     ../clib/angel/handlers.s                 0x00000000   Number         0  __scatter_zi.o ABSOLUTE
-    ../clib/angel/kernel.s                   0x00000000   Number         0  rtentry2.o ABSOLUTE
     ../clib/angel/kernel.s                   0x00000000   Number         0  rtexit.o ABSOLUTE
-    ../clib/angel/kernel.s                   0x00000000   Number         0  rtentry4.o ABSOLUTE
     ../clib/angel/kernel.s                   0x00000000   Number         0  rtentry.o ABSOLUTE
+    ../clib/angel/kernel.s                   0x00000000   Number         0  rtentry2.o ABSOLUTE
+    ../clib/angel/kernel.s                   0x00000000   Number         0  rtentry4.o ABSOLUTE
     ../clib/angel/kernel.s                   0x00000000   Number         0  rtexit2.o ABSOLUTE
     ../clib/angel/rt.s                       0x00000000   Number         0  rt_raise.o ABSOLUTE
     ../clib/angel/scatter.s                  0x00000000   Number         0  __scatter.o ABSOLUTE
     ../clib/angel/startup.s                  0x00000000   Number         0  __main.o ABSOLUTE
+    ../clib/angel/sys.s                      0x00000000   Number         0  sys_stackheap_outer.o ABSOLUTE
     ../clib/angel/sys.s                      0x00000000   Number         0  indicate_semi.o ABSOLUTE
     ../clib/angel/sys.s                      0x00000000   Number         0  use_no_semi.o ABSOLUTE
     ../clib/angel/sys.s                      0x00000000   Number         0  libspace.o ABSOLUTE
-    ../clib/angel/sys.s                      0x00000000   Number         0  sys_stackheap_outer.o ABSOLUTE
     ../clib/angel/sysapp.c                   0x00000000   Number         0  sys_exit.o ABSOLUTE
     ../clib/angel/sysapp.c                   0x00000000   Number         0  sys_command.o ABSOLUTE
     ../clib/angel/sysapp.c                   0x00000000   Number         0  sys_wrch.o ABSOLUTE
     ../clib/armsys.c                         0x00000000   Number         0  argv_veneer.o ABSOLUTE
+    ../clib/armsys.c                         0x00000000   Number         0  argv_veneer.o ABSOLUTE
     ../clib/armsys.c                         0x00000000   Number         0  _get_argv_nomalloc.o ABSOLUTE
     ../clib/armsys.c                         0x00000000   Number         0  no_argv.o ABSOLUTE
-    ../clib/armsys.c                         0x00000000   Number         0  argv_veneer.o ABSOLUTE
     ../clib/heapalloc.c                      0x00000000   Number         0  hrguard.o ABSOLUTE
     ../clib/heapaux.c                        0x00000000   Number         0  heapauxi.o ABSOLUTE
     ../clib/libinit.s                        0x00000000   Number         0  libinit.o ABSOLUTE
-    ../clib/libinit.s                        0x00000000   Number         0  libshutdown2.o ABSOLUTE
-    ../clib/libinit.s                        0x00000000   Number         0  libshutdown.o ABSOLUTE
     ../clib/libinit.s                        0x00000000   Number         0  libinit2.o ABSOLUTE
-    ../clib/signal.c                         0x00000000   Number         0  defsig_rtmem_inner.o ABSOLUTE
-    ../clib/signal.c                         0x00000000   Number         0  defsig_exit.o ABSOLUTE
-    ../clib/signal.c                         0x00000000   Number         0  defsig_abrt_inner.o ABSOLUTE
-    ../clib/signal.c                         0x00000000   Number         0  __raise.o ABSOLUTE
-    ../clib/signal.c                         0x00000000   Number         0  defsig_general.o ABSOLUTE
-    ../clib/signal.c                         0x00000000   Number         0  defsig_stak_inner.o ABSOLUTE
-    ../clib/signal.c                         0x00000000   Number         0  defsig_other.o ABSOLUTE
-    ../clib/signal.c                         0x00000000   Number         0  defsig_rtmem_formal.o ABSOLUTE
-    ../clib/signal.c                         0x00000000   Number         0  defsig_segv_inner.o ABSOLUTE
-    ../clib/signal.c                         0x00000000   Number         0  defsig_cppl_inner.o ABSOLUTE
+    ../clib/libinit.s                        0x00000000   Number         0  libshutdown.o ABSOLUTE
+    ../clib/libinit.s                        0x00000000   Number         0  libshutdown2.o ABSOLUTE
     ../clib/signal.c                         0x00000000   Number         0  defsig_pvfn_inner.o ABSOLUTE
+    ../clib/signal.c                         0x00000000   Number         0  defsig_stak_inner.o ABSOLUTE
     ../clib/signal.c                         0x00000000   Number         0  defsig_rtred_inner.o ABSOLUTE
     ../clib/signal.c                         0x00000000   Number         0  defsig_fpe_inner.o ABSOLUTE
+    ../clib/signal.c                         0x00000000   Number         0  defsig_abrt_inner.o ABSOLUTE
+    ../clib/signal.c                         0x00000000   Number         0  defsig_general.o ABSOLUTE
+    ../clib/signal.c                         0x00000000   Number         0  defsig_cppl_inner.o ABSOLUTE
+    ../clib/signal.c                         0x00000000   Number         0  defsig_rtmem_inner.o ABSOLUTE
+    ../clib/signal.c                         0x00000000   Number         0  defsig_exit.o ABSOLUTE
+    ../clib/signal.c                         0x00000000   Number         0  defsig_rtmem_formal.o ABSOLUTE
     ../clib/signal.c                         0x00000000   Number         0  defsig_rtmem_outer.o ABSOLUTE
+    ../clib/signal.c                         0x00000000   Number         0  __raise.o ABSOLUTE
+    ../clib/signal.c                         0x00000000   Number         0  defsig_other.o ABSOLUTE
+    ../clib/signal.c                         0x00000000   Number         0  defsig_segv_inner.o ABSOLUTE
     ../clib/signal.s                         0x00000000   Number         0  defsig.o ABSOLUTE
     ../clib/stdlib.c                         0x00000000   Number         0  exit.o ABSOLUTE
     ../fplib/fpinit.s                        0x00000000   Number         0  fpinit.o ABSOLUTE
@@ -358,6 +362,7 @@ Image Symbol Table
     DisplayMap.c                             0x00000000   Number         0  displaymap.o ABSOLUTE
     LCD.s                                    0x00000000   Number         0  lcd.o ABSOLUTE
     Level.c                                  0x00000000   Number         0  level.o ABSOLUTE
+    MainMenu.c                               0x00000000   Number         0  mainmenu.o ABSOLUTE
     Movement.c                               0x00000000   Number         0  movement.o ABSOLUTE
     PLL.c                                    0x00000000   Number         0  pll.o ABSOLUTE
     Physics.c                                0x00000000   Number         0  physics.o ABSOLUTE
@@ -429,33 +434,34 @@ Image Symbol Table
     i.Delay1ms                               0x00000580   Section        0  st7735.o(i.Delay1ms)
     i.Fill_Enemy                             0x000005a0   Section        0  movement.o(i.Fill_Enemy)
     i.Level_Init                             0x000005d8   Section        0  level.o(i.Level_Init)
-    i.Move                                   0x00000760   Section        0  movement.o(i.Move)
-    i.Move_Enemy                             0x000007d4   Section        0  movement.o(i.Move_Enemy)
-    i.PLL_Init                               0x000008cc   Section        0  pll.o(i.PLL_Init)
-    i.Process_Move                           0x00000948   Section        0  movement.o(i.Process_Move)
-    i.ST7735_DrawBitmap                      0x0000096c   Section        0  st7735.o(i.ST7735_DrawBitmap)
-    i.ST7735_FillRect                        0x00000a8c   Section        0  st7735.o(i.ST7735_FillRect)
-    i.ST7735_FillScreen                      0x00000b38   Section        0  st7735.o(i.ST7735_FillScreen)
-    i.ST7735_InitR                           0x00000b5c   Section        0  st7735.o(i.ST7735_InitR)
-    i.ST7735_SetCursor                       0x00000bd8   Section        0  st7735.o(i.ST7735_SetCursor)
-    i.SysTick_Handler                        0x00000bf8   Section        0  systick.o(i.SysTick_Handler)
-    i.SysTick_Init                           0x00000c20   Section        0  systick.o(i.SysTick_Init)
-    i.Timer1A_Handler                        0x00000c54   Section        0  timer1.o(i.Timer1A_Handler)
-    i.commandList                            0x00000c6c   Section        0  st7735.o(i.commandList)
-    commandList                              0x00000c6d   Thumb Code    86  st7735.o(i.commandList)
-    i.commonInit                             0x00000cc4   Section        0  st7735.o(i.commonInit)
-    commonInit                               0x00000cc5   Thumb Code   340  st7735.o(i.commonInit)
-    i.main                                   0x00000e48   Section        0  spaceinvaders.o(i.main)
-    i.setAddrWindow                          0x00000eb4   Section        0  st7735.o(i.setAddrWindow)
-    setAddrWindow                            0x00000eb5   Thumb Code   106  st7735.o(i.setAddrWindow)
-    .constdata                               0x00000f28   Section     2018  st7735.o(.constdata)
-    Font                                     0x00000f28   Data        1275  st7735.o(.constdata)
-    Bcmd                                     0x00001423   Data         103  st7735.o(.constdata)
-    Rcmd1                                    0x0000148a   Data          59  st7735.o(.constdata)
-    Rcmd2green                               0x000014c5   Data          13  st7735.o(.constdata)
-    Rcmd2red                                 0x000014d2   Data          13  st7735.o(.constdata)
-    Rcmd3                                    0x000014df   Data          43  st7735.o(.constdata)
-    .constdata                               0x0000170a   Section     3344  level.o(.constdata)
+    i.MoveX                                  0x000007a0   Section        0  movement.o(i.MoveX)
+    i.MoveY                                  0x000007ee   Section        0  movement.o(i.MoveY)
+    i.Move_Enemy                             0x0000083c   Section        0  movement.o(i.Move_Enemy)
+    i.PLL_Init                               0x00000944   Section        0  pll.o(i.PLL_Init)
+    i.Process_Move                           0x000009c0   Section        0  movement.o(i.Process_Move)
+    i.ST7735_DrawBitmap                      0x000009e4   Section        0  st7735.o(i.ST7735_DrawBitmap)
+    i.ST7735_FillRect                        0x00000b04   Section        0  st7735.o(i.ST7735_FillRect)
+    i.ST7735_FillScreen                      0x00000bb0   Section        0  st7735.o(i.ST7735_FillScreen)
+    i.ST7735_InitR                           0x00000bd4   Section        0  st7735.o(i.ST7735_InitR)
+    i.ST7735_SetCursor                       0x00000c50   Section        0  st7735.o(i.ST7735_SetCursor)
+    i.SysTick_Handler                        0x00000c70   Section        0  systick.o(i.SysTick_Handler)
+    i.SysTick_Init                           0x00000c98   Section        0  systick.o(i.SysTick_Init)
+    i.Timer1A_Handler                        0x00000ccc   Section        0  timer1.o(i.Timer1A_Handler)
+    i.commandList                            0x00000ce4   Section        0  st7735.o(i.commandList)
+    commandList                              0x00000ce5   Thumb Code    86  st7735.o(i.commandList)
+    i.commonInit                             0x00000d3c   Section        0  st7735.o(i.commonInit)
+    commonInit                               0x00000d3d   Thumb Code   340  st7735.o(i.commonInit)
+    i.main                                   0x00000ec0   Section        0  spaceinvaders.o(i.main)
+    i.setAddrWindow                          0x00000f2c   Section        0  st7735.o(i.setAddrWindow)
+    setAddrWindow                            0x00000f2d   Thumb Code   106  st7735.o(i.setAddrWindow)
+    .constdata                               0x00000fa0   Section     2018  st7735.o(.constdata)
+    Font                                     0x00000fa0   Data        1275  st7735.o(.constdata)
+    Bcmd                                     0x0000149b   Data         103  st7735.o(.constdata)
+    Rcmd1                                    0x00001502   Data          59  st7735.o(.constdata)
+    Rcmd2green                               0x0000153d   Data          13  st7735.o(.constdata)
+    Rcmd2red                                 0x0000154a   Data          13  st7735.o(.constdata)
+    Rcmd3                                    0x00001557   Data          43  st7735.o(.constdata)
+    .constdata                               0x00001782   Section     3144  level.o(.constdata)
     .data                                    0x20000000   Section        4  timer1.o(.data)
     .data                                    0x20000004   Section       44  st7735.o(.data)
     _width                                   0x2000000e   Data           2  st7735.o(.data)
@@ -464,16 +470,17 @@ Image Symbol Table
     RowStart                                 0x20000019   Data           1  st7735.o(.data)
     Rotation                                 0x2000001a   Data           1  st7735.o(.data)
     TabColor                                 0x2000001b   Data           1  st7735.o(.data)
-    .data                                    0x20000030   Section       20  level.o(.data)
-    .data                                    0x20000044   Section        2  systick.o(.data)
-    DATA                                     0x20000048   Section        4  random.o(DATA)
-    M                                        0x20000048   Data           4  random.o(DATA)
-    .bss                                     0x2000004c   Section      600  level.o(.bss)
-    .bss                                     0x200002a4   Section       96  libspace.o(.bss)
-    HEAP                                     0x20000308   Section        0  startup.o(HEAP)
-    STACK                                    0x20000308   Section     1024  startup.o(STACK)
-    HeapMem                                  0x20000308   Data           0  startup.o(HEAP)
-    StackMem                                 0x20000308   Data           0  startup.o(STACK)
+    .data                                    0x20000030   Section       60  level.o(.data)
+    .data                                    0x2000006c   Section        2  systick.o(.data)
+    .data                                    0x2000006e   Section        1  movement.o(.data)
+    DATA                                     0x20000070   Section        4  random.o(DATA)
+    M                                        0x20000070   Data           4  random.o(DATA)
+    .bss                                     0x20000074   Section      600  level.o(.bss)
+    .bss                                     0x200002cc   Section       96  libspace.o(.bss)
+    HEAP                                     0x20000330   Section        0  startup.o(HEAP)
+    STACK                                    0x20000330   Section     1024  startup.o(STACK)
+    HeapMem                                  0x20000330   Data           0  startup.o(HEAP)
+    StackMem                                 0x20000330   Data           0  startup.o(STACK)
 
     Global Symbols
 
@@ -705,33 +712,33 @@ Image Symbol Table
     ADC_Init                                 0x000004a9   Thumb Code   192  adc.o(i.ADC_Init)
     Delay1ms                                 0x00000581   Thumb Code    32  st7735.o(i.Delay1ms)
     Fill_Enemy                               0x000005a1   Thumb Code    50  movement.o(i.Fill_Enemy)
-    Level_Init                               0x000005d9   Thumb Code   380  level.o(i.Level_Init)
-    Move                                     0x00000761   Thumb Code   114  movement.o(i.Move)
-    Move_Enemy                               0x000007d5   Thumb Code   242  movement.o(i.Move_Enemy)
-    PLL_Init                                 0x000008cd   Thumb Code   118  pll.o(i.PLL_Init)
-    Process_Move                             0x00000949   Thumb Code    36  movement.o(i.Process_Move)
-    ST7735_DrawBitmap                        0x0000096d   Thumb Code   280  st7735.o(i.ST7735_DrawBitmap)
-    ST7735_FillRect                          0x00000a8d   Thumb Code   164  st7735.o(i.ST7735_FillRect)
-    ST7735_FillScreen                        0x00000b39   Thumb Code    28  st7735.o(i.ST7735_FillScreen)
-    ST7735_InitR                             0x00000b5d   Thumb Code    90  st7735.o(i.ST7735_InitR)
-    ST7735_SetCursor                         0x00000bd9   Thumb Code    22  st7735.o(i.ST7735_SetCursor)
-    SysTick_Handler                          0x00000bf9   Thumb Code    28  systick.o(i.SysTick_Handler)
-    SysTick_Init                             0x00000c21   Thumb Code    42  systick.o(i.SysTick_Init)
-    Timer1A_Handler                          0x00000c55   Thumb Code    16  timer1.o(i.Timer1A_Handler)
-    main                                     0x00000e49   Thumb Code    90  spaceinvaders.o(i.main)
-    dBfs                                     0x0000150a   Data         512  st7735.o(.constdata)
-    CuteAlien                                0x0000170a   Data         260  level.o(.constdata)
-    TriangleAlien                            0x0000180e   Data         200  level.o(.constdata)
-    PlayerRightFrame_1                       0x000018d6   Data         352  level.o(.constdata)
-    PlayerRightFrame_2                       0x00001a36   Data         352  level.o(.constdata)
-    PlayerLeftFrame_1                        0x00001b96   Data         352  level.o(.constdata)
-    PlayerLeftFrame_2                        0x00001cf6   Data         352  level.o(.constdata)
-    Bunker0                                  0x00001e56   Data         180  level.o(.constdata)
-    StackOverflow_Frame_1_3                  0x00001f0a   Data         432  level.o(.constdata)
-    StackOverflowFrame_2                     0x000020ba   Data         432  level.o(.constdata)
-    StackOverflowFrame_4                     0x0000226a   Data         432  level.o(.constdata)
-    Region$$Table$$Base                      0x0000241c   Number         0  anon$$obj.o(Region$$Table)
-    Region$$Table$$Limit                     0x0000243c   Number         0  anon$$obj.o(Region$$Table)
+    Level_Init                               0x000005d9   Thumb Code   434  level.o(i.Level_Init)
+    MoveX                                    0x000007a1   Thumb Code    78  movement.o(i.MoveX)
+    MoveY                                    0x000007ef   Thumb Code    78  movement.o(i.MoveY)
+    Move_Enemy                               0x0000083d   Thumb Code   256  movement.o(i.Move_Enemy)
+    PLL_Init                                 0x00000945   Thumb Code   118  pll.o(i.PLL_Init)
+    Process_Move                             0x000009c1   Thumb Code    36  movement.o(i.Process_Move)
+    ST7735_DrawBitmap                        0x000009e5   Thumb Code   280  st7735.o(i.ST7735_DrawBitmap)
+    ST7735_FillRect                          0x00000b05   Thumb Code   164  st7735.o(i.ST7735_FillRect)
+    ST7735_FillScreen                        0x00000bb1   Thumb Code    28  st7735.o(i.ST7735_FillScreen)
+    ST7735_InitR                             0x00000bd5   Thumb Code    90  st7735.o(i.ST7735_InitR)
+    ST7735_SetCursor                         0x00000c51   Thumb Code    22  st7735.o(i.ST7735_SetCursor)
+    SysTick_Handler                          0x00000c71   Thumb Code    28  systick.o(i.SysTick_Handler)
+    SysTick_Init                             0x00000c99   Thumb Code    42  systick.o(i.SysTick_Init)
+    Timer1A_Handler                          0x00000ccd   Thumb Code    16  timer1.o(i.Timer1A_Handler)
+    main                                     0x00000ec1   Thumb Code    92  spaceinvaders.o(i.main)
+    dBfs                                     0x00001582   Data         512  st7735.o(.constdata)
+    CuteAlien                                0x00001782   Data         260  level.o(.constdata)
+    PlayerRightFrame_1                       0x00001886   Data         352  level.o(.constdata)
+    PlayerRightFrame_2                       0x000019e6   Data         352  level.o(.constdata)
+    PlayerLeftFrame_1                        0x00001b46   Data         352  level.o(.constdata)
+    PlayerLeftFrame_2                        0x00001ca6   Data         352  level.o(.constdata)
+    Bunker0                                  0x00001e06   Data         180  level.o(.constdata)
+    StackOverflow_Frame_1_3                  0x00001eba   Data         432  level.o(.constdata)
+    StackOverflowFrame_2                     0x0000206a   Data         432  level.o(.constdata)
+    StackOverflowFrame_4                     0x0000221a   Data         432  level.o(.constdata)
+    Region$$Table$$Base                      0x000023cc   Number         0  anon$$obj.o(Region$$Table)
+    Region$$Table$$Limit                     0x000023ec   Number         0  anon$$obj.o(Region$$Table)
     PeriodicTask1                            0x20000000   Data           4  timer1.o(.data)
     StX                                      0x20000004   Data           4  st7735.o(.data)
     StY                                      0x20000008   Data           4  st7735.o(.data)
@@ -743,11 +750,14 @@ Image Symbol Table
     X                                        0x20000028   Data           4  st7735.o(.data)
     Yrange                                   0x2000002c   Data           4  st7735.o(.data)
     Player1                                  0x20000030   Data          20  level.o(.data)
-    playerflag                               0x20000044   Data           1  systick.o(.data)
-    CurrentMove                              0x20000045   Data           1  systick.o(.data)
-    Enemies                                  0x2000004c   Data         600  level.o(.bss)
-    __libspace_start                         0x200002a4   Data          96  libspace.o(.bss)
-    __temporary_stack_top$libspace           0x20000304   Data           0  libspace.o(.bss)
+    Bunker1                                  0x20000044   Data          20  level.o(.data)
+    Bunker2                                  0x20000058   Data          20  level.o(.data)
+    playerflag                               0x2000006c   Data           1  systick.o(.data)
+    CurrentMove                              0x2000006d   Data           1  systick.o(.data)
+    enemydown                                0x2000006e   Data           1  movement.o(.data)
+    Enemies                                  0x20000074   Data         600  level.o(.bss)
+    __libspace_start                         0x200002cc   Data          96  libspace.o(.bss)
+    __temporary_stack_top$libspace           0x2000032c   Data           0  libspace.o(.bss)
 
 
 
@@ -757,120 +767,121 @@ Memory Map of the image
 
   Image Entry point : 0x0000026d
 
-  Load Region LR_1 (Base: 0x00000000, Size: 0x00002488, Max: 0xffffffff, ABSOLUTE)
+  Load Region LR_1 (Base: 0x00000000, Size: 0x00002460, Max: 0xffffffff, ABSOLUTE)
 
-    Execution Region ER_RO (Base: 0x00000000, Size: 0x0000243c, Max: 0xffffffff, ABSOLUTE)
+    Execution Region ER_RO (Base: 0x00000000, Size: 0x000023ec, Max: 0xffffffff, ABSOLUTE)
 
     Base Addr    Size         Type   Attr      Idx    E Section Name        Object
 
     0x00000000   0x00000284   Code   RO            3  * RESET               startup.o
-    0x00000284   0x00000008   Code   RO          611  * !!!main             c_w.l(__main.o)
-    0x0000028c   0x00000034   Code   RO          765    !!!scatter          c_w.l(__scatter.o)
-    0x000002c0   0x0000001a   Code   RO          767    !!handler_copy      c_w.l(__scatter_copy.o)
+    0x00000284   0x00000008   Code   RO          629  * !!!main             c_w.l(__main.o)
+    0x0000028c   0x00000034   Code   RO          783    !!!scatter          c_w.l(__scatter.o)
+    0x000002c0   0x0000001a   Code   RO          785    !!handler_copy      c_w.l(__scatter_copy.o)
     0x000002da   0x00000002   PAD
-    0x000002dc   0x0000001c   Code   RO          769    !!handler_zi        c_w.l(__scatter_zi.o)
-    0x000002f8   0x00000002   Code   RO          638    .ARM.Collect$$libinit$$00000000  c_w.l(libinit.o)
-    0x000002fa   0x00000000   Code   RO          645    .ARM.Collect$$libinit$$00000002  c_w.l(libinit2.o)
-    0x000002fa   0x00000000   Code   RO          648    .ARM.Collect$$libinit$$00000008  c_w.l(libinit2.o)
-    0x000002fa   0x00000000   Code   RO          650    .ARM.Collect$$libinit$$0000000A  c_w.l(libinit2.o)
-    0x000002fa   0x00000000   Code   RO          652    .ARM.Collect$$libinit$$0000000C  c_w.l(libinit2.o)
-    0x000002fa   0x00000000   Code   RO          655    .ARM.Collect$$libinit$$0000000F  c_w.l(libinit2.o)
-    0x000002fa   0x00000000   Code   RO          657    .ARM.Collect$$libinit$$00000011  c_w.l(libinit2.o)
-    0x000002fa   0x00000000   Code   RO          659    .ARM.Collect$$libinit$$00000013  c_w.l(libinit2.o)
-    0x000002fa   0x00000000   Code   RO          661    .ARM.Collect$$libinit$$00000015  c_w.l(libinit2.o)
-    0x000002fa   0x00000000   Code   RO          663    .ARM.Collect$$libinit$$00000017  c_w.l(libinit2.o)
-    0x000002fa   0x00000000   Code   RO          665    .ARM.Collect$$libinit$$00000019  c_w.l(libinit2.o)
-    0x000002fa   0x00000000   Code   RO          667    .ARM.Collect$$libinit$$0000001B  c_w.l(libinit2.o)
-    0x000002fa   0x00000000   Code   RO          669    .ARM.Collect$$libinit$$0000001D  c_w.l(libinit2.o)
-    0x000002fa   0x00000000   Code   RO          671    .ARM.Collect$$libinit$$0000001F  c_w.l(libinit2.o)
-    0x000002fa   0x00000000   Code   RO          673    .ARM.Collect$$libinit$$00000021  c_w.l(libinit2.o)
-    0x000002fa   0x00000000   Code   RO          675    .ARM.Collect$$libinit$$00000023  c_w.l(libinit2.o)
-    0x000002fa   0x00000000   Code   RO          679    .ARM.Collect$$libinit$$0000002A  c_w.l(libinit2.o)
-    0x000002fa   0x00000000   Code   RO          681    .ARM.Collect$$libinit$$0000002C  c_w.l(libinit2.o)
-    0x000002fa   0x00000000   Code   RO          683    .ARM.Collect$$libinit$$0000002E  c_w.l(libinit2.o)
-    0x000002fa   0x00000000   Code   RO          685    .ARM.Collect$$libinit$$00000030  c_w.l(libinit2.o)
-    0x000002fa   0x00000002   Code   RO          686    .ARM.Collect$$libinit$$00000031  c_w.l(libinit2.o)
-    0x000002fc   0x00000002   Code   RO          706    .ARM.Collect$$libshutdown$$00000000  c_w.l(libshutdown.o)
-    0x000002fe   0x00000000   Code   RO          720    .ARM.Collect$$libshutdown$$00000003  c_w.l(libshutdown2.o)
-    0x000002fe   0x00000000   Code   RO          723    .ARM.Collect$$libshutdown$$00000006  c_w.l(libshutdown2.o)
-    0x000002fe   0x00000000   Code   RO          726    .ARM.Collect$$libshutdown$$00000009  c_w.l(libshutdown2.o)
-    0x000002fe   0x00000000   Code   RO          728    .ARM.Collect$$libshutdown$$0000000B  c_w.l(libshutdown2.o)
-    0x000002fe   0x00000000   Code   RO          731    .ARM.Collect$$libshutdown$$0000000E  c_w.l(libshutdown2.o)
-    0x000002fe   0x00000002   Code   RO          732    .ARM.Collect$$libshutdown$$0000000F  c_w.l(libshutdown2.o)
-    0x00000300   0x00000000   Code   RO          613    .ARM.Collect$$rtentry$$00000000  c_w.l(rtentry.o)
-    0x00000300   0x00000000   Code   RO          615    .ARM.Collect$$rtentry$$00000002  c_w.l(rtentry2.o)
-    0x00000300   0x00000006   Code   RO          627    .ARM.Collect$$rtentry$$00000004  c_w.l(rtentry4.o)
-    0x00000306   0x00000000   Code   RO          617    .ARM.Collect$$rtentry$$00000009  c_w.l(rtentry2.o)
-    0x00000306   0x00000004   Code   RO          618    .ARM.Collect$$rtentry$$0000000A  c_w.l(rtentry2.o)
-    0x0000030a   0x00000000   Code   RO          620    .ARM.Collect$$rtentry$$0000000C  c_w.l(rtentry2.o)
-    0x0000030a   0x00000008   Code   RO          621    .ARM.Collect$$rtentry$$0000000D  c_w.l(rtentry2.o)
-    0x00000312   0x00000002   Code   RO          642    .ARM.Collect$$rtexit$$00000000  c_w.l(rtexit.o)
-    0x00000314   0x00000000   Code   RO          688    .ARM.Collect$$rtexit$$00000002  c_w.l(rtexit2.o)
-    0x00000314   0x00000004   Code   RO          689    .ARM.Collect$$rtexit$$00000003  c_w.l(rtexit2.o)
-    0x00000318   0x00000006   Code   RO          690    .ARM.Collect$$rtexit$$00000004  c_w.l(rtexit2.o)
+    0x000002dc   0x0000001c   Code   RO          787    !!handler_zi        c_w.l(__scatter_zi.o)
+    0x000002f8   0x00000002   Code   RO          656    .ARM.Collect$$libinit$$00000000  c_w.l(libinit.o)
+    0x000002fa   0x00000000   Code   RO          663    .ARM.Collect$$libinit$$00000002  c_w.l(libinit2.o)
+    0x000002fa   0x00000000   Code   RO          666    .ARM.Collect$$libinit$$00000008  c_w.l(libinit2.o)
+    0x000002fa   0x00000000   Code   RO          668    .ARM.Collect$$libinit$$0000000A  c_w.l(libinit2.o)
+    0x000002fa   0x00000000   Code   RO          670    .ARM.Collect$$libinit$$0000000C  c_w.l(libinit2.o)
+    0x000002fa   0x00000000   Code   RO          673    .ARM.Collect$$libinit$$0000000F  c_w.l(libinit2.o)
+    0x000002fa   0x00000000   Code   RO          675    .ARM.Collect$$libinit$$00000011  c_w.l(libinit2.o)
+    0x000002fa   0x00000000   Code   RO          677    .ARM.Collect$$libinit$$00000013  c_w.l(libinit2.o)
+    0x000002fa   0x00000000   Code   RO          679    .ARM.Collect$$libinit$$00000015  c_w.l(libinit2.o)
+    0x000002fa   0x00000000   Code   RO          681    .ARM.Collect$$libinit$$00000017  c_w.l(libinit2.o)
+    0x000002fa   0x00000000   Code   RO          683    .ARM.Collect$$libinit$$00000019  c_w.l(libinit2.o)
+    0x000002fa   0x00000000   Code   RO          685    .ARM.Collect$$libinit$$0000001B  c_w.l(libinit2.o)
+    0x000002fa   0x00000000   Code   RO          687    .ARM.Collect$$libinit$$0000001D  c_w.l(libinit2.o)
+    0x000002fa   0x00000000   Code   RO          689    .ARM.Collect$$libinit$$0000001F  c_w.l(libinit2.o)
+    0x000002fa   0x00000000   Code   RO          691    .ARM.Collect$$libinit$$00000021  c_w.l(libinit2.o)
+    0x000002fa   0x00000000   Code   RO          693    .ARM.Collect$$libinit$$00000023  c_w.l(libinit2.o)
+    0x000002fa   0x00000000   Code   RO          697    .ARM.Collect$$libinit$$0000002A  c_w.l(libinit2.o)
+    0x000002fa   0x00000000   Code   RO          699    .ARM.Collect$$libinit$$0000002C  c_w.l(libinit2.o)
+    0x000002fa   0x00000000   Code   RO          701    .ARM.Collect$$libinit$$0000002E  c_w.l(libinit2.o)
+    0x000002fa   0x00000000   Code   RO          703    .ARM.Collect$$libinit$$00000030  c_w.l(libinit2.o)
+    0x000002fa   0x00000002   Code   RO          704    .ARM.Collect$$libinit$$00000031  c_w.l(libinit2.o)
+    0x000002fc   0x00000002   Code   RO          724    .ARM.Collect$$libshutdown$$00000000  c_w.l(libshutdown.o)
+    0x000002fe   0x00000000   Code   RO          738    .ARM.Collect$$libshutdown$$00000003  c_w.l(libshutdown2.o)
+    0x000002fe   0x00000000   Code   RO          741    .ARM.Collect$$libshutdown$$00000006  c_w.l(libshutdown2.o)
+    0x000002fe   0x00000000   Code   RO          744    .ARM.Collect$$libshutdown$$00000009  c_w.l(libshutdown2.o)
+    0x000002fe   0x00000000   Code   RO          746    .ARM.Collect$$libshutdown$$0000000B  c_w.l(libshutdown2.o)
+    0x000002fe   0x00000000   Code   RO          749    .ARM.Collect$$libshutdown$$0000000E  c_w.l(libshutdown2.o)
+    0x000002fe   0x00000002   Code   RO          750    .ARM.Collect$$libshutdown$$0000000F  c_w.l(libshutdown2.o)
+    0x00000300   0x00000000   Code   RO          631    .ARM.Collect$$rtentry$$00000000  c_w.l(rtentry.o)
+    0x00000300   0x00000000   Code   RO          633    .ARM.Collect$$rtentry$$00000002  c_w.l(rtentry2.o)
+    0x00000300   0x00000006   Code   RO          645    .ARM.Collect$$rtentry$$00000004  c_w.l(rtentry4.o)
+    0x00000306   0x00000000   Code   RO          635    .ARM.Collect$$rtentry$$00000009  c_w.l(rtentry2.o)
+    0x00000306   0x00000004   Code   RO          636    .ARM.Collect$$rtentry$$0000000A  c_w.l(rtentry2.o)
+    0x0000030a   0x00000000   Code   RO          638    .ARM.Collect$$rtentry$$0000000C  c_w.l(rtentry2.o)
+    0x0000030a   0x00000008   Code   RO          639    .ARM.Collect$$rtentry$$0000000D  c_w.l(rtentry2.o)
+    0x00000312   0x00000002   Code   RO          660    .ARM.Collect$$rtexit$$00000000  c_w.l(rtexit.o)
+    0x00000314   0x00000000   Code   RO          706    .ARM.Collect$$rtexit$$00000002  c_w.l(rtexit2.o)
+    0x00000314   0x00000004   Code   RO          707    .ARM.Collect$$rtexit$$00000003  c_w.l(rtexit2.o)
+    0x00000318   0x00000006   Code   RO          708    .ARM.Collect$$rtexit$$00000004  c_w.l(rtexit2.o)
     0x0000031e   0x00000002   PAD
     0x00000320   0x00000030   Code   RO            4    .text               startup.o
     0x00000350   0x00000040   Code   RO           13    .text               random.o
     0x00000390   0x00000054   Code   RO          164    .text               lcd.o
-    0x000003e4   0x00000006   Code   RO          609    .text               c_w.l(heapauxi.o)
-    0x000003ea   0x0000004a   Code   RO          629    .text               c_w.l(sys_stackheap_outer.o)
-    0x00000434   0x0000000c   Code   RO          631    .text               c_w.l(exit.o)
-    0x00000440   0x00000008   Code   RO          639    .text               c_w.l(libspace.o)
-    0x00000448   0x0000000c   Code   RO          698    .text               c_w.l(sys_exit.o)
-    0x00000454   0x00000002   Code   RO          709    .text               c_w.l(use_no_semi.o)
-    0x00000456   0x00000000   Code   RO          711    .text               c_w.l(indicate_semi.o)
+    0x000003e4   0x00000006   Code   RO          627    .text               c_w.l(heapauxi.o)
+    0x000003ea   0x0000004a   Code   RO          647    .text               c_w.l(sys_stackheap_outer.o)
+    0x00000434   0x0000000c   Code   RO          649    .text               c_w.l(exit.o)
+    0x00000440   0x00000008   Code   RO          657    .text               c_w.l(libspace.o)
+    0x00000448   0x0000000c   Code   RO          716    .text               c_w.l(sys_exit.o)
+    0x00000454   0x00000002   Code   RO          727    .text               c_w.l(use_no_semi.o)
+    0x00000456   0x00000000   Code   RO          729    .text               c_w.l(indicate_semi.o)
     0x00000456   0x00000024   Code   RO           44    i.ADC_Convert       adc.o
     0x0000047a   0x00000002   PAD
     0x0000047c   0x0000002c   Code   RO           45    i.ADC_In            adc.o
     0x000004a8   0x000000d8   Code   RO           46    i.ADC_Init          adc.o
     0x00000580   0x00000020   Code   RO          204    i.Delay1ms          st7735.o
     0x000005a0   0x00000038   Code   RO          531    i.Fill_Enemy        movement.o
-    0x000005d8   0x00000188   Code   RO          482    i.Level_Init        level.o
-    0x00000760   0x00000072   Code   RO          532    i.Move              movement.o
-    0x000007d2   0x00000002   PAD
-    0x000007d4   0x000000f8   Code   RO          533    i.Move_Enemy        movement.o
-    0x000008cc   0x0000007c   Code   RO          467    i.PLL_Init          pll.o
-    0x00000948   0x00000024   Code   RO          534    i.Process_Move      movement.o
-    0x0000096c   0x00000120   Code   RO          211    i.ST7735_DrawBitmap  st7735.o
-    0x00000a8c   0x000000ac   Code   RO          218    i.ST7735_FillRect   st7735.o
-    0x00000b38   0x00000024   Code   RO          219    i.ST7735_FillScreen  st7735.o
-    0x00000b5c   0x0000007c   Code   RO          221    i.ST7735_InitR      st7735.o
-    0x00000bd8   0x00000020   Code   RO          234    i.ST7735_SetCursor  st7735.o
-    0x00000bf8   0x00000028   Code   RO          503    i.SysTick_Handler   systick.o
-    0x00000c20   0x00000034   Code   RO          504    i.SysTick_Init      systick.o
-    0x00000c54   0x00000018   Code   RO           71    i.Timer1A_Handler   timer1.o
-    0x00000c6c   0x00000056   Code   RO          238    i.commandList       st7735.o
-    0x00000cc2   0x00000002   PAD
-    0x00000cc4   0x00000184   Code   RO          239    i.commonInit        st7735.o
-    0x00000e48   0x0000006c   Code   RO          170    i.main              spaceinvaders.o
-    0x00000eb4   0x00000074   Code   RO          245    i.setAddrWindow     st7735.o
-    0x00000f28   0x000007e2   Data   RO          247    .constdata          st7735.o
-    0x0000170a   0x00000d10   Data   RO          484    .constdata          level.o
-    0x0000241a   0x00000002   PAD
-    0x0000241c   0x00000020   Data   RO          763    Region$$Table       anon$$obj.o
+    0x000005d8   0x000001c8   Code   RO          482    i.Level_Init        level.o
+    0x000007a0   0x0000004e   Code   RO          532    i.MoveX             movement.o
+    0x000007ee   0x0000004e   Code   RO          533    i.MoveY             movement.o
+    0x0000083c   0x00000108   Code   RO          534    i.Move_Enemy        movement.o
+    0x00000944   0x0000007c   Code   RO          467    i.PLL_Init          pll.o
+    0x000009c0   0x00000024   Code   RO          535    i.Process_Move      movement.o
+    0x000009e4   0x00000120   Code   RO          211    i.ST7735_DrawBitmap  st7735.o
+    0x00000b04   0x000000ac   Code   RO          218    i.ST7735_FillRect   st7735.o
+    0x00000bb0   0x00000024   Code   RO          219    i.ST7735_FillScreen  st7735.o
+    0x00000bd4   0x0000007c   Code   RO          221    i.ST7735_InitR      st7735.o
+    0x00000c50   0x00000020   Code   RO          234    i.ST7735_SetCursor  st7735.o
+    0x00000c70   0x00000028   Code   RO          503    i.SysTick_Handler   systick.o
+    0x00000c98   0x00000034   Code   RO          504    i.SysTick_Init      systick.o
+    0x00000ccc   0x00000018   Code   RO           71    i.Timer1A_Handler   timer1.o
+    0x00000ce4   0x00000056   Code   RO          238    i.commandList       st7735.o
+    0x00000d3a   0x00000002   PAD
+    0x00000d3c   0x00000184   Code   RO          239    i.commonInit        st7735.o
+    0x00000ec0   0x0000006c   Code   RO          170    i.main              spaceinvaders.o
+    0x00000f2c   0x00000074   Code   RO          245    i.setAddrWindow     st7735.o
+    0x00000fa0   0x000007e2   Data   RO          247    .constdata          st7735.o
+    0x00001782   0x00000c48   Data   RO          484    .constdata          level.o
+    0x000023ca   0x00000002   PAD
+    0x000023cc   0x00000020   Data   RO          781    Region$$Table       anon$$obj.o
 
 
-    Execution Region ER_RW (Base: 0x20000000, Size: 0x0000004c, Max: 0xffffffff, ABSOLUTE)
+    Execution Region ER_RW (Base: 0x20000000, Size: 0x00000074, Max: 0xffffffff, ABSOLUTE)
 
     Base Addr    Size         Type   Attr      Idx    E Section Name        Object
 
     0x20000000   0x00000004   Data   RW           73    .data               timer1.o
     0x20000004   0x0000002c   Data   RW          248    .data               st7735.o
-    0x20000030   0x00000014   Data   RW          485    .data               level.o
-    0x20000044   0x00000002   Data   RW          505    .data               systick.o
-    0x20000046   0x00000002   PAD
-    0x20000048   0x00000004   Data   RW           12    DATA                random.o
+    0x20000030   0x0000003c   Data   RW          485    .data               level.o
+    0x2000006c   0x00000002   Data   RW          505    .data               systick.o
+    0x2000006e   0x00000001   Data   RW          536    .data               movement.o
+    0x2000006f   0x00000001   PAD
+    0x20000070   0x00000004   Data   RW           12    DATA                random.o
 
 
-    Execution Region ER_ZI (Base: 0x2000004c, Size: 0x000006bc, Max: 0xffffffff, ABSOLUTE)
+    Execution Region ER_ZI (Base: 0x20000074, Size: 0x000006bc, Max: 0xffffffff, ABSOLUTE)
 
     Base Addr    Size         Type   Attr      Idx    E Section Name        Object
 
-    0x2000004c   0x00000258   Zero   RW          483    .bss                level.o
-    0x200002a4   0x00000060   Zero   RW          640    .bss                c_w.l(libspace.o)
-    0x20000304   0x00000004   PAD
-    0x20000308   0x00000000   Zero   RW            2    HEAP                startup.o
-    0x20000308   0x00000400   Zero   RW            1    STACK               startup.o
+    0x20000074   0x00000258   Zero   RW          483    .bss                level.o
+    0x200002cc   0x00000060   Zero   RW          658    .bss                c_w.l(libspace.o)
+    0x2000032c   0x00000004   PAD
+    0x20000330   0x00000000   Zero   RW            2    HEAP                startup.o
+    0x20000330   0x00000400   Zero   RW            1    STACK               startup.o
 
 
 ==============================================================================
@@ -883,20 +894,20 @@ Image component sizes
        296         32          0          0          0       1598   adc.o
          0          0          0          0          0       4212   dac.o
         84         12          0          0          0        220   lcd.o
-       392         12       3344         20        600       2001   level.o
-       454         12          0          0          0       2486   movement.o
+       456         22       3144         60        600       2023   level.o
+       512         14          0          1          0       3115   movement.o
        124          6          0          0          0        427   pll.o
         64         14          0          4          0        212   random.o
-       108         18          0          0          0       1511   spaceinvaders.o
+       108         16          0          0          0       1467   spaceinvaders.o
       1274        126       2018         44          0       8616   st7735.o
        692        632          0          0       1024        932   startup.o
         92         22          0          2          0       1574   systick.o
         24          8          0          4          0        854   timer1.o
 
     ----------------------------------------------------------------------
-      3610        894       5396         76       1624      24643   Object Totals
+      3730        904       5196        116       1624      25250   Object Totals
          0          0         32          0          0          0   (incl. Generated)
-         6          0          2          2          0          0   (incl. Padding)
+         4          0          2          1          0          0   (incl. Padding)
 
     ----------------------------------------------------------------------
 
@@ -943,15 +954,15 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
 
-      3880        910       5396         76       1724      23919   Grand Totals
-      3880        910       5396         76       1724      23919   ELF Image Totals
-      3880        910       5396         76          0          0   ROM Totals
+      4000        920       5196        116       1724      24474   Grand Totals
+      4000        920       5196        116       1724      24474   ELF Image Totals
+      4000        920       5196        116          0          0   ROM Totals
 
 ==============================================================================
 
-    Total RO  Size (Code + RO Data)                 9276 (   9.06kB)
-    Total RW  Size (RW Data + ZI Data)              1800 (   1.76kB)
-    Total ROM Size (Code + RO Data + RW Data)       9352 (   9.13kB)
+    Total RO  Size (Code + RO Data)                 9196 (   8.98kB)
+    Total RW  Size (RW Data + ZI Data)              1840 (   1.80kB)
+    Total ROM Size (Code + RO Data + RW Data)       9312 (   9.09kB)
 
 ==============================================================================
 
