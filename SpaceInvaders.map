@@ -307,13 +307,13 @@ Removing Unused input sections from the image.
     Removing bullet.o(i.BulletMain), (100 bytes).
     Removing bullet.o(i.bulletInit), (48 bytes).
     Removing bullet.o(i.checkBulletEnemy), (252 bytes).
-    Removing bullet.o(i.createBullet), (192 bytes).
+    Removing bullet.o(i.createBullet), (244 bytes).
     Removing bullet.o(i.hitBoxCheck), (76 bytes).
     Removing bullet.o(i.moveBullet), (84 bytes).
     Removing bullet.o(.bss), (2000 bytes).
     Removing bullet.o(.data), (9 bytes).
 
-62 unused section(s) (total 62550 bytes) removed from the image.
+62 unused section(s) (total 62602 bytes) removed from the image.
 
 ==============================================================================
 

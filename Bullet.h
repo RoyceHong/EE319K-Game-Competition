@@ -21,7 +21,7 @@ typedef enum {FIRE, HOLD} fireBullet_t;
 typedef enum {CONTACT, NO_CONTACT} contact_t;
 
 void bulletInit(void);
-void createBullet(fireBullet_t Condition);
+uint8_t createBullet(fireBullet_t Condition);
 void checkBulletEnemy(bullet_t* Shot);
 contact_t hitBoxCheck(bullet_t bullet, sprite_t object);
 void moveBullet(bullet_t *bullet);

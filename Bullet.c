@@ -32,17 +32,27 @@ void bulletInit(void){
     }
 }
 
-void createBullet(fireBullet_t Condition){
-    if( (Condition == FIRE) && (BulletCount <= BULLETNUM_INVADER)){
-        BulletCount ++;
+uint8_t createBullet(fireBullet_t Condition){
+    if(Condition == FIRE){
+        uint32_t i = 0;
+        while(PlayerBullets[BulletCount].color == BLACK){
+            BulletCount ++;
+            BulletCount = BulletCount % BULLETNUM_INVADER;
+            if(i >= BULLETNUM_INVADER){
+                    return 0;
+            }
+            i++; 
+        }
+            
         PlayerBullets[BulletCount].h = 2;
         PlayerBullets[BulletCount].w = 2;
         PlayerBullets[BulletCount].x = Player1.x + (Player1.w/2);
         PlayerBullets[BulletCount].y = Player1.y + (Player1.h/2) + 1;
         PlayerBullets[BulletCount].xvel = 0;
         PlayerBullets[BulletCount].yvel = 2;
-        PlayerBullets[BulletCount].color = 0xFFFF;
+        PlayerBullets[BulletCount].color = 0xFFFF; 
     }
+    return 1;
 }
 
 void checkBulletEnemy(bullet_t* Shot){
@@ -69,7 +79,7 @@ contact_t hitBoxCheck(bullet_t bullet, sprite_t object){
            return CONTACT;
         }
     else{
-        return NO_CONTACT;
+           return NO_CONTACT;
     }
  }
     
