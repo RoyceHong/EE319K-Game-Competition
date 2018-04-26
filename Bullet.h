@@ -17,13 +17,16 @@ typedef struct bullet_t{
     uint16_t color;
 } bullet_t;
 
-typedef enum {FIRE, HOLD} fireBullet_t;
+typedef enum {FIRE, NO_FIRE} fireBullet_t;
 typedef enum {CONTACT, NO_CONTACT} contact_t;
 
-void bulletInit(void);
+void Bullet_Init(void);
+
 uint8_t createBullet(fireBullet_t Condition);
 void checkBulletEnemy(bullet_t* Shot);
+void checkBulletEdge(bullet_t* Shot);
 contact_t hitBoxCheck(bullet_t bullet, sprite_t object);
+contact_t edgeCheck(bullet_t bullet);
 void moveBullet(bullet_t *bullet);
 
 void BulletMain(void);

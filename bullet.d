@@ -3,3 +3,4 @@
 .\bullet.o: Bullet.h
 .\bullet.o: Level.h
 .\bullet.o: ST7735.h
+.\bullet.o: DisplayMap.h

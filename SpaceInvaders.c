@@ -59,6 +59,7 @@
 #include "Level.h"
 #include "Systick.h"
 #include "Movement.h"
+#include "Bullet.h"
 
 void DisableInterrupts(void); // Disable interrupts
 void EnableInterrupts(void);  // Enable interrupts
@@ -82,14 +83,18 @@ int main(void){
     Level_Init();
 //    Timer0_Init();
     SysTick_Init();
+    Bullet_Init();
     
-    uint32_t enemyxtime = ENEMY_XTIMER;
+   uint32_t enemyxtime = ENEMY_XTIMER;
     
 //    Delay100ms(5);              // delay 5 sec at 80 MHz
     
     EnableInterrupts();
     
     while(1){ 
+        BulletMain();
+        
+        
         // loop that controls the rate at which player moves
         if(playerflag == 1){
             MoveX(&Player1);
@@ -111,8 +116,8 @@ int main(void){
             enemydown = 0;
         }
     }
+ 
 }
-
 
 
 /*

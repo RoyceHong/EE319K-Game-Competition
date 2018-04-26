@@ -9,3 +9,4 @@
 .\spaceinvaders.o: level.h
 .\spaceinvaders.o: Systick.h
 .\spaceinvaders.o: Movement.h
+.\spaceinvaders.o: Bullet.h
