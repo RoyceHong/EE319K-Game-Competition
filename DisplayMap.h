@@ -4,7 +4,7 @@
 #define DISPLAYMAP_H
 
 #include <stdint.h>
-#include "level.h"
+#include "sprites.h"
 
 #ifndef DISPLAY_WIDTH
 #define DISPLAY_WIDTH 128

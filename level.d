@@ -3,4 +3,5 @@
 .\level.o: level.h
 .\level.o: sprites.h
 .\level.o: ST7735.h
-.\level.o: DisplayMap.h
+.\level.o: Player.h
+.\level.o: enemy.h
