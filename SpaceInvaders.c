@@ -80,7 +80,8 @@ int main(void){
 //    Timer0_Init();
     SysTick_Init();
     
-    uint32_t enemytime = ENEMY_TIMER;
+    uint32_t enemyxtime = ENEMY_XTIMER;
+    uint32_t enemyytime = ENEMY_YTIMER;
     
 //    Delay100ms(5);              // delay 5 sec at 80 MHz
     
@@ -93,13 +94,22 @@ int main(void){
             playerflag = 0;
         }
   
-        // loop that controls the rate at which enemies moves
-        if(enemytime == 0){
-            Move_Enemy();
-            enemytime = ENEMY_TIMER;
+        // loop that controls the rate at which enemies move horizontally
+        if(enemyxtime == 0){
+            Move_Enemy(X);
+            enemyxtime = ENEMY_XTIMER;
         }
         else{   
-            enemytime--;
+            enemyxtime--;
+        }
+        
+        // loop that controls the rate at which enemies move vertically
+        if(enemyytime == 0){
+            Move_Enemy(Y);
+            enemyytime = ENEMY_YTIMER;
+        }
+        else{   
+            enemyytime--;
         }
     }
 }

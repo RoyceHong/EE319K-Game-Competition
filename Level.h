@@ -14,12 +14,12 @@
 #define ENEMY_COLUMN 6
 #endif
 
-#ifndef ENEMY_TIMER
-#define ENEMY_TIMER 2666666
+#ifndef ENEMY_XTIMER
+#define ENEMY_XTIMER 2666666
 #endif
 
-#ifndef PLAYER_TIMER
-#define PLAYER_TIMER 2000000
+#ifndef ENEMY_YTIMER
+#define ENEMY_YTIMER 8999999
 #endif
 
 

@@ -40,38 +40,47 @@ void Move(sprite_t* object){
 }
 
 
-void Move_Enemy(void){
+void Move_Enemy(enemdir_t direction){
     uint8_t i, j;
     // Check enemy positions and set velocity values  
-    for( i = 0; i < ENEMY_ROW; i++ ){
-        for( j = 0; j < ENEMY_COLUMN; j++ ){
-            if(Enemies[i][j].life == DEAD){}  
-            else if(Enemies[i][j].x <= 0){
-                Fill_Enemy(1);
-                goto CheckDone;
+    if(direction == X){
+        for( i = 0; i < ENEMY_ROW; i++ ){
+            for( j = 0; j < ENEMY_COLUMN; j++ ){
+                if(Enemies[i][j].life == DEAD){}  
+                else if(Enemies[i][j].x <= 0){
+                    Fill_Enemy(1);
+                    goto CheckDone;
+                }
+                else if(Enemies[i][j].x + Enemies[i][j].w >= DISPLAY_WIDTH){
+                    Fill_Enemy(-1);
+                    goto CheckDone;
+                }
             }
-            else if(Enemies[i][j].x + Enemies[i][j].w >= DISPLAY_WIDTH){
-                Fill_Enemy(-1);
-                goto CheckDone;
+        }
+        CheckDone:
+        // Move enemies 
+        for( i = 0; i < ENEMY_ROW; i++ ){
+            for( j = 0; j < ENEMY_COLUMN; j++ ){
+                Move(&Enemies[i][j]);
             }
         }
     }
-    CheckDone:
-    // Move enemies 
-    for( i = 0; i < ENEMY_ROW; i++ ){
-        for( j = 0; j < ENEMY_COLUMN; j++ ){
-            Move(&Enemies[i][j]);
+    else if(direction == Y){
+        for( i = 0; i < ENEMY_ROW; i++ ){
+            for( j = 0; j < ENEMY_COLUMN; j++ ){
+                Move(&Enemies[i][j]);
+            }
         }
-    }
+    }        
 }
 
 
-void Fill_Enemy(int8_t velocity){
+void Fill_Enemy(int8_t xvelocity){
     uint8_t i, j;
     // Fill enemy array with xvel and yvel values
     for( i = 0; i < ENEMY_ROW; i++ ){
         for( j = 0; j < ENEMY_COLUMN; j++ ){
-            Enemies[i][j].xvel = velocity;
+            Enemies[i][j].xvel = xvelocity;
         }
     }
 }
