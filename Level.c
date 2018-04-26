@@ -12,7 +12,7 @@ extern uint16_t Buffer1[DISPLAY_HEIGHT][DISPLAY_WIDTH];
 sprite_t Player1 = {52,  159,  PlayerRightFrame_1,  16, 11, 0, 0, ALIVE};
 
 // array definition of enemies 
-sprite_t Enemies[2][6];
+sprite_t Enemies[ENEMY_ROW][ENEMY_COLUMN];
 
 /*
 // Enemy initial definitions
@@ -34,52 +34,16 @@ Enemies[0][1] = X, y, CuteAlien, 13, 10, Dead, &Enemies[0][2]
 */
 
 
-/*
-// Initializes all players and enemies 
-// Called at the beginning of the game 
 void Level_Init(){
     uint8_t i, j;
     // Fill enemy array 
-    for( i = 0; i < 2; i++ ){
-        for( j = 0; j < 6; j++ ){
-            Enemies[i][j].x = j*20; 
-            Enemies[i][j].y = (110+20*i);
-            Enemies[i][j].w = 13;
-            Enemies[i][j].h = 10;
-            Enemies[i][j].xvel = 0;
-            Enemies[i][j].yvel = 0;
-            Enemies[i][j].image = CuteAlien; 
-            Enemies[i][j].life = ALIVE;
-        }
-    }
-    
-    // Make screen blank 
-    ST7735_FillScreen(0x0000);
-    // Store player on intial buffer
-    DrawImage_Buffer(&Player1, Buffer1);
-       
-    // Store enemies on initial buffer
-    for( i = 0; i < 2; i++ ){
-        for( j = 0; j < 6; j++ ){
-            DrawImage_Buffer(&Enemies[i][j], Buffer1);
-        }
-    }
-}
-*/
-
-
-
-// FOR DEBUGGING PURPOSES (NO BUFFER)
-void Level_Init(){
-    uint8_t i, j;
-    // Fill enemy array 
-    for( i = 0; i < 2; i++ ){
-        for( j = 0; j < 6; j++ ){
+    for( i = 0; i < ENEMY_ROW; i++ ){
+        for( j = 0; j < ENEMY_COLUMN; j++ ){
             Enemies[i][j].x = j*20; 
             Enemies[i][j].y = (20+20*i);
             Enemies[i][j].w = 13;
             Enemies[i][j].h = 10;
-            Enemies[i][j].xvel = 0;
+            Enemies[i][j].xvel = 1;
             Enemies[i][j].yvel = 0;
             Enemies[i][j].image = CuteAlien; 
             Enemies[i][j].life = ALIVE;
@@ -91,9 +55,9 @@ void Level_Init(){
     // Draw player on screen
     ST7735_DrawBitmap(Player1.x, Player1.y, Player1.image, Player1.w,  Player1.h);
        
-    // Store enemies on initial buffer
-    for( i = 0; i < 2; i++ ){
-        for( j = 0; j < 6; j++ ){
+    // Draw enemies on screen
+    for( i = 0; i < ENEMY_ROW; i++ ){
+        for( j = 0; j < ENEMY_COLUMN; j++ ){
             ST7735_DrawBitmap(Enemies[i][j].x, Enemies[i][j].y, Enemies[i][j].image, Enemies[i][j].w,  Enemies[i][j].h);
         }
     }

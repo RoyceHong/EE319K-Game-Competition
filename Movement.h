@@ -8,7 +8,14 @@
 
 void Process_Move(sprite_t *player, movestate_t xdirection);
 
+
 void Move(sprite_t *object);
+
+
+void Move_Enemy(void);
+
+
+void Fill_Enemy(int8_t velocity);
 
 
 #endif

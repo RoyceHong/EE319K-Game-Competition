@@ -6,6 +6,22 @@
 
 #include <stdint.h>
 
+#ifndef ENEMY_ROW
+#define ENEMY_ROW 5
+#endif
+
+#ifndef ENEMY_COLUMN
+#define ENEMY_COLUMN 6
+#endif
+
+#ifndef ENEMY_TIMER
+#define ENEMY_TIMER 2666666
+#endif
+
+#ifndef PLAYER_TIMER
+#define PLAYER_TIMER 2000000
+#endif
+
 
 // enum indicating player dead or alive status 
 typedef enum {DEAD, ALIVE} status_t;

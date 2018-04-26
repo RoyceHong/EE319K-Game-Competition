@@ -64,7 +64,9 @@ void DisableInterrupts(void); // Disable interrupts
 void EnableInterrupts(void);  // Enable interrupts
 //void Delay100ms(uint32_t count); // time delay in 0.1 seconds
 
+extern sprite_t Enemies[ENEMY_ROW][ENEMY_COLUMN];
 extern sprite_t Player1;
+extern uint8_t playerflag;
 
 int main(void){
     PLL_Init(Bus80MHz);       // Bus clock is 80 MHz 
@@ -78,14 +80,27 @@ int main(void){
 //    Timer0_Init();
     SysTick_Init();
     
+    uint32_t enemytime = ENEMY_TIMER;
+    
 //    Delay100ms(5);              // delay 5 sec at 80 MHz
     
     EnableInterrupts();
     
     while(1){ 
-//        Buffer_Init();
-//        Image_Clear(&Player1);
-        Move(&Player1);
+        // loop that controls the rate at which player moves
+        if(playerflag == 1){
+            Move(&Player1);
+            playerflag = 0;
+        }
+  
+        // loop that controls the rate at which enemies moves
+        if(enemytime == 0){
+            Move_Enemy();
+            enemytime = ENEMY_TIMER;
+        }
+        else{   
+            enemytime--;
+        }
     }
 }
 

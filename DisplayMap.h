@@ -7,11 +7,11 @@
 #include "level.h"
 
 #ifndef DISPLAY_WIDTH
-#define DISPLAY_WIDTH 20
+#define DISPLAY_WIDTH 128
 #endif
 
 #ifndef DISPLAY_HEIGHT
-#define DISPLAY_HEIGHT 30
+#define DISPLAY_HEIGHT 160
 #endif
 
 

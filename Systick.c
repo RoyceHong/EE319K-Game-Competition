@@ -7,6 +7,7 @@
 #include "movement.h"
 
 extern sprite_t Player1;
+uint8_t playerflag = 0;
 
 movestate_t CurrentMove;
 // flag_t MoveStatus = BUSY;
@@ -28,6 +29,6 @@ void SysTick_Init(void){
 void SysTick_Handler(void){
     CurrentMove = ADC_Convert();
     Process_Move(&Player1, CurrentMove);
-//    MoveStatus = READY;
+    playerflag = 1; 
 }
     
