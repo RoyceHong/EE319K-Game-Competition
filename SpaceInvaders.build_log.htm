@@ -25,13 +25,14 @@ compiling Systick.c...
 compiling Movement.c...
 compiling DisplayMap.c...
 compiling Bullet.c...
-Bullet.h(23): warning:  #1295-D: Deprecated declaration bulletInit - give arg types
-  void bulletInit();
-ST7735.h(59): error:  #130: expected a "{"
-  enum initRFlags{
-ST7735.h(60): error:  #20: identifier "none" is undefined
-    none,
-ST7735.h(61): error:  #20: identifier "INITR_GREENTAB" is undefined
+linking...
+Program Size: Code=3880 RO-data=5396 RW-data=76 ZI-data=1724  
+".\SpaceInvaders.axf" - 0 Error(s), 0 Warning(s).
+ 0 errors
+linking...
+Program Size: Code=3880 RO-data=5396 RW-data=76 ZI-data=1724  
+".\SpaceInvaders.axf" - 0 Error(s), 1 Warning(s).
+0: identifier "INITR_GREENTAB" is undefined
     INITR_GREENTAB,
 ST7735.h(62): error:  #20: identifier "INITR_REDTAB" is undefined
     INITR_REDTAB,
@@ -41,10 +42,12 @@ ST7735.h(64): error:  #65: expected a ";"
   };
 ST7735.h(91): warning:  #231-D: declaration is not visible outside of function
   void ST7735_InitR(enum initRFlags option);
-Bullet.c(31): error:  #20: identifier "BossBullet" is undefined
-          BossBullet[i].color = BLACK;
 Bullet.c(90): error:  #247: function "BulletMain" has already been defined
   void BulletMain(void){  // Later add input asking for max number of bullets
+Bullet.c: 2 warnings, 7 errors
+".\SpaceInvaders.axf" - 7 Error(s), 2 Warning(s).
+Target not created
+
 Bullet.c: 2 warnings, 8 errors
 ".\SpaceInvaders.axf" - 8 Error(s), 2 Warning(s).
 Target not created

@@ -25,10 +25,10 @@ fireBullet_t Trigger;
 
 uint8_t BulletCount = 0;
 
-void bulletInit(){
+void bulletInit(void){
     for(uint32_t i = 0; i < MAX_BULLET; i++){
         PlayerBullets[i].color = BLACK;
-        BossBullet[i].color = BLACK;
+        BossBullets[i].color = BLACK;
     }
 }
 
