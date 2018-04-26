@@ -66,7 +66,10 @@ void EnableInterrupts(void);  // Enable interrupts
 
 extern sprite_t Enemies[ENEMY_ROW][ENEMY_COLUMN];
 extern sprite_t Player1;
+// indicates when player should be moved
 extern uint8_t playerflag;
+// indicates when the enemy should move down 
+extern uint8_t enemydown;
 
 int main(void){
     PLL_Init(Bus80MHz);       // Bus clock is 80 MHz 
@@ -81,7 +84,6 @@ int main(void){
     SysTick_Init();
     
     uint32_t enemyxtime = ENEMY_XTIMER;
-    uint32_t enemyytime = ENEMY_YTIMER;
     
 //    Delay100ms(5);              // delay 5 sec at 80 MHz
     
@@ -90,7 +92,7 @@ int main(void){
     while(1){ 
         // loop that controls the rate at which player moves
         if(playerflag == 1){
-            Move(&Player1);
+            MoveX(&Player1);
             playerflag = 0;
         }
   
@@ -104,12 +106,9 @@ int main(void){
         }
         
         // loop that controls the rate at which enemies move vertically
-        if(enemyytime == 0){
+        if(enemydown == 1){
             Move_Enemy(Y);
-            enemyytime = ENEMY_YTIMER;
-        }
-        else{   
-            enemyytime--;
+            enemydown = 0;
         }
     }
 }
