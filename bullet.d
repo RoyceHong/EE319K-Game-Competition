@@ -5,3 +5,4 @@
 .\bullet.o: ST7735.h
 .\bullet.o: DisplayMap.h
 .\bullet.o: enemy.h
+.\bullet.o: level.h

@@ -60,10 +60,13 @@
 #include "Bullet.h"
 #include "Player.h"
 #include "Enemy.h"
+#include "MainMenu.h"
+#include "Button.h"
+
 
 void DisableInterrupts(void); // Disable interrupts
 void EnableInterrupts(void);  // Enable interrupts
-//void Delay100ms(uint32_t count); // time delay in 0.1 seconds
+void Delay100ms(uint32_t count); // time delay in 0.1 seconds
 
 
 int main(void){
@@ -73,12 +76,21 @@ int main(void){
    
     // Initializations
     ADC_Init();
-    Level_Init();
     SysTick_Init();
     Bullet_Init();
+    Button_Init();
     
-//    Delay100ms(5);              // delay 5 sec at 80 MHz
+    Menu();
+    while(1){
+     uint8_t buttonState = Button_In();
+        if(buttonState == 1){
+            Delay100ms(10);
+            break;
+        }   
+    }
+   
     
+    Level_Init(); 
     EnableInterrupts();
     
     while(1){ 
@@ -90,7 +102,7 @@ int main(void){
 }
 
 
-/*
+
 // You can use this timer only if you learn how it works
 void Delay100ms(uint32_t count){uint32_t volatile time;
     while(count>0){
@@ -101,4 +113,3 @@ void Delay100ms(uint32_t count){uint32_t volatile time;
     count--;
     }
 }
-*/

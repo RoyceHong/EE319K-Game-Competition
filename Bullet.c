@@ -6,10 +6,12 @@
 #include "ST7735.h"
 #include "DisplayMap.h"
 #include "enemy.h"
+#include "level.h"
 
 
 extern sprite_t Player1;
 extern sprite_t Enemies[ENEMY_ROW][ENEMY_COLUMN];
+extern sprite_t Bunkers[OBSTACLE_SIZE];
 
 bullet_t PlayerBullets[MAX_BULLET];
 bullet_t BossBullets[MAX_BULLET];
@@ -79,25 +81,21 @@ void checkBulletEdge(bullet_t* Shot){
     }
 }
 
-/*      
+
 void checkBulletObstacle(bullet_t* Shot){
     contact_t BulletStatus;
-    for(uint16_t i = 0; i < OBSTACLE_ROW; i++){
-        for(uint16_t j = 0; j < OBSTACLE_COLUMN; j++){
-           BulletStatus = hitBoxCheck(*Shot , Obstacle[i][j]);
-            if(BulletStatus == CONTACT){
-                uint16_t FillColor = BLACK;
-                ST7735_FillRect(Obstacle[i][j].x, Obstacle[i][j].y, Obstacle[i][j].w, Obstacle[i][j].h, FillColor);
+    for(uint16_t i = 0; i < OBSTACLE_SIZE; i++){
+        if(Bunkers[i].life == ALIVE){
+           BulletStatus = hitBoxCheck(Shot , &Bunkers[i]);
+           if(BulletStatus == CONTACT){
                 // Additional Animation should be added here
                 (*Shot).color = BLACK;
-            }
+                uint16_t FillColor = BLACK;
+                ST7735_FillRect( (*Shot).x, (*Shot).y, (*Shot).w, (*Shot).h, FillColor); 
+           }
         }
     }
-} 
-*/
-
-
-
+}
             
             
 contact_t hitBoxCheck(bullet_t* bullet, sprite_t* object){
@@ -149,6 +147,7 @@ void BulletMain(void){  // Later add input asking for max number of bullets
         bulletnum = 20000;
         for(uint32_t i = 0; i < BULLETNUM_INVADER; i++){
             checkBulletEnemy(&(PlayerBullets[i]));
+            checkBulletObstacle(&(PlayerBullets[i]));
             checkBulletEdge(&(PlayerBullets[i]));
             moveBullet(&(PlayerBullets[i]));
 

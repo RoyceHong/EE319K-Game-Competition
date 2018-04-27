@@ -10,3 +10,5 @@
 .\spaceinvaders.o: Bullet.h
 .\spaceinvaders.o: Player.h
 .\spaceinvaders.o: Enemy.h
+.\spaceinvaders.o: MainMenu.h
+.\spaceinvaders.o: Button.h
