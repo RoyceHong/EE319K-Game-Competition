@@ -55,22 +55,16 @@
 #include "Random.h"
 #include "PLL.h"
 #include "ADC.h"
-#include "DisplayMap.h"
 #include "Level.h"
 #include "Systick.h"
-#include "Movement.h"
 #include "Bullet.h"
+#include "Player.h"
+#include "Enemy.h"
 
 void DisableInterrupts(void); // Disable interrupts
 void EnableInterrupts(void);  // Enable interrupts
 //void Delay100ms(uint32_t count); // time delay in 0.1 seconds
 
-extern sprite_t Enemies[ENEMY_ROW][ENEMY_COLUMN];
-extern sprite_t Player1;
-// indicates when player should be moved
-extern uint8_t playerflag;
-// indicates when the enemy should move down 
-extern uint8_t enemydown;
 
 int main(void){
     PLL_Init(Bus80MHz);       // Bus clock is 80 MHz 
@@ -79,13 +73,9 @@ int main(void){
    
     // Initializations
     ADC_Init();
-//    Buffer_Init();
     Level_Init();
-//    Timer0_Init();
     SysTick_Init();
     Bullet_Init();
-    
-   uint32_t enemyxtime = ENEMY_XTIMER;
     
 //    Delay100ms(5);              // delay 5 sec at 80 MHz
     
@@ -93,28 +83,8 @@ int main(void){
     
     while(1){ 
         BulletMain();
-        
-        
-        // loop that controls the rate at which player moves
-        if(playerflag == 1){
-            MoveX(&Player1);
-            playerflag = 0;
-        }
-  
-        // loop that controls the rate at which enemies move horizontally
-        if(enemyxtime == 0){
-            Move_Enemy(X);
-            enemyxtime = ENEMY_XTIMER;
-        }
-        else{   
-            enemyxtime--;
-        }
-        
-        // loop that controls the rate at which enemies move vertically
-        if(enemydown == 1){
-            Move_Enemy(Y);
-            enemydown = 0;
-        }
+        Move_Player();
+        Move_Enemy();
     }
  
 }

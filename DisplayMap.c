@@ -3,7 +3,6 @@
 #include "DisplayMap.h"
 #include "tm4c123gh6pm.h"
 #include "ST7735.h"
-#include "level.h"
 
 // Display buffers
 uint16_t Buffer1[DISPLAY_HEIGHT][DISPLAY_WIDTH];

@@ -3,4 +3,4 @@
 .\systick.o: C:\Keil\ARM\ARMCC\bin\..\include\stdint.h
 .\systick.o: adc.h
 .\systick.o: movement.h
-.\systick.o: sprites.h
+.\systick.o: player.h

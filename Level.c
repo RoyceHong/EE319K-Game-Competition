@@ -1,12 +1,11 @@
 // Level.c 
 
 #include <stdint.h>
-#include "level.h"
-#include "sprites.h"
 #include "ST7735.h"
 #include "Player.h"
 #include "enemy.h"
 
+extern const uint16_t Bunker0[];
 
 // Bunker initial definition
 sprite_t Bunker1 = {25, 140, Bunker0, 18, 5, 0, 0, ALIVE};

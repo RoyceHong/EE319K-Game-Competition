@@ -5,7 +5,6 @@
 #define ENEMY_H
 
 #include <stdint.h>
-#include "sprites.h"
 
 #ifndef ENEMY_ROW
 #define ENEMY_ROW 5
@@ -16,7 +15,7 @@
 #endif
 
 #ifndef ENEMY_XTIMER
-#define ENEMY_XTIMER 2000000
+#define ENEMY_XTIMER 10000
 #endif
 
 // Initialize enemies on the screen 

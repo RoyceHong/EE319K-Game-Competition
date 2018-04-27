@@ -5,6 +5,7 @@
 #include <stdint.h>
 #include "adc.h"
 #include "movement.h"
+#include "Player.h" 
 
 extern sprite_t Player1;
 uint8_t playerflag = 0;

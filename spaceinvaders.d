@@ -5,8 +5,8 @@
 .\spaceinvaders.o: Random.h
 .\spaceinvaders.o: PLL.h
 .\spaceinvaders.o: ADC.h
-.\spaceinvaders.o: DisplayMap.h
-.\spaceinvaders.o: level.h
+.\spaceinvaders.o: Level.h
 .\spaceinvaders.o: Systick.h
-.\spaceinvaders.o: Movement.h
 .\spaceinvaders.o: Bullet.h
+.\spaceinvaders.o: Player.h
+.\spaceinvaders.o: Enemy.h

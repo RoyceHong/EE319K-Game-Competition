@@ -4,7 +4,7 @@
 #define MOVEMENT_H
 
 #include "adc.h"
-#include "sprites.h"
+#include "player.h"
 
 
 // Takes direction input and adjusts velocities for player accordingly 

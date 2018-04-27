@@ -1,12 +1,12 @@
 // Enemy.c
 
 #include <stdint.h>
-#include "sprites.h"
 #include "Movement.h"
 #include "ST7735.h"
 #include "enemy.h"
 #include "DisplayMap.h"
 
+extern const uint16_t CuteAlien[];
 // array definition of enemies 
 sprite_t Enemies[ENEMY_ROW][ENEMY_COLUMN];
 // flag that notifies when the enemy should move down, set when enemies hit border of screen

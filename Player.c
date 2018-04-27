@@ -2,10 +2,11 @@
 
 #include <stdint.h>
 #include "Player.h"
-#include "sprites.h"
 #include "Movement.h"
 #include "ST7735.h"
+#include "sprites.h"
 
+extern const uint16_t PlayerRightFrame_1[];
 // Player1 initial definition 
 sprite_t Player1 = {52,  159,  PlayerRightFrame_1,  16, 11, 0, 0, ALIVE};
 
@@ -26,4 +27,6 @@ void Move_Player(){
         playerflag = 0;
     }
 }
-    
+
+
+

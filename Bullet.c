@@ -1,17 +1,12 @@
 // Bullet.c
 
+
 #include <stdint.h>
 #include "Bullet.h"
-#include "Level.h"
 #include "ST7735.h"
 #include "DisplayMap.h"
+#include "enemy.h"
 
-
-
-#define BULLETNUM_INVADER 4
-#define BLACK       0x0000
-#define MAX_BULLET         100
-#define TRIGGERCOUNTER    20
 
 extern sprite_t Player1;
 extern sprite_t Enemies[ENEMY_ROW][ENEMY_COLUMN];
@@ -19,9 +14,6 @@ extern sprite_t Enemies[ENEMY_ROW][ENEMY_COLUMN];
 bullet_t PlayerBullets[MAX_BULLET];
 bullet_t BossBullets[MAX_BULLET];
 fireBullet_t Trigger;
-
-
-
 
 
 uint8_t BulletCount = 0;
@@ -60,13 +52,16 @@ void checkBulletEnemy(bullet_t* Shot){
     contact_t BulletStatus;
     for(uint16_t i = 0; i < ENEMY_ROW; i++){
         for(uint16_t j = 0; j < ENEMY_COLUMN; j++){
-           BulletStatus = hitBoxCheck(*Shot , Enemies[i][j]);
-            if(BulletStatus == CONTACT){
-                Enemies[i][j].life = DEAD;
-                uint16_t FillColor = BLACK;
-                ST7735_FillRect(Enemies[i][j].x, Enemies[i][j].y, Enemies[i][j].w, Enemies[i][j].h, FillColor);
-                // Additional Animation should be added here
-                (*Shot).color = BLACK;
+            if(Enemies[i][j].life == ALIVE){
+               BulletStatus = hitBoxCheck(Shot , &Enemies[i][j]);
+                if(BulletStatus == CONTACT){
+                    Enemies[i][j].life = DEAD;
+                    ST7735_FillRect(Enemies[i][j].x, Enemies[i][j].y - Enemies[i][j].h , Enemies[i][j].w, Enemies[i][j].h, BLACK);
+                    // Additional Animation should be added here
+                    (*Shot).color = BLACK;
+                    uint16_t FillColor = BLACK;
+                    ST7735_FillRect( (*Shot).x, (*Shot).y, (*Shot).w, (*Shot).h, FillColor); 
+                }
             }
         }
     }
@@ -74,7 +69,7 @@ void checkBulletEnemy(bullet_t* Shot){
 
 void checkBulletEdge(bullet_t* Shot){
     contact_t BulletStatus;
-    BulletStatus = edgeCheck(*Shot);
+    BulletStatus = edgeCheck(Shot);
     if(BulletStatus == CONTACT){
         // Additional Animation should be added here
         (*Shot).color = BLACK; 
@@ -99,25 +94,25 @@ void checkBulletObstacle(bullet_t* Shot){
         }
     }
 } 
-
-
 */
+
+
+
             
             
-contact_t hitBoxCheck(bullet_t bullet, sprite_t object){
-    if( ((bullet.x >= object.x) && (bullet.x <= (object.x + object.w - 1)) )
-        && ((bullet.y >= object.y) && (bullet.y <= (object.y - object.h + 1)) )){
-            
+contact_t hitBoxCheck(bullet_t* bullet, sprite_t* object){
+    if( ((bullet -> x >= object -> x) && (bullet -> x <= (object -> x + object -> w - 1)) )
+        && ((bullet -> y <= object -> y) && (bullet -> y >= (object -> y - object -> h + 1)) )){ 
            return CONTACT;
-        }
+    }
     else{
            return NO_CONTACT;
     }
  }
 
-contact_t edgeCheck(bullet_t bullet){ 
-     if( (bullet.x <= 1) || (bullet.x >= (DISPLAY_WIDTH - 1)) 
-        || (bullet.y <= 1) || (bullet.y >= (DISPLAY_HEIGHT - 1)) ){
+contact_t edgeCheck(bullet_t* bullet){ 
+     if( (bullet -> x <= 1) || (bullet -> x >= (DISPLAY_WIDTH - 1)) 
+        || (bullet -> y <= 1) || (bullet -> y >= (DISPLAY_HEIGHT - 1)) ){
             
             return CONTACT;
      }
@@ -125,7 +120,8 @@ contact_t edgeCheck(bullet_t bullet){
            return NO_CONTACT;
      }
 }
-    
+
+uint32_t bulletnum = 200000;
 
 void moveBullet(bullet_t *Shot){
     if((*Shot).color != BLACK){
@@ -140,6 +136,7 @@ void moveBullet(bullet_t *Shot){
 }
 
 uint32_t TriggerCount = TRIGGERCOUNTER;
+
 void BulletMain(void){  // Later add input asking for max number of bullets
     TriggerCount --;
     Trigger = NO_FIRE;
@@ -148,15 +145,19 @@ void BulletMain(void){  // Later add input asking for max number of bullets
         Trigger = FIRE;
     }
     createBullet(Trigger);  
-    for(uint32_t i = 0; i < BULLETNUM_INVADER; i++){
-        checkBulletEnemy(&(PlayerBullets[i]));
-        checkBulletEdge(&(PlayerBullets[i]));
-        moveBullet(&(PlayerBullets[i]));
+    if(bulletnum == 0){
+        bulletnum = 20000;
+        for(uint32_t i = 0; i < BULLETNUM_INVADER; i++){
+            checkBulletEnemy(&(PlayerBullets[i]));
+            checkBulletEdge(&(PlayerBullets[i]));
+            moveBullet(&(PlayerBullets[i]));
 
+        }
     }
+    bulletnum--;
 }
         
-    
+
 
         
     
