@@ -72,8 +72,7 @@ void Delay100ms(uint32_t count); // time delay in 0.1 seconds
 int main(void){
     PLL_Init(Bus80MHz);       // Bus clock is 80 MHz 
     ST7735_InitR(INITR_REDTAB);
-    Random_Init(1);
-   
+    Random_Init(NVIC_ST_CURRENT_R);
     // Initializations
     ADC_Init();
     SysTick_Init();

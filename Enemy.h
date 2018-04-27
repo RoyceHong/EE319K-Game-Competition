@@ -7,7 +7,7 @@
 #include <stdint.h>
 
 #ifndef ENEMY_ROW
-#define ENEMY_ROW 5
+#define ENEMY_ROW 4
 #endif
 
 #ifndef ENEMY_COLUMN
