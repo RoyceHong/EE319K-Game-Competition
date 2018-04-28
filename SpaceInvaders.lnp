@@ -10,8 +10,6 @@
 ".\spaceinvaders.o"
 ".\st7735.o"
 ".\pll.o"
-".\physics.o"
-".\level.o"
 ".\systick.o"
 ".\movement.o"
 ".\displaymap.o"

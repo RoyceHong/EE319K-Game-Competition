@@ -466,21 +466,6 @@
               <FilePath>.\PLL.c</FilePath>
             </File>
             <File>
-              <FileName>Physics.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\Physics.c</FilePath>
-            </File>
-            <File>
-              <FileName>Physics.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\Physics.h</FilePath>
-            </File>
-            <File>
-              <FileName>Level.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\Level.c</FilePath>
-            </File>
-            <File>
               <FileName>Systick.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\Systick.c</FilePath>

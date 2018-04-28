@@ -19,11 +19,11 @@
 #endif
 
 #ifndef TRIGGERCOUNTER
-#define TRIGGERCOUNTER    300000
+#define TRIGGERCOUNTER    150000
 #endif
 
 #ifndef TRIGGERCOUNTERPLAYER
-#define TRIGGERCOUNTERPLAYER       80000
+#define TRIGGERCOUNTERPLAYER      10000 
 #endif
 
 #ifndef GREEN
@@ -45,30 +45,44 @@ typedef struct bullet_t{
     uint16_t color;
 } bullet_t;
 
+
 typedef enum {FIRE, NO_FIRE} fireBullet_t;
+
 
 typedef enum {CONTACT, NO_CONTACT} contact_t;
 
+
 void Bullet_Init(void);
+
 
 sprite_t *enemyAttack(void);
 
+
 uint8_t createBullet(fireBullet_t Condition);
+
 
 uint8_t createEnemyBullet(fireBullet_t Condition, sprite_t *Enemy);
 
+
 void checkBulletEnemy(bullet_t* Shot);
+
 
 void checkBulletEdge(bullet_t* Shot);
 
+
 contact_t hitBoxCheck(bullet_t* bullet, sprite_t* object);
+
 
 contact_t edgeCheck(bullet_t* bullet);
 
+
 void moveBullet(bullet_t* bullet);
+
 
 void BulletMain(void);
 
+
 fireBullet_t checkButton(void);
+
 
 #endif

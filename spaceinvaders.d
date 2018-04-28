@@ -5,10 +5,10 @@
 .\spaceinvaders.o: Random.h
 .\spaceinvaders.o: PLL.h
 .\spaceinvaders.o: ADC.h
-.\spaceinvaders.o: Level.h
 .\spaceinvaders.o: Systick.h
 .\spaceinvaders.o: Bullet.h
 .\spaceinvaders.o: Player.h
 .\spaceinvaders.o: Enemy.h
 .\spaceinvaders.o: MainMenu.h
 .\spaceinvaders.o: Button.h
+.\spaceinvaders.o: DisplayMap.h

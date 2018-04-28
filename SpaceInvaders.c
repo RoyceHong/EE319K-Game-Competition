@@ -55,13 +55,14 @@
 #include "Random.h"
 #include "PLL.h"
 #include "ADC.h"
-#include "Level.h"
 #include "Systick.h"
 #include "Bullet.h"
 #include "Player.h"
 #include "Enemy.h"
 #include "MainMenu.h"
 #include "Button.h"
+#include "DisplayMap.h"
+#include "MainMenu.h" 
 
 
 void DisableInterrupts(void); // Disable interrupts
@@ -69,37 +70,67 @@ void EnableInterrupts(void);  // Enable interrupts
 void Delay100ms(uint32_t count); // time delay in 0.1 seconds
 
 
+progress_t gameProgress;
+
+extern uint8_t buttonStatus;
+uint32_t endinvaders;
+
 int main(void){
+    // Initializations
     PLL_Init(Bus80MHz);       // Bus clock is 80 MHz 
     ST7735_InitR(INITR_REDTAB);
     Random_Init(NVIC_ST_CURRENT_R);
-    // Initializations
+    
+    
+// ************************************ MAIN MENU ************************************************ 
+    // Initializations for main menu
+    Button_Init();
+    // Enable Interrupts
+    EnableInterrupts();
+    //  Print main menu on the screen 
+    Menu();
+    
+    // Loop until button press selects what to do 
+    while(buttonStatus != 1){
+            // call UpdateMenu function
+        }
+        // acknowledge button press and reset it 
+        buttonStatus = 0;
+        Delay100ms(10);
+// ************************************ END MAIN MENU ******************************************** 
+    
+
+// ************************************ SPACE INVADERS ******************************************* 
+    // Initializations required for space invaders portion of the game 
     ADC_Init();
     SysTick_Init();
     Bullet_Init();
-    Button_Init();
+    // Make screen blank 
+    ST7735_FillScreen(0x0000);
+    Player_Init();
+    Bunker_Init();
+    Enemy_Init();
+    // start of space invaders portion of game
+    gameProgress = IN_PROGRESS;
     
-    Menu();
-    while(1){
-     uint8_t buttonState = Button_In();
-        if(buttonState == 1){
-            Delay100ms(10);
-            break;
-        }   
-    }
-   
-    
-    Level_Init(); 
-    EnableInterrupts();
-    
-    while(1){ 
+    while(gameProgress == IN_PROGRESS){ 
         BulletMain();
         Move_Player();
         Move_Enemy();
+        Enemy_Dead();
     }
- 
+// ************************************ END SPACE INVADERS **************************************** 
+    
+    
+// ************************************ BULLET HELL *********************************************** 
+    // fill screen black - for debugging
+    ST7735_FillRect(0, 0 , DISPLAY_WIDTH, DISPLAY_HEIGHT, BLACK);
+    
+    // cutscenes 
+    while(1){
+    }
 }
-
+// ************************************ END BULLET HELL *******************************************
 
 
 // You can use this timer only if you learn how it works

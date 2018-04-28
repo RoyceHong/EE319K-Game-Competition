@@ -5,10 +5,11 @@
 #include "Player.h"
 #include "MainMenu.h"
 #include "DisplayMap.h"
+#include "ADC.h"
 
 extern const uint16_t CuteAlien[];
 extern const uint16_t MainMenu[];
-
+movestate_t CursorState;
 
 // Coordinates for play: (33, 95)
 // Coordinates for quit: (33, 111) 
@@ -23,16 +24,16 @@ void Menu(){
 }
 
 
-void UpdateMenu(){
-/*    if(CursorState = UP){
+void UpdateMenu(void){
+    if(CursorState == UP){
         MenuCursor.y = PLAYY;
     }
-    else if(CursorState = DOWN){
+    else if(CursorState == DOWN){
         MenuCursor.y = QUITY;
     }
-*/
-    
-    
-    
+    // Erase cursor
+    ST7735_FillRect(MenuCursor.x, MenuCursor.y - MenuCursor.h, MenuCursor.w, MenuCursor.h, 0);
+    // Redraw cursor at new position 
+    ST7735_DrawBitmap(MenuCursor.x, MenuCursor.y, MenuCursor.image, MenuCursor.w, MenuCursor.h);
 }
 

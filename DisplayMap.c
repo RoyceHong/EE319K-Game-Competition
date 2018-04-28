@@ -4,8 +4,6 @@
 #include "tm4c123gh6pm.h"
 #include "ST7735.h"
 
-// Display buffers
-uint16_t Buffer1[DISPLAY_HEIGHT][DISPLAY_WIDTH];
 
 // ***************** Timer0_Init ****************
 // Activate TIMER0 interrupts to run user task periodically
@@ -37,49 +35,9 @@ void Timer0_Init(void){
 }
 
 
-// Clear both buffers to all black 
-// Called once at the beginning of the game 
-void Buffer_Init(){
-    uint8_t i, j;
-    for(i = 0; i < DISPLAY_HEIGHT; i++){
-        for(j = 0; j < DISPLAY_WIDTH; j++){
-            Buffer1[i][j] = 0x0000;
-        }
-    }
-}
-
-
-// Draw image to background buffer 
-void DrawImage_Buffer(sprite_t *object, uint16_t Buff[DISPLAY_HEIGHT][DISPLAY_WIDTH]){
-    uint32_t counter = 0;
-	for(int a = 0; a < object -> h; a++){			// Index Y axis
-		for(int b = 0; b < object -> w; b++){		// Index X axis
-			Buff[(object ->y) +a][(object -> x)+b] = (object -> image[counter]);
-			counter ++;
-		}
-	}
-}
-
-
-void Image_Clear(sprite_t *object){//, uint16_t Buff[DISPLAY_HEIGHT][DISPLAY_WIDTH]){
-    ST7735_DrawBitmap(object -> x,  object -> y, object -> image,  object -> w, object -> h);
-/*    uint32_t counter = 0;
-	for(int a = 0; a < object -> h; a++){			// Index Y axis
-		for(int b = 0; b < object -> w; b++){		// Index X axis
-			Buff[(object ->y) +a][(object -> x)+b] = 0x0000;
-			counter ++;
-		}
-	}
-*/
-}
-
-
-/*
 // Timer0 Interrupt Service Routine 
 void Timer0A_Handler(void){
     TIMER0_ICR_R = TIMER_ICR_TATOCINT;// acknowledge TIMER0A timeout
-    ST7735_DrawBitmap(0, DISPLAY_HEIGHT, *Buffer1, DISPLAY_WIDTH, DISPLAY_HEIGHT);
 }
-*/
 
 

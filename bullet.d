@@ -5,6 +5,6 @@
 .\bullet.o: ST7735.h
 .\bullet.o: DisplayMap.h
 .\bullet.o: enemy.h
-.\bullet.o: level.h
 .\bullet.o: tm4c123gh6pm.h
 .\bullet.o: Button.h
+.\bullet.o: MainMenu.h
