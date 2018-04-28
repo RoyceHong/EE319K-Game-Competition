@@ -63,13 +63,15 @@
 #include "Button.h"
 #include "DisplayMap.h"
 #include "MainMenu.h" 
+#include "Boss.h"
+#include "BulletHell.h"
 
 
 void DisableInterrupts(void); // Disable interrupts
 void EnableInterrupts(void);  // Enable interrupts
 void Delay100ms(uint32_t count); // time delay in 0.1 seconds
 
-
+uint8_t hellStage;
 progress_t gameProgress;
 
 extern uint8_t buttonStatus;
@@ -107,30 +109,47 @@ int main(void){
     Bullet_Init();
     // Make screen blank 
     ST7735_FillScreen(0x0000);
-    Player_Init();
+/*    Player_Init();
     Bunker_Init();
     Enemy_Init();
     // start of space invaders portion of game
     gameProgress = IN_PROGRESS;
     
     while(gameProgress == IN_PROGRESS){ 
-        BulletMain();
+        PlayerBullet();
+        EnemyBullet();
         Move_Player();
         Move_Enemy();
         Enemy_Dead();
     }
+    ST7735_FillRect(0, 0 , DISPLAY_WIDTH, DISPLAY_HEIGHT, BLACK);
+    Delay100ms(25);
+    
+*/
 // ************************************ END SPACE INVADERS **************************************** 
+    
+ 
+// ************************************ CUTSCENES ADDED HERE **************************************    
     
     
 // ************************************ BULLET HELL *********************************************** 
+    // Bullet hell initializations 
     // fill screen black - for debugging
-    ST7735_FillRect(0, 0 , DISPLAY_WIDTH, DISPLAY_HEIGHT, BLACK);
+    Player_Init();
+    hellStage = 0;
+    Boss_Init(hellStage);
+    gameProgress = IN_PROGRESS;
+    Bullet_Init();
     
-    // cutscenes 
-    while(1){
+    while(gameProgress == IN_PROGRESS){
+        Move_Player();
+        PlayerBulletHell();
     }
-}
 // ************************************ END BULLET HELL *******************************************
+    
+    ST7735_FillRect(0, 0 , DISPLAY_WIDTH, DISPLAY_HEIGHT, BLACK);
+}
+
 
 
 // You can use this timer only if you learn how it works

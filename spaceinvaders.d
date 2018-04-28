@@ -12,3 +12,5 @@
 .\spaceinvaders.o: MainMenu.h
 .\spaceinvaders.o: Button.h
 .\spaceinvaders.o: DisplayMap.h
+.\spaceinvaders.o: Boss.h
+.\spaceinvaders.o: BulletHell.h

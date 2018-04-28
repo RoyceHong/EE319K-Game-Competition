@@ -1,0 +1,9 @@
+.\bullethell.o: BulletHell.c
+.\bullethell.o: C:\Keil\ARM\ARMCC\bin\..\include\stdint.h
+.\bullethell.o: BulletHell.h
+.\bullethell.o: bullet.h
+.\bullethell.o: Player.h
+.\bullethell.o: Boss.h
+.\bullethell.o: Button.h
+.\bullethell.o: ST7735.h
+.\bullethell.o: MainMenu.h

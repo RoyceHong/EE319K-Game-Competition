@@ -6,5 +6,4 @@
 .\bullet.o: DisplayMap.h
 .\bullet.o: enemy.h
 .\bullet.o: tm4c123gh6pm.h
-.\bullet.o: Button.h
 .\bullet.o: MainMenu.h

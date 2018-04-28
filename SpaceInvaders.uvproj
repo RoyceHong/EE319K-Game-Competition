@@ -505,6 +505,16 @@
               <FileType>1</FileType>
               <FilePath>.\Button.c</FilePath>
             </File>
+            <File>
+              <FileName>Boss.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Boss.c</FilePath>
+            </File>
+            <File>
+              <FileName>BulletHell.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\BulletHell.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

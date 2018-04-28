@@ -36,7 +36,7 @@ void Button_Init(){
 
 
 uint8_t Button_In(void){
-    return(GPIO_PORTE_DATA_R & 0x01);
+    return(GPIO_PORTE_DATA_R & 0x02);
 }
 
 
