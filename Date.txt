@@ -1,0 +1,128 @@
+const struct Scene{
+	image_t SayakaChan;
+	char SayakaDialogue[];
+	char PlayerOption1[];
+	char PlayerOption2[];
+	int32_t Points;
+	uint8_t NextScene[2];
+	
+} scene_t;
+
+const struct Picture{
+	uint16_t *image;
+	int16_t w;
+	int16_t h;
+} image_t;
+
+image_t Sayaka_Happy = {&SayakaHappy, 108, 120};
+image_t Sayaka_Blush = {&SayakaBlush, 127, 120};
+image_t Sayaka_Neutral = {&SayakaNeutral, 121, 120};
+image_t Sayaka_InLove = {&SayakaInLove, 128, 101};
+image_t Sayaka_Scared = {&SayakaScared, 108, 120};
+
+const scene_t Sayaka_Stage1[] {
+	{Sayaka_Happy, "Nice Work!", 0, 0, 500, {2, 2}}, 	// Reaction1 (Beat Level)
+	{Sayaka_Scared, "How Unfortunate...", 0, 0, 0, {1, 1}},	// Reaction2 (Lost Level)
+	
+	{Sayaka_Neutral, "What's wrong? You seemed suprised. ", 0, 0, 0, {1, 1}},
+
+	{Sayaka_Happy, "Maybe you still can't believe I asked you out", "I always thought you were out of my league.", "No, I'm a little shocked at something else.", 0, {RightChoice, WrongChoice}},
+	{Sayaka_InLove, "Fufu, your always honest.", 0, 0, 500,	{2, 2}	// Reaction1 (Right)
+	{Sayaka_Scared, "I wonder what that could be...", 0, 0, 50, {1, 2}	// Reaction2 (Wrong)
+
+	{Sayaka_Blush, "Whatever the case, I can't help but feel you're a little tense", 0, 0, 0, {1, 1}},
+	{Sayaka_Neutral, "Are you feeling alright?", "There have been worse days.", "Yeah, I'm fine.", 0, {RightChoice, WrongChoice}},
+	{Sayaka_Happy, "Your definitely not wrong about that.", 0, 0, 500, {2, 2}},	// Reaction1 (Right)
+	{Sayaka_Happy, "That's good.", 0, 0, 200, {1, 1}},				// Reaction2 (Wrong)
+
+	{Sayaka_Blush, "You must feel like things are a bit slow.", 0, 0, 0, {1, 1}},
+	{Sayaka_InLove, "How about we kick things up a notch?", 0, 0, 0, {0, 0,}}
+}
+
+const scene_t Sayaka_Stage2[] {
+	{Sayaka_Happy, "Were you suprised?", 0, 0, 500, {2, 2}},	// Reaction 1 (Beat Level)
+	{Sayaka_Scared, "I guess I was being too harsh...", 0, 0, 0, {1, 1}}, 	// Reaction 2 (Lost Level)
+	
+	{Sayaka_Blush, "Was it too much for you?", "N-Not really.", "Yeah, kinda...",  0, {WrongChoice, RightChoice}},
+	{Sayaka_Blush, "...", 0, 0, 500, {2, 2}},		// Reaction1 (Right)
+	{Sayaka_Blush, "...", 0, 0, 250, {1, 1}}, 		// Reaction2 (Wrong)
+
+	{Sayaka_Scared, "...", 0, 0, 0, {1, 1}},
+	{Sayaka_Scared, "I guess I'm not really a good person", 0, 0, 0, {1, 1}},
+	{Sayaka_Scared, "Maybe I'm just a burden to you", "Of course you're not!", "I don't really understand what you're saying.", 0, {RightChoice, WrongChoice}},
+	{Sayaka_Happy, "You really know how to make me smile.", 0, 0, 500, {2, 2}},		// Reaction1 (Right)
+	{Sayaka_Blush, "Nevermind then...", 0, 0, -1000, {1, 1}}, 				// Reaction2 (Wrong)
+
+	{Sayaka_Neutral, "If you don't mind, I'd like to try one more time.", 0, 0, 0, {0, 0}
+}
+
+const scene_t Sayaka_Stage3[] {
+
+
+}
+
+
+		
+
+#define OptionOne 0
+#define OptionTwo 1
+
+#define WrongChoice 2
+#define RightChoice 1
+
+drawBitMap(0, 120, Sayaka_Stage1[Current_Scene].image, Sayaka_Stage1[Current_Scene].w, Sayaka_Stage1[Current_Scene].h);
+
+uint32_t ST7735_DrawString(uint16_t x, uint16_t y, char *pt, int16_t textColor){
+
+
+void displayScene(scene_t* StageScene){
+	drawBitMAP StageScene->Image
+	Draw Line
+	DrawString Sayaka Dialogue
+	DrawString Character Dialogue 1
+	DrawString Charcter Dialogue 2
+}
+
+uint8_t Select(scene_t* StageScene){
+	uint8_t SelectedMove
+	while(Button not pressed){
+		Check Joystick
+		if(Up){
+			MoveCursorUp()
+			SelectedMove = OptionOne
+		}
+		else if(Down){
+			MoveCursorDown()
+			SelectedMove = OptionTwo
+		}
+	}
+	return StageScene.NextScene[SelectedMove]
+}
+
+uint8_t Current_Scene;
+SceneMain(scene_t * SayakaStage, victoryCOndition){
+
+	if(win){
+		Current_Scene = 0;
+	}
+	if(loss){
+		Current_Scene = 1;
+	}
+
+while(1){
+	displayScene(SayakaStage[Current_Scene]);
+	uint8_t changeScene = Select(SayakaStage[Current_Scene]);
+	Current_Scene = Current_Scene + changeScene ;
+	if(changeScene == 0){
+		break;
+	}
+}
+			
+		
+	
+	
+
+
+
+
+
