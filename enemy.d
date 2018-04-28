@@ -6,3 +6,4 @@
 .\enemy.o: ST7735.h
 .\enemy.o: enemy.h
 .\enemy.o: DisplayMap.h
+.\enemy.o: MainMenu.h

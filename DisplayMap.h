@@ -24,19 +24,6 @@
 void Timer0_Init(void);
 
 
-// Clear both buffers to all black 
-// Called once at the beginning of the game 
-void Buffer_Init(void);
-
-
-// Draw image to background buffer 
-void DrawImage_Buffer(sprite_t *object, uint16_t Buff[DISPLAY_HEIGHT][DISPLAY_WIDTH]);
-
-
-// fills current image with black rectangle
-void Image_Clear(sprite_t *object);//, uint16_t Buff[DISPLAY_HEIGHT][DISPLAY_WIDTH]);
-
-
 // Timer0 Interrupt Service Routine
 void Timer0A_Handler(void);
 

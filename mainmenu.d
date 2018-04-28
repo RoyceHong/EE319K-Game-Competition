@@ -4,3 +4,4 @@
 .\mainmenu.o: Player.h
 .\mainmenu.o: MainMenu.h
 .\mainmenu.o: DisplayMap.h
+.\mainmenu.o: ADC.h

@@ -1,1 +1,0 @@
-.\physics.o: Physics.c

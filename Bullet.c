@@ -6,15 +6,17 @@
 #include "ST7735.h"
 #include "DisplayMap.h"
 #include "enemy.h"
-#include "level.h"
 #include "tm4c123gh6pm.h"
 #include "Button.h"
+#include "MainMenu.h"
 
 void Random_Init(uint32_t);
 uint32_t Random(void);
 extern sprite_t Player1;
 extern sprite_t Enemies[ENEMY_ROW][ENEMY_COLUMN];
 extern sprite_t Bunkers[OBSTACLE_SIZE];
+extern uint8_t buttonStatus;
+extern progress_t gameProgress;
 
 bullet_t PlayerBullets[MAX_BULLET];
 bullet_t EnemyBullets[MAX_BULLET];
@@ -110,8 +112,9 @@ void checkBulletPlayer(bullet_t* Shot){
        BulletStatus = hitBoxCheck(Shot , &Player1);
         if(BulletStatus == CONTACT){
             Player1.life = DEAD;
-            // Subtract Health
-            ST7735_FillRect(0, 0 , DISPLAY_WIDTH, DISPLAY_HEIGHT, BLACK);
+            // game progresses to next section by death of player
+            // status is FAIL
+            gameProgress = FAIL;
             // Additional Animation should be added here
             (*Shot).color = BLACK;
             uint16_t FillColor = BLACK;
@@ -248,8 +251,9 @@ void BulletMain(void){  // Later add input asking for max number of bullets
 
 
 fireBullet_t checkButton(void){
-    uint8_t buttonStatus = Button_In();
     if(buttonStatus == 1){
+        // acknowledge button press
+        buttonStatus = 0;
         return FIRE;
     }
     else{

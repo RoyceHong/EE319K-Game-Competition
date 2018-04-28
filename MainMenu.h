@@ -17,6 +17,10 @@
 #define QUITY 111
 #endif
 
+
+typedef enum {SUCCESS, IN_PROGRESS, FAIL} progress_t;
+
+
 typedef struct cursor_t{
     int16_t x;
     int16_t y;
