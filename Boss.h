@@ -21,6 +21,15 @@ typedef struct boss_t {
 }boss_t;
 
 
+typedef struct atkpattern_t {
+    uint16_t numBullets;
+    int16_t* xvels;
+    int16_t* yvels;
+    uint16_t numStates;
+}atkpattern_t;
+    
+
+
 // Draws the boss on the screen 
 void Boss_Init(uint8_t stage);
 

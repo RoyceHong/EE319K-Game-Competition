@@ -16,7 +16,24 @@ extern uint8_t bossNum;
 // array containing all the bosses 
 extern boss_t Bosses[];
 
+// attack patterns
+extern atkpattern_t ConeVertical;
+extern atkpattern_t Beam;
+
+
+bullet_t BossBullets[MAX_BULLET];
+fireBullet_t TriggerBoss;
+uint32_t TriggerCountBoss = 0;
 uint32_t HellTrigger = 0;
+uint32_t BossBulletCount = 0;
+
+
+// initializes boss bullets in bullet array to black  
+void BossBullet_Init(void){
+    for(uint32_t i = 0; i < MAX_BULLET; i++){
+        BossBullets[i].color = BLACK;
+    }
+}
 
 
 // universal collision detection function
@@ -30,6 +47,7 @@ contact_t BossBoxCheck(bullet_t* bullet, boss_t* object){
     }
  }
 
+ 
 // checks if boss has been killed by player 
 void checkBulletBoss(bullet_t* Shot){
     contact_t BulletStatus;
@@ -77,6 +95,65 @@ void PlayerBulletHell(void){
             checkBulletBoss(&(PlayerBullets[i]));
             checkBulletEdge(&(PlayerBullets[i]));
             moveBullet(&(PlayerBullets[i]));
+        }
+    }
+    bulletSpeed--;
+}
+
+
+uint16_t bossShotState = 0; 
+
+// creates bullets for the boss
+uint8_t createBossBullet(fireBullet_t Condition, uint8_t bossNumber, atkpattern_t pattern){
+    if(Condition == FIRE){
+        uint32_t i = 0;
+        while(BossBullets[BossBulletCount].color != BLACK){
+            BossBulletCount ++;
+            BossBulletCount = BossBulletCount % BULLETNUM_HELL;
+            if(i >= BULLETNUM_HELL){
+                return 0;
+            }
+            i++; 
+        }
+        for(uint32_t j = 0; j < pattern.numBullets; j++){
+            BossBullets[BossBulletCount + j].h = 4;
+            BossBullets[BossBulletCount + j].w = 4;
+            BossBullets[BossBulletCount + j].x = Bosses[bossNumber].x + (Bosses[bossNumber].w/2 - 2);
+            BossBullets[BossBulletCount + j].y = Bosses[bossNumber].y;
+            BossBullets[BossBulletCount + j].xvel = pattern.xvels[bossShotState];
+            BossBullets[BossBulletCount + j].yvel = pattern.yvels[bossShotState];
+            BossBullets[BossBulletCount + j].color = ST7735_Color565(240, 114, 114);
+        }
+        bossShotState++;
+        bossShotState = bossShotState % pattern.numStates;
+    }
+    return 1;
+}
+
+
+// main function in charge of manipulating the boss bullets
+void BossBullet(void){
+    // bulletSpeed determines how fast bullet travels on screen 
+    static uint32_t bulletSpeed = BOSS_BULLET_SPEED; 
+    if(TriggerCountBoss > 0){
+        TriggerCountBoss --;
+    }
+    
+    TriggerBoss = NO_FIRE;
+    
+    if(TriggerCountBoss <= 1){
+        TriggerCountBoss = TRIGGERCOUNT_BOSS;
+        TriggerBoss = FIRE;
+    }
+    createBossBullet(TriggerBoss, bossNum, ConeVertical);   
+    
+    if(bulletSpeed == 0){
+        bulletSpeed = BOSS_BULLET_SPEED;
+        for(uint32_t i = 0; i < BULLETNUM_HELL; i++){
+            // manipulate enemy bullets 
+            checkBulletPlayer(&(BossBullets[i]));
+            checkBulletEdge(&(BossBullets[i]));
+            moveBullet(&(BossBullets[i]));
         }
     }
     bulletSpeed--;

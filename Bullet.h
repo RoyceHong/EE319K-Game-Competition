@@ -35,7 +35,7 @@
 #endif
 
 #ifndef BULLETSPEED
-#define BULLETSPEED 5000
+#define BULLETSPEED 3000
 #endif
 
 

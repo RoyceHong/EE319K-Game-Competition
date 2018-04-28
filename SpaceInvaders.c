@@ -140,9 +140,11 @@ int main(void){
     Boss_Init(hellStage);
     gameProgress = IN_PROGRESS;
     Bullet_Init();
+    BossBullet_Init();
     
     while(gameProgress == IN_PROGRESS){
         Move_Player();
+        BossBullet();
         PlayerBulletHell();
     }
 // ************************************ END BULLET HELL *******************************************

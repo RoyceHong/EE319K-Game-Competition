@@ -30,9 +30,9 @@ bullet_t EnemyBullets[MAX_BULLET];
 fireBullet_t Trigger;
 
 // variable keeping track of number of bullets for player 
-uint8_t BulletCount = 0;
+uint32_t BulletCount = 0;
 // variable keeping track of number of bullets for enemy 
-uint16_t EnemyBulletCount = 0;
+uint32_t EnemyBulletCount = 0;
 
 
 // initializes all bullets in bullet array to black  
@@ -211,10 +211,10 @@ contact_t edgeCheck(bullet_t* bullet){
      if( (bullet -> x <= 1) || (bullet -> x >= (DISPLAY_WIDTH - 1)) 
         || (bullet -> y <= 1) || (bullet -> y >= (DISPLAY_HEIGHT - 1)) ){
             
-            return CONTACT;
+        return CONTACT;
      }
      else{
-           return NO_CONTACT;
+        return NO_CONTACT;
      }
 }
 
@@ -233,7 +233,7 @@ void moveBullet(bullet_t *Shot){
 
 
 // Determines how often enemy bullets are shot 
-uint32_t TriggerCount = TRIGGERCOUNTER;
+uint32_t TriggerCount = 0;
 // Determines how often player is allowed to shoot
 uint32_t TriggerCountPlayer = 0;
 fireBullet_t TriggerEnemy;
