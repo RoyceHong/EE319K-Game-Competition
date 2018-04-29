@@ -7,6 +7,11 @@
 #include <stdint.h>
 #include "player.h"
 
+#ifndef BOSS1_ATTACKNUM
+#define BOSS1_ATTACKNUM 3
+#endif
+
+
 // Boss structure  
 typedef struct boss_t {
     int16_t x;
@@ -21,11 +26,21 @@ typedef struct boss_t {
 }boss_t;
 
 
+typedef struct velocity_t{
+    int16_t vx;
+    int16_t vy;
+}velocity_t;
+    
+
 typedef struct atkpattern_t {
     uint16_t numBullets;
-    int16_t* xvels;
-    int16_t* yvels;
+    velocity_t* velocity;
     uint16_t numStates;
+//    uint16_t color;
+    uint32_t bulletSpeed;
+//    uint32_t bulletSpeedCurrent;
+    uint32_t BossTriggerCount;
+//    uint32_t BossTriggerCountCurrent;
 }atkpattern_t;
     
 
@@ -34,7 +49,14 @@ typedef struct atkpattern_t {
 void Boss_Init(uint8_t stage);
 
 
-void Boss_Move(void);
+// outputs a random attack from the bosses attacks array
+atkpattern_t ChooseRandAttack(void);
+
+
+void Color_Init(void);
+
+
+uint16_t ChooseRandColor(void);
 
 
 #endif

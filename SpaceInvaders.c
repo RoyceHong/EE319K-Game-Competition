@@ -141,6 +141,7 @@ int main(void){
     gameProgress = IN_PROGRESS;
     Bullet_Init();
     BossBullet_Init();
+    Color_Init();
     
     while(gameProgress == IN_PROGRESS){
         Move_Player();

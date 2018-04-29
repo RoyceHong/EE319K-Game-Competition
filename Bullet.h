@@ -23,7 +23,7 @@
 #endif
 
 #ifndef TRIGGERCOUNTER
-#define TRIGGERCOUNTER 150000
+#define TRIGGERCOUNTER 120000
 #endif
 
 #ifndef TRIGGERCOUNTERPLAYER
@@ -35,7 +35,7 @@
 #endif
 
 #ifndef BULLETSPEED
-#define BULLETSPEED 3000
+#define BULLETSPEED 2500
 #endif
 
 

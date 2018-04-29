@@ -8,7 +8,7 @@
 #include "Boss.h"
 
 #ifndef BULLETNUM_HELL
-#define BULLETNUM_HELL 99
+#define BULLETNUM_HELL 500
 #endif
 
 #ifndef BULLETHELL_TRIGGER
@@ -16,11 +16,11 @@
 #endif
 
 #ifndef TRIGGERCOUNT_BOSS
-#define TRIGGERCOUNT_BOSS 35000
+#define TRIGGERCOUNT_BOSS 130000
 #endif
 
 #ifndef BOSS_BULLET_SPEED 
-#define BOSS_BULLET_SPEED 12000
+#define BOSS_BULLET_SPEED 10000
 #endif
 
 // bullet structure 

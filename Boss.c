@@ -11,14 +11,27 @@ uint32_t Random(void);
 extern const uint16_t StackOverflow[];
 uint8_t bossNum = 0;
 
-int16_t ConeVertX[] = {0, -1, -1, -1, -1, 0, 1, 1, 1, 1};
-int16_t ConeVertY[] = {2, 2, 1, 1, 2, 2, 2, 1, 1, 2};
-int16_t BeamX[] = {1};
-int16_t BeamY[] = {1};
+// color definitions
+uint16_t randColor = 0;
+uint16_t red, lblue, dblue, pink, green, yellow, orange;
 
-atkpattern_t ConeVertical = {1, ConeVertX, ConeVertY, 9};
+// velocity maps for each of the attack patterns 
+velocity_t ConeVertVel[] = {{0, 2}, {-1, 2}, {-1, 1}, {-1, 2}, {0, 2}, {1, 2}, {1, 1}, {1, 2}};
+velocity_t CircleBlastVel[] = {{0, 2}, {-1, 2}, {-1, 1}, {-2, 1}, {-2, 0}, {-2, -1}, {-1, -1}, {-1, -2}, {0, -2}, {1, -2}, {1, -1}, {2, -1}, {2, 0}, {2, 1}, {1, 1}, {1, 2}};
+velocity_t BeamVel[] = {{0, 1}};
 
-atkpattern_t Beam = {1, BeamX, BeamY, 1};
+
+// attack patterns for bosses
+atkpattern_t Boss1[] = {
+    {1, ConeVertVel,  8, 7000, 90000},       // Vertical Cone Attack
+    {16, CircleBlastVel, 16, 13000, 170000},   // Circle Blast
+    {1, BeamVel, 1, 5000, 50000}             // Straight Beam
+};
+
+//atkpattern_t Boss2[];
+
+//atkpattern_t Boss3[];
+
 
 
 // array containing all the bosses 
@@ -33,15 +46,30 @@ void Boss_Init(uint8_t stage){
 }
     
 
-
-
-
-
-
-
-
-void Boss_Move(){
-    
+atkpattern_t ChooseRandAttack(void){
+    uint32_t random = (Random() % BOSS1_ATTACKNUM);
+    return Boss1[random];
 }
+
+
+void Color_Init(void){
+    red = ST7735_Color565(240, 114, 114);
+    lblue = ST7735_Color565(87, 255, 255);
+    dblue = ST7735_Color565(7, 57, 255);
+    pink = ST7735_Color565(87, 255, 255);
+    green = ST7735_Color565(87, 255, 255);
+    yellow = ST7735_Color565(87, 255, 255);
+    orange = ST7735_Color565(87, 255, 255); 
+}
+
+
+/*
+uint16_t ChooseRandColor(void){
+    while(randColor == 0){
+        randColor = ST7735_Color565((Random() % 255), (Random() % 255), (Random() % 255));
+    }
+    return randColor;
+}
+*/
 
 
