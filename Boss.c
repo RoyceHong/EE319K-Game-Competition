@@ -9,12 +9,15 @@
 
 uint32_t Random(void);
 
+// Sprites for the boss 
 extern const uint16_t StackOverflow[];
+
+// global variable defining which boss is being fought 
 uint8_t bossNum = 0;
+// timer for boss movement 
 uint32_t bosstime = BOSSMOVE_TIMER;
 
 // color definitions
-uint16_t randColor = 0;
 uint16_t red, lblue, dblue, pink, green, yellow, orange;
 
 
@@ -36,7 +39,9 @@ velocity_t CircleBlastVel[] = {
 velocity_t BeamVel[] = {{0, 50}, {0, 50}, {0, 50}, {0, 50}, {0, 50}, {0, 50}, {0, 50}, {0, 50}};
 
 
-// attack patterns for bosses
+// ATTACK PATTERNS FOR BOSSES
+
+// Boss 1 Attack Patterns
 atkpattern_t Boss1[] = {
     {1, ConeVertVel,  20, 0,7000, 8000},       // Vertical Cone Attack
     {20, CircleBlastVel, 20, 0, 13000, 5000},   // Circle Blast
@@ -51,7 +56,9 @@ atkpattern_t Boss1[] = {
 
 // array containing all the bosses 
 boss_t Bosses[] ={
- {54, 60, StackOverflow, 12, 18, 1, 0, ALIVE, 100}
+ {54, 60, StackOverflow, 12, 18, 1, 0, ALIVE, 100},
+ // Boss2
+ // Boss3
 };
 
  
@@ -61,12 +68,14 @@ void Boss_Init(uint8_t stage){
 }
     
 
+// Chooses random attack from current boss
 atkpattern_t ChooseRandAttack(void){
     uint32_t random = (Random() % BOSS1_ATTACKNUM);
     return Boss1[random];
 }
 
 
+// Initializes colors
 void Color_Init(void){
     red = ST7735_Color565(240, 114, 114);
     lblue = ST7735_Color565(87, 255, 255);
@@ -82,18 +91,20 @@ void Color_Init(void){
 }
 
 
+// Main function for moving the boss
 void Move_Boss(void){ 
-    // moves enemies in the horizontal direction
+    // moves boss in the horizontal direction
     if(bosstime == 0){
-        // reset enemy timer 
+        // reset boss timer
         bosstime = BOSSMOVE_TIMER;
-        // Check enemy positions and set velocity values   
+        // Check boss positions and set velocity values   
         if(Bosses[bossNum].x <= 0){
             Bosses[bossNum].xvel = 1;
         }
         if(Bosses[bossNum].x + Bosses[bossNum].w >= DISPLAY_WIDTH){
             Bosses[bossNum].xvel = -1;
         }
+        // Moves boss
         MoveBoss(&Bosses[bossNum]);
     }
     else{
