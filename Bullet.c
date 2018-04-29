@@ -26,7 +26,7 @@ extern progress_t gameProgress;
 
 // bullet array definitions
 bullet_t PlayerBullets[MAX_BULLET];
-bullet_t EnemyBullets[MAX_BULLET];
+bullet_t EnemyBullets[BULLETNUM_INVADER];
 fireBullet_t Trigger;
 
 // variable keeping track of number of bullets for player 
@@ -39,9 +39,10 @@ uint32_t EnemyBulletCount = 0;
 void Bullet_Init(void){
     for(uint32_t i = 0; i < MAX_BULLET; i++){
         PlayerBullets[i].color = BLACK;
-        EnemyBullets[i].color = BLACK;
     }
-
+    for(uint32_t j = 0; j < BULLETNUM_INVADER; j++){
+        EnemyBullets[j].color = BLACK;
+    }
 }
 
 
@@ -88,8 +89,11 @@ uint8_t createBullet(fireBullet_t Condition, uint16_t BulletNum){
         PlayerBullets[BulletCount].x = Player1.x + (Player1.w/2) -1;
         PlayerBullets[BulletCount].y = Player1.y - (Player1.h) - 1;
         PlayerBullets[BulletCount].xvel = 0;
-        PlayerBullets[BulletCount].yvel = -2;
+        PlayerBullets[BulletCount].yvel = -400;
+        PlayerBullets[BulletCount].xvelSum = 0;
+        PlayerBullets[BulletCount].yvelSum = 0;
         PlayerBullets[BulletCount].color = 0xFFFF; 
+
     }
     return 1;
 }
@@ -113,8 +117,11 @@ uint8_t createEnemyBullet(fireBullet_t Condition, sprite_t *Enemy){
             EnemyBullets[EnemyBulletCount].x = Enemy->x + (Enemy->w/2) - 1;
             EnemyBullets[EnemyBulletCount].y = Enemy->y;
             EnemyBullets[EnemyBulletCount].xvel = 0;
-            EnemyBullets[EnemyBulletCount].yvel = 2;
+            EnemyBullets[EnemyBulletCount].yvel = 100;
+            EnemyBullets[EnemyBulletCount].xvelSum = 0;
+            EnemyBullets[EnemyBulletCount].yvelSum = 0;
             EnemyBullets[EnemyBulletCount].color = 0x07E0; 
+
         }
         return 1;
 }
@@ -224,11 +231,21 @@ void moveBullet(bullet_t *Shot){
     if((*Shot).color != BLACK){
         ST7735_FillRect( (*Shot).x, (*Shot).y, (*Shot).w, (*Shot).h, BLACK);
         // Update Bullet Coordinates
-        (*Shot).x = (*Shot).x + (*Shot).xvel;
-        (*Shot).y = (*Shot).y + (*Shot).yvel;
+        (*Shot).x = (*Shot).x + (*Shot).xvelSum/100;
+        (*Shot).y = (*Shot).y + (*Shot).yvelSum/100;
+        (*Shot).xvelSum =  ((*Shot).xvelSum + (*Shot).xvel) % (100 + abs((*Shot).xvel));
+        (*Shot).yvelSum =  ((*Shot).yvelSum + (*Shot).yvel) % (100 + abs((*Shot).yvel));
+        
         // New Bullet
         ST7735_FillRect( (*Shot).x, (*Shot).y, (*Shot).w, (*Shot).h, (*Shot).color);
     }
+}
+
+int16_t abs(int16_t num){
+    if(num < 0){
+        num = 0 - num; 
+    }
+    return num;
 }
 
 
@@ -242,8 +259,10 @@ fireBullet_t TriggerEnemy;
 // Main function in charge of manipulating enemy bullets (Space Invaders)
 void EnemyBullet(void){
     // bulletSpeed determines how fast bullet travels on screen 
-    static uint32_t bulletSpeed = BULLETSPEED;    
-    TriggerCount --;
+    static uint32_t bulletSpeed = INVADERBULLETSPEED;  
+    if(TriggerCount > 1){
+        TriggerCount --;
+    }
     TriggerEnemy = NO_FIRE;
     if(TriggerCount <= 1){
         TriggerCount = TRIGGERCOUNTER;
@@ -251,7 +270,7 @@ void EnemyBullet(void){
     }
     createEnemyBullet(TriggerEnemy, enemyAttack());   
     if(bulletSpeed == 0){
-        bulletSpeed = BULLETSPEED;
+        bulletSpeed = INVADERBULLETSPEED;
         for(uint32_t i = 0; i < BULLETNUM_INVADER; i++){
             // manipulate enemy bullets 
             checkBulletPlayer(&(EnemyBullets[i]));

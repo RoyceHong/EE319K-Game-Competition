@@ -11,7 +11,7 @@
 #endif
 
 #ifndef BULLETNUM_HELL
-#define BULLETNUM_HELL 100
+#define BULLETNUM_HELL 200
 #endif
 
 #ifndef BLACK
@@ -19,11 +19,11 @@
 #endif
 
 #ifndef MAX_BULLET
-#define MAX_BULLET 100
+#define MAX_BULLET 200
 #endif
 
 #ifndef TRIGGERCOUNTER
-#define TRIGGERCOUNTER 120000
+#define TRIGGERCOUNTER 72000
 #endif
 
 #ifndef TRIGGERCOUNTERPLAYER
@@ -34,8 +34,16 @@
 #define GREEN 0x07E0
 #endif
 
+#ifndef INVADERBULLETSPEED
+#define INVADERBULLETSPEED 1500
+#endif
+
+#ifndef HELLBULLETSPEEDP
+#define HELLBULLETSPEEDP 250
+#endif
+
 #ifndef BULLETSPEED
-#define BULLETSPEED 2500
+#define BULLETSPEED 400
 #endif
 
 
@@ -43,8 +51,10 @@
 typedef struct bullet_t{
     int16_t x;
     int16_t y;
-    int8_t xvel;
-    int8_t yvel;
+    int16_t xvel;
+    int16_t xvelSum;
+    int16_t yvel;
+    int16_t yvelSum;
     int8_t w;
     int8_t h;
     uint16_t color;
@@ -96,6 +106,9 @@ contact_t hitBoxCheck(bullet_t* bullet, sprite_t* object);
 
 // universal edge detection function
 contact_t edgeCheck(bullet_t* bullet);
+
+// absolute value function
+int16_t abs(int16_t num);
 
 
 // Moves bullets

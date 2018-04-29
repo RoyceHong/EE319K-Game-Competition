@@ -22,7 +22,7 @@ void SysTick_Init(void){
     // Set up interrupts with clock (bit 2) mode 1
     NVIC_ST_CTRL_R = 0x0000007;
     // Initialize SysTick to interrupt at 30Hz
-    NVIC_ST_RELOAD_R = 2666667;
+    NVIC_ST_RELOAD_R = 1333333;
     NVIC_ST_CURRENT_R = 0;
 }
 

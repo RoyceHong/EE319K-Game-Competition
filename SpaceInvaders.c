@@ -99,17 +99,17 @@ int main(void){
         // acknowledge button press and reset it 
         buttonStatus = 0;
         Delay100ms(10);
+        ADC_Init();
+        SysTick_Init();
 // ************************************ END MAIN MENU ******************************************** 
     
-
+/*
 // ************************************ SPACE INVADERS ******************************************* 
     // Initializations required for space invaders portion of the game 
-    ADC_Init();
-    SysTick_Init();
     Bullet_Init();
     // Make screen blank 
     ST7735_FillScreen(0x0000);
-/*    Player_Init();
+    Player_Init();
     Bunker_Init();
     Enemy_Init();
     // start of space invaders portion of game
@@ -125,9 +125,8 @@ int main(void){
     ST7735_FillRect(0, 0 , DISPLAY_WIDTH, DISPLAY_HEIGHT, BLACK);
     Delay100ms(25);
     
-*/
 // ************************************ END SPACE INVADERS **************************************** 
-    
+*/   
  
 // ************************************ CUTSCENES ADDED HERE **************************************    
     
@@ -135,16 +134,18 @@ int main(void){
 // ************************************ BULLET HELL *********************************************** 
     // Bullet hell initializations 
     // fill screen black - for debugging
+    ST7735_FillScreen(0x0000);
     Player_Init();
     hellStage = 0;
     Boss_Init(hellStage);
-    gameProgress = IN_PROGRESS;
     Bullet_Init();
     BossBullet_Init();
     Color_Init();
+    gameProgress = IN_PROGRESS;
     
     while(gameProgress == IN_PROGRESS){
         Move_Player();
+        Move_Boss();
         BossBullet();
         PlayerBulletHell();
     }

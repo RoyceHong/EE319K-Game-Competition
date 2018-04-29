@@ -11,6 +11,10 @@
 #define BOSS1_ATTACKNUM 3
 #endif
 
+#ifndef BOSSMOVE_TIMER
+#define BOSSMOVE_TIMER 7000
+#endif
+
 
 // Boss structure  
 typedef struct boss_t {
@@ -36,11 +40,9 @@ typedef struct atkpattern_t {
     uint16_t numBullets;
     velocity_t* velocity;
     uint16_t numStates;
-//    uint16_t color;
+    uint16_t color;
     uint32_t bulletSpeed;
-//    uint32_t bulletSpeedCurrent;
     uint32_t BossTriggerCount;
-//    uint32_t BossTriggerCountCurrent;
 }atkpattern_t;
     
 
@@ -56,7 +58,10 @@ atkpattern_t ChooseRandAttack(void);
 void Color_Init(void);
 
 
-uint16_t ChooseRandColor(void);
+void Move_Boss(void);
+
+
+void MoveBoss(boss_t* object);
 
 
 #endif
