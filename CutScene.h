@@ -51,7 +51,8 @@ const image_t Sayaka_Scared = {SayakaScared, 108, 120};
 
 
 void displayScene(scene_t* StageScene);
-
+uint8_t Select(scene_t* StageScene);
+void SceneMain(scene_t* SayakaStage);
 
 
 

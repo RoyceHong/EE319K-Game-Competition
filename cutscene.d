@@ -4,3 +4,6 @@
 .\cutscene.o: CutScene.h
 .\cutscene.o: Player.h
 .\cutscene.o: MainMenu.h
+.\cutscene.o: Movement.h
+.\cutscene.o: adc.h
+.\cutscene.o: Button.h

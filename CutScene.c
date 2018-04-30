@@ -3,6 +3,8 @@
 #include "CutScene.h"
 #include "Player.h"
 #include "MainMenu.h"
+#include "Movement.h"
+#include "Button.h"
 
 
 extern const uint16_t SayakaHappy[];
@@ -10,8 +12,11 @@ extern const uint16_t SayakaBlush[];
 extern const uint16_t SayakaNeutral[];
 extern const uint16_t SayakaInLove[];
 extern const uint16_t SayakaScared[];
+extern const uint16_t PlayerRightFrame_1[];
 extern progress_t gameProgress;
+extern movestate_t CurrentMove;
 
+sprite_t PlayerSelect = {1,  140, PlayerRightFrame_1,  16, 11, 0, 0, ALIVE};
 
 scene_t Sayaka_Stage1[] = {
 	{{SayakaHappy, 108, 120}, "Nice Work!", 0, 0, 500, {2, 2}}, 	// Reaction1 (Beat Level)
@@ -72,36 +77,39 @@ void displayScene(scene_t* StageScene){
     uint16_t CharPrinted = ST7735_DrawString(Line, Column, StageScene -> SayakaDialogue, 0xFFFF);
     Line += 1;
     ST7735_DrawString(Line, Column, StageScene -> SayakaDialogue + CharPrinted, 0xFFFF);
-    
+    while(Button_In() == 0){}
 	//DrawString Character Dialogue 1
     Line += 1;
     Column += 1;
     CharPrinted = ST7735_DrawString(Line, Column, StageScene -> PlayerOption1, 0xFFFF);
-    
 	//DrawString Charcter Dialogue 2
     Line += 1;
     Column += 1;
     CharPrinted = ST7735_DrawString(Line, Column, StageScene -> PlayerOption2, 0xFFFF);
 }
 
+
 uint8_t Select(scene_t* StageScene){
- /*
-	uint8_t SelectedMove
-	while(Button not pressed){
-		Check Joystick
-		if(Up){
-			MoveCursorUp()
-			SelectedMove = OptionOne
+	uint8_t SelectedMove;
+	while(Button_In() == 0){
+		PlayerSelect.y = 140;
+		if(CurrentMove == LEFT){
+            ST7735_FillRect(PlayerSelect.x , PlayerSelect.y, PlayerSelect.w, PlayerSelect.h, 0x0000);
+            PlayerSelect.y = 140;
+            ST7735_DrawBitmap(PlayerSelect.x, PlayerSelect.y, PlayerSelect.image, PlayerSelect.w,  PlayerSelect.h);
+			SelectedMove = OPTIONONE;
 		}
-		else if(Down){
-			MoveCursorDown()
-			SelectedMove = OptionTwo
+		else if(CurrentMove == RIGHT){
+            ST7735_FillRect(PlayerSelect.x , PlayerSelect.y, PlayerSelect.w, PlayerSelect.h, 0x0000);
+            PlayerSelect.y = 150;
+            ST7735_DrawBitmap(PlayerSelect.x, PlayerSelect.y, PlayerSelect.image, PlayerSelect.w,  PlayerSelect.h);
+			SelectedMove = OPTIONTWO;
 		}
 	}
-	return StageScene.NextScene[SelectedMove]
-    */
-    return StageScene -> NextScene[0];
+	return StageScene -> NextScene[SelectedMove];
+
 }
+
 uint8_t Current_Scene;
 
 void SceneMain(scene_t* SayakaStage){
