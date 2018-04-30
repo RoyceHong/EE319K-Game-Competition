@@ -12,9 +12,6 @@
 #include "Random.h"
 #include "BulletHell.h"
 
-// Random number functions 
-//void Random_Init(uint32_t);
-//uint32_t Random(void);
 
 // Player structure
 extern sprite_t Player1;
@@ -98,8 +95,10 @@ uint8_t createBullet(fireBullet_t Condition, uint16_t BulletNum){
         PlayerBullets[BulletCount].yvel = -400;
         PlayerBullets[BulletCount].xvelSum = 0;
         PlayerBullets[BulletCount].yvelSum = 0;
-        PlayerBullets[BulletCount].color = 0xFFFF; 
-        SelectSound(SHOOT_SOUND);
+        PlayerBullets[BulletCount].color = 0xFFFF;
+        if(spaceInvadersRestriction == 1){
+            SelectSound(SHOOT_SOUND);
+        }
     }
     return 1;
 }

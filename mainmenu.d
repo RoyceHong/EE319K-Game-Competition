@@ -5,3 +5,4 @@
 .\mainmenu.o: MainMenu.h
 .\mainmenu.o: DisplayMap.h
 .\mainmenu.o: ADC.h
+.\mainmenu.o: Sound.h

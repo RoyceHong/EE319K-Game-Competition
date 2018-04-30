@@ -32,7 +32,7 @@ uint32_t BossBulletCount = 0;
 // variable holding index of current attack pattern 
 uint8_t attack;
 uint16_t bossShotState = 0; 
-
+uint16_t repeatHolder = 0;
 
 // initializes boss bullets in bullet array to black  
 void BossBullet_Init(void){
@@ -110,6 +110,11 @@ void PlayerBulletHell(void){
 // creates bullets for the boss
 uint8_t createBossBullet(fireBullet_t Condition, uint8_t bossNumber, atkpattern_t* pattern){
     if(Condition == FIRE){
+        if(bossShotState == 0){
+            // determines how many more repeats left for current attack
+            repeatHolder++;
+            repeatHolder = repeatHolder % pattern -> repeatVal;
+        }
         uint32_t i = 0;
         while(BossBullets[BossBulletCount].color != BLACK){
             BossBulletCount ++;
@@ -142,7 +147,7 @@ uint32_t BossBulletSpeed;
 // main function in charge of manipulating the boss bullets
 void BossBullet(void){
     // chooses a random attack from the bosses attack array
-    if(bossShotState == 0){
+    if(bossShotState == 0 && repeatHolder == 0){
         attack = ChooseRandAttack();
     }
     
@@ -177,8 +182,8 @@ void BossBullet(void){
 // modified hitbox for player during bullet hell portion of game
 // hitbox is a 4x4 square in the center of the player sprite 
 contact_t hitBoxCheckHell(bullet_t* bullet, sprite_t* object){
-    if( (bullet -> x >= object -> x + (object -> w/2 - 2)) && (bullet -> x <= (object -> x + (object -> w)/2 + 2))
-        && (bullet -> y <= (object -> y - (object -> h)/2 -2)) && (bullet -> y >= (object -> y - (object -> h)/2 + 2)) ){ 
+    if( (bullet -> x >= object -> x + (object -> w/2 - 3)) && (bullet -> x <= (object -> x + (object -> w)/2 + 3))
+        && (bullet -> y <= (object -> y - (object -> h)/2 + 3)) && (bullet -> y >= (object -> y - (object -> h)/2 - 3)) ){ 
        return CONTACT;
     }
     else{

@@ -37,4 +37,7 @@ void Menu(void);
 // Moves the cursor 
 void UpdateMenu(void);
 
+
+// Processes the menu choice
+void MenuChoice(void);
 #endif

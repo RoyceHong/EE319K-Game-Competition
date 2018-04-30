@@ -13,7 +13,15 @@
 #ifndef SHOOT_SOUND
 #define SHOOT_SOUND 0
 #endif
+
+#ifndef MENU_SOUND_1
+#define MENU_SOUND_1 1
+#endif
     
+#ifndef MENU_SOUND_2
+#define MENU_SOUND_2 2
+#endif
+
 typedef enum {SOUNDON, SOUNDOFF} sound_t;
 
 typedef struct music_t {
