@@ -29,6 +29,7 @@ typedef struct image_t{
 typedef struct scene_t{
 	struct image_t SayakaChan;
 	char *SayakaDialogue;
+    char *SayakaDialogue2;
 	char *PlayerOption1;
 	char *PlayerOption2;
 	int32_t Points;
