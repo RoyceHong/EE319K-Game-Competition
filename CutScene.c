@@ -102,6 +102,8 @@ uint8_t Select(scene_t* StageScene){
     */
     return StageScene -> NextScene[0];
 }
+
+
 uint8_t Current_Scene;
 
 void SceneMain(scene_t* SayakaStage){

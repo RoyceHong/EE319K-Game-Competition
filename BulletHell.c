@@ -10,31 +10,34 @@
 
 extern progress_t gameProgress;
 extern sprite_t Player1;
-extern bullet_t PlayerBullets[MAX_BULLET];
+extern bullet_t PlayerBullets[PLAYER_BULLETNUM];
 extern fireBullet_t Trigger;
 extern uint8_t bossNum;
+
 // array containing all the bosses 
 extern boss_t Bosses[];
+// array containing all the boss attack patterns 
 extern atkpattern_t Boss1[];
 
-// attack patterns
-extern atkpattern_t ConeVertical;
-extern atkpattern_t CircleBlast;
-extern atkpattern_t Beam;
-
-
-bullet_t BossBullets[MAX_BULLET];
+// Boss bullets array, max of 200
+bullet_t BossBullets[BULLETNUM_HELL];
+// Signifies whether a bulet should be created
 fireBullet_t TriggerBoss;
+// Variable determining how often bullets are shot by boss
 uint32_t TriggerCountBoss = 0;
+// Variable determining how often bullets are shot by player
 uint32_t HellTrigger = 0;
+// global variable determining number of bullets boss current has on screen
 uint32_t BossBulletCount = 0;
+// variable holding current attack pattern 
 atkpattern_t attack;
+atkpattern_t repeatattack;
 
 
 
 // initializes boss bullets in bullet array to black  
 void BossBullet_Init(void){
-    for(uint32_t i = 0; i < MAX_BULLET; i++){
+    for(uint32_t i = 0; i < BULLETNUM_HELL; i++){
         BossBullets[i].color = BLACK;
     }
 }
@@ -87,14 +90,14 @@ void PlayerBulletHell(void){
             Trigger = FIRE;
         }
         if(Trigger == FIRE){
-            HellTrigger = BULLETHELL_TRIGGER;
+            HellTrigger = BULLETHELL_PTRIGGER;
         }
     }
-    createBullet(Trigger, BULLETNUM_HELL); 
+    createBullet(Trigger, PLAYER_BULLETNUM); 
     
     if(bulletSpeed == 0){
         bulletSpeed = HELLBULLETSPEEDP;
-        for(uint32_t i = 0; i < BULLETNUM_HELL; i++){
+        for(uint32_t i = 0; i < PLAYER_BULLETNUM; i++){
             // manipulate player bullets
             checkBulletBoss(&(PlayerBullets[i]));
             checkBulletEdge(&(PlayerBullets[i]));
@@ -137,15 +140,23 @@ uint8_t createBossBullet(fireBullet_t Condition, uint8_t bossNumber, atkpattern_
 }
 
 
+uint32_t BossBulletSpeed;
+
 // main function in charge of manipulating the boss bullets
 void BossBullet(void){
     // chooses a random attack from the bosses attack array
-    if(bossShotState == 0){      
-        attack = ChooseRandAttack();
+    if(bossShotState == 0){
+        if(attack.repeat == 0){
+            while(attack.velocity == repeatattack.velocity){
+                repeatattack = ChooseRandAttack();
+            }
+            attack = repeatattack;
+        }
+        else{
+            attack = ChooseRandAttack();
+        }
     }
     
-    // bulletSpeed determines how fast bullet travels on screen 
-    static uint32_t BossBulletSpeed = BOSS_BULLET_SPEED; 
     if(TriggerCountBoss > 0){
         TriggerCountBoss --;
     }
@@ -160,15 +171,17 @@ void BossBullet(void){
     createBossBullet(TriggerBoss, bossNum, attack);   
     
     if(BossBulletSpeed == 0){
-        BossBulletSpeed = BOSS_BULLET_SPEED;
+        BossBulletSpeed = attack.bulletSpeed;
         for(uint32_t i = 0; i < BULLETNUM_HELL; i++){
             // manipulate enemy bullets 
-            checkBulletPlayer(&(BossBullets[i]));
+//            checkBulletPlayer(&(BossBullets[i]));
             checkBulletEdge(&(BossBullets[i]));
             moveBullet(&(BossBullets[i]));
         }
     }
-    BossBulletSpeed--;
+    if(BossBulletSpeed > 0){
+        BossBulletSpeed--;
+    }
 }
 
 

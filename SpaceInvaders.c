@@ -71,17 +71,25 @@ void DisableInterrupts(void); // Disable interrupts
 void EnableInterrupts(void);  // Enable interrupts
 void Delay100ms(uint32_t count); // time delay in 0.1 seconds
 
-uint8_t hellStage;
+// determines what stage of the bullet hell the player is on
+extern uint8_t bossNum;
+
+// holds SUCCESS, FAIL, or IN_PROGRESS
 progress_t gameProgress;
 
+// variable keeping track of whether button has been pressed
 extern uint8_t buttonStatus;
-uint32_t endinvaders;
+
+// variable indicating space invaders horizontal restriction
+uint8_t spaceInvadersRestriction = 1;
+
+
+
 
 int main(void){
     // Initializations
     PLL_Init(Bus80MHz);       // Bus clock is 80 MHz 
     ST7735_InitR(INITR_REDTAB);
-    Random_Init(NVIC_ST_CURRENT_R);
     
     
 // ************************************ MAIN MENU ************************************************ 
@@ -101,6 +109,7 @@ int main(void){
         Delay100ms(10);
         ADC_Init();
         SysTick_Init();
+        Random_Init(NVIC_ST_CURRENT_R);
 // ************************************ END MAIN MENU ******************************************** 
     
 /*
@@ -126,7 +135,7 @@ int main(void){
     Delay100ms(25);
     
 // ************************************ END SPACE INVADERS **************************************** 
-*/   
+*/  
  
 // ************************************ CUTSCENES ADDED HERE **************************************    
     
@@ -134,11 +143,14 @@ int main(void){
     
 // ************************************ BULLET HELL *********************************************** 
     // Bullet hell initializations 
-    // fill screen black - for debugging
+    // allow vertical movement for bullet hell portion of game 
+    spaceInvadersRestriction = 0;
+    // fill screen black
     ST7735_FillScreen(0x0000);
+    // disable edge interrupts for bullet hell portion of game
+    DisableEdgeInt();
     Player_Init();
-    hellStage = 0;
-    Boss_Init(hellStage);
+    Boss_Init(bossNum);
     Bullet_Init();
     BossBullet_Init();
     Color_Init();

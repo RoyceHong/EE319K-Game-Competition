@@ -8,17 +8,18 @@
 #include "Boss.h"
 
 
-#ifndef BULLETHELL_TRIGGER
-#define BULLETHELL_TRIGGER 4000
+#ifndef BULLETHELL_PTRIGGER
+#define BULLETHELL_PTRIGGER 4000
 #endif
 
-#ifndef TRIGGERCOUNT_BOSS
-#define TRIGGERCOUNT_BOSS 58000
+#ifndef BULLETNUM_HELL
+#define BULLETNUM_HELL 300
 #endif
 
-#ifndef BOSS_BULLET_SPEED 
-#define BOSS_BULLET_SPEED 250
+#ifndef HELLBULLETSPEEDP
+#define HELLBULLETSPEEDP 250
 #endif
+
 
 // bullet structure 
 typedef struct bossbullet_t{

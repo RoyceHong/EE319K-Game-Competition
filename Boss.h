@@ -8,7 +8,7 @@
 #include "player.h"
 
 #ifndef BOSS1_ATTACKNUM
-#define BOSS1_ATTACKNUM 3
+#define BOSS1_ATTACKNUM 4
 #endif
 
 #ifndef BOSSMOVE_TIMER
@@ -43,6 +43,7 @@ typedef struct atkpattern_t {
     uint16_t color;
     uint32_t bulletSpeed;
     uint32_t BossTriggerCount;
+    uint8_t repeat;
 }atkpattern_t;
     
 
