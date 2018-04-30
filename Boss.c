@@ -6,6 +6,7 @@
 #include "ST7735.h"
 #include "DisplayMap.h"
 #include "Movement.h"
+#include "Random.h"
 
 // Sprites for the boss 
 extern const uint16_t StackOverflow[];
@@ -56,31 +57,36 @@ const velocity_t SpiralVel[] = {
 };
 
 
-// ATTACK PATTERNS FOR BOSSES
+const velocity_t Spray[42];
 
+const velocity_t Burst[42];
+
+
+// ATTACK PATTERNS FOR BOSSES
 // Boss 1 Attack Patterns
 atkpattern_t Boss1[] = {
-    {0, 1, ConeVertVel,  20, 0, 250, 8000},       // Vertical Cone Attack
+    {0, 1, ConeVertVel,  20, 0, 250, 5000},       // Vertical Cone Attack
     {1, 20, CircleBlastVel, 20, 0, 500, 7500},   // Circle Blast
     {2, 1, BeamVel, 8, 0, 400, 6000},             // Straight Beam
-    {3, 10, SpiralVel, 100, 0, 500, 10000} 
+    {3, 10, SpiralVel, 100, 0, 500, 10000}       // Spiral         
 };
 
 //atkpattern_t Boss2[];
 
 //atkpattern_t Boss3[];
 
+// add an array consisting of all bosses attack patterns (atkpattern_t BossAttacks)
+atkpattern_t* BossAttacks[] = {Boss1};
 
-uint32_t Random(void);
+// function that generates a random number
+//uint32_t Random(void);
 
 // global variable defining which boss is being fought 
 uint8_t bossNum = 0;
 // timer for boss movement 
 uint32_t bosstime = BOSSMOVE_TIMER;
-
-// color definitions
+// variables that will hold color definitions
 uint16_t red, lblue, dblue, pink, green, yellow, orange;
-
 
 
 // array containing all the bosses 
@@ -92,8 +98,8 @@ boss_t Bosses[] ={
 
  
 // Draws the boss on the screen 
-void Boss_Init(uint8_t stage){
-    ST7735_DrawBitmap(Bosses[stage].x, Bosses[stage].y, Bosses[stage].image, Bosses[stage].w, Bosses[stage].h);
+void Boss_Init(uint8_t bossNumber){
+    ST7735_DrawBitmap(Bosses[bossNumber].x, Bosses[bossNumber].y, Bosses[bossNumber].image, Bosses[bossNumber].w, Bosses[bossNumber].h);
 }
 
 

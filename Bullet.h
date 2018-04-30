@@ -11,11 +11,15 @@
 #endif
 
 #ifndef PLAYER_BULLETNUM
-#define PLAYER_BULLETNUM 50
+#define PLAYER_BULLETNUM 25
 #endif
 
 #ifndef BLACK
 #define BLACK 0x0000
+#endif
+
+#ifndef GREEN
+#define GREEN 0x07E0
 #endif
 
 #ifndef TRIGGERCOUNTERENEMY
@@ -26,9 +30,6 @@
 #define TRIGGERCOUNTERPLAYER 25000
 #endif
 
-#ifndef GREEN
-#define GREEN 0x07E0
-#endif
 
 #ifndef ENEMYBULLETSPEED
 #define ENEMYBULLETSPEED 1500

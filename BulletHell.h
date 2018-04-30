@@ -9,7 +9,7 @@
 
 
 #ifndef BULLETHELL_PTRIGGER
-#define BULLETHELL_PTRIGGER 4000
+#define BULLETHELL_PTRIGGER 3000
 #endif
 
 #ifndef BULLETNUM_HELL
@@ -49,14 +49,15 @@ contact_t BossBoxCheck(bullet_t* bullet, boss_t* object);
 
 
 // creates bullets for the enemy 
-uint8_t createBossBullet(fireBullet_t Condition, uint8_t bossNumber, atkpattern_t pattern);
+uint8_t createBossBullet(fireBullet_t Condition, uint8_t bossNumber, atkpattern_t* pattern);
 
 
 // main function that manipulates bullets for boss
 void BossBullet(void);
 
 
-
+// checks the reduced size hitbox for the player during bullet hell mode
+contact_t hitBoxCheckHell(bullet_t* bullet, sprite_t* object);
 
 
 

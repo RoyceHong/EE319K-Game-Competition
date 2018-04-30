@@ -49,19 +49,22 @@ typedef struct atkpattern_t {
 
 
 // Draws the boss on the screen 
-void Boss_Init(uint8_t stage);
+void Boss_Init(uint8_t bossNumber);
 
 
 // outputs a random attack from the bosses attacks array
 uint8_t ChooseRandAttack(void);
 
 
+// initializes colors of each of the attack patterns
 void Color_Init(void);
 
 
+// Moves the boss horizontall across the screen 
 void Move_Boss(void);
 
 
+// changes x, y coordinates of the boss
 void MoveBoss(boss_t* object);
 
 

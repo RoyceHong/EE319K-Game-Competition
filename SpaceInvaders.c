@@ -118,6 +118,7 @@ int main(void){
 
 // ************************************ SPACE INVADERS ******************************************* 
     // Initializations required for space invaders portion of the game 
+    spaceInvadersRestriction = 1;
     Bullet_Init();
     // Make screen blank 
     ST7735_FillScreen(0x0000);
