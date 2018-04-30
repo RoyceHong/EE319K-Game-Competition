@@ -7,3 +7,4 @@
 .\bullet.o: enemy.h
 .\bullet.o: tm4c123gh6pm.h
 .\bullet.o: MainMenu.h
+.\bullet.o: Sound.h

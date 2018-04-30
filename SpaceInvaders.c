@@ -66,6 +66,7 @@
 #include "Boss.h"
 #include "BulletHell.h"
 #include "CutScene.h"
+#include "Sound.h"
 
 
 void DisableInterrupts(void); // Disable interrupts
@@ -92,7 +93,7 @@ int main(void){
     // Initializations
     PLL_Init(Bus80MHz);       // Bus clock is 80 MHz 
     ST7735_InitR(INITR_REDTAB);
-    
+    Sound_Init();
     
 // ************************************ MAIN MENU ************************************************ 
     // Initializations for main menu

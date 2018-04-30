@@ -8,6 +8,7 @@
 #include "enemy.h"
 #include "tm4c123gh6pm.h"
 #include "MainMenu.h"
+#include "Sound.h"
 
 // Random number functions 
 void Random_Init(uint32_t);
@@ -93,7 +94,7 @@ uint8_t createBullet(fireBullet_t Condition, uint16_t BulletNum){
         PlayerBullets[BulletCount].xvelSum = 0;
         PlayerBullets[BulletCount].yvelSum = 0;
         PlayerBullets[BulletCount].color = 0xFFFF; 
-
+        SelectSound(SHOOT_SOUND);
     }
     return 1;
 }

@@ -5,17 +5,29 @@
 // Jonathan Valvano
 // November 17, 2014
 
+#ifndef SOUND_H
+#define SOUND_H
+
 #include <stdint.h>
 
-void Sound_Init(void);
-void Sound_Play(const uint8_t *pt, uint32_t count);
-void Sound_Shoot(void);
-void Sound_Killed(void);
-void Sound_Explosion(void);
+#ifndef SHOOT_SOUND
+#define SHOOT_SOUND 0
+#endif
+    
+typedef enum {SOUNDON, SOUNDOFF} sound_t;
 
-void Sound_Fastinvader1(void);
-void Sound_Fastinvader2(void);
-void Sound_Fastinvader3(void);
-void Sound_Fastinvader4(void);
-void Sound_Highpitch(void);
+typedef struct music_t {
+    const uint8_t* currentSound;
+    uint32_t size;
+}music_t;
+
+void Sound_Init(void);
+
+void Sound_Play(music_t* sound);
+
+void SelectSound(uint8_t SoundInput);
+
+#endif
+
+
 
