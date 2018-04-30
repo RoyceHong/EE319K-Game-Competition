@@ -14,3 +14,4 @@
 .\spaceinvaders.o: DisplayMap.h
 .\spaceinvaders.o: Boss.h
 .\spaceinvaders.o: BulletHell.h
+.\spaceinvaders.o: CutScene.h

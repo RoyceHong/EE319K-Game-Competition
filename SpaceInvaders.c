@@ -65,6 +65,7 @@
 #include "MainMenu.h" 
 #include "Boss.h"
 #include "BulletHell.h"
+#include "CutScene.h"
 
 
 void DisableInterrupts(void); // Disable interrupts
@@ -83,7 +84,8 @@ extern uint8_t buttonStatus;
 // variable indicating space invaders horizontal restriction
 uint8_t spaceInvadersRestriction = 1;
 
-
+extern scene_t Sayaka_Stage1[];
+extern scene_t Sayaka_Stage2[];
 
 
 int main(void){
@@ -112,7 +114,7 @@ int main(void){
         Random_Init(NVIC_ST_CURRENT_R);
 // ************************************ END MAIN MENU ******************************************** 
     
-/*
+
 // ************************************ SPACE INVADERS ******************************************* 
     // Initializations required for space invaders portion of the game 
     Bullet_Init();
@@ -135,7 +137,7 @@ int main(void){
     Delay100ms(25);
     
 // ************************************ END SPACE INVADERS **************************************** 
-*/  
+ //   SceneMain(Sayaka_Stage1);
  
 // ************************************ CUTSCENES ADDED HERE **************************************    
     

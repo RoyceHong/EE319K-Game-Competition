@@ -43,12 +43,6 @@ extern const uint16_t SayakaInLove[];
 extern const uint16_t SayakaScared[];
 
 
-const image_t Sayaka_Happy = {SayakaHappy, 108, 120};
-const image_t Sayaka_Blush = {SayakaBlush, 127, 120};
-const image_t Sayaka_Neutral = {SayakaNeutral, 121, 120};
-const image_t Sayaka_InLove = {SayakaInLove, 128, 101};
-const image_t Sayaka_Scared = {SayakaScared, 108, 120};
-
 
 void displayScene(scene_t* StageScene);
 uint8_t Select(scene_t* StageScene);

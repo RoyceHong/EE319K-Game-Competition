@@ -18,7 +18,13 @@ extern movestate_t CurrentMove;
 
 sprite_t PlayerSelect = {1,  140, PlayerRightFrame_1,  16, 11, 0, 0, ALIVE};
 
-scene_t Sayaka_Stage1[] = {
+image_t Sayaka_Happy = {SayakaHappy, 108, 120};
+image_t Sayaka_Blush = {SayakaBlush, 127, 120};
+image_t Sayaka_Neutral = {SayakaNeutral, 121, 120};
+image_t Sayaka_InLove = {SayakaInLove, 128, 101};
+image_t Sayaka_Scared = {SayakaScared, 108, 120};
+
+const scene_t Sayaka_Stage1[] = {
 	{{SayakaHappy, 108, 120}, "Nice Work!", 0, 0, 500, {2, 2}}, 	// Reaction1 (Beat Level)
 	{{SayakaScared, 108, 120}, "How Unfortunate...", 0, 0, 0, {1, 1}},	// Reaction2 (Lost Level)
 	
@@ -110,10 +116,6 @@ uint8_t Select(scene_t* StageScene){
 
 }
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 8af2a278471312f8476c23db0cb425719cb2c362
 uint8_t Current_Scene;
 
 void SceneMain(scene_t* SayakaStage){
