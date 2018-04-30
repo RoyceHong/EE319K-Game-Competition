@@ -110,6 +110,10 @@ uint8_t Select(scene_t* StageScene){
 
 }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 8af2a278471312f8476c23db0cb425719cb2c362
 uint8_t Current_Scene;
 
 void SceneMain(scene_t* SayakaStage){

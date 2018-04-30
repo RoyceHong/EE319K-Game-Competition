@@ -9,7 +9,7 @@
 
 
 // Move state enum 
-typedef enum {UP, DOWN, LEFT, HOLD, RIGHT} movestate_t;
+typedef enum {UP, UPLEFT, UPRIGHT, DOWN, DOWNLEFT, DOWNRIGHT, LEFT, HOLD, RIGHT} movestate_t;
     
 
 // ADC initialization function 
@@ -24,7 +24,9 @@ void ADC_Init(void);
 // Input: none
 // Output: 12-bit result of ADC conversion
 // measures from PD2, analog channel 5
-uint32_t ADC_In(void);
+uint32_t ADC_InX(void);
+
+uint32_t ADC_InY(void);
 
 
 //------------ADC_Convert------------

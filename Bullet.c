@@ -25,7 +25,7 @@ extern uint8_t buttonStatus;
 extern progress_t gameProgress;
 
 // bullet array definitions
-bullet_t PlayerBullets[MAX_BULLET];
+bullet_t PlayerBullets[PLAYER_BULLETNUM];
 bullet_t EnemyBullets[BULLETNUM_INVADER];
 fireBullet_t Trigger;
 
@@ -37,7 +37,7 @@ uint32_t EnemyBulletCount = 0;
 
 // initializes all bullets in bullet array to black  
 void Bullet_Init(void){
-    for(uint32_t i = 0; i < MAX_BULLET; i++){
+    for(uint32_t i = 0; i < PLAYER_BULLETNUM; i++){
         PlayerBullets[i].color = BLACK;
     }
     for(uint32_t j = 0; j < BULLETNUM_INVADER; j++){
@@ -259,18 +259,18 @@ fireBullet_t TriggerEnemy;
 // Main function in charge of manipulating enemy bullets (Space Invaders)
 void EnemyBullet(void){
     // bulletSpeed determines how fast bullet travels on screen 
-    static uint32_t bulletSpeed = INVADERBULLETSPEED;  
+    static uint32_t bulletSpeed = ENEMYBULLETSPEED;  
     if(TriggerCount > 1){
         TriggerCount --;
     }
     TriggerEnemy = NO_FIRE;
     if(TriggerCount <= 1){
-        TriggerCount = TRIGGERCOUNTER;
+        TriggerCount = TRIGGERCOUNTERENEMY;
         TriggerEnemy = FIRE;
     }
     createEnemyBullet(TriggerEnemy, enemyAttack());   
     if(bulletSpeed == 0){
-        bulletSpeed = INVADERBULLETSPEED;
+        bulletSpeed = ENEMYBULLETSPEED;
         for(uint32_t i = 0; i < BULLETNUM_INVADER; i++){
             // manipulate enemy bullets 
             checkBulletPlayer(&(EnemyBullets[i]));
@@ -285,7 +285,7 @@ void EnemyBullet(void){
 
 // main function in charge of manipulating the player bullets
 void PlayerBullet(void){
-    static uint32_t bulletSpeed = BULLETSPEED; 
+    static uint32_t bulletSpeed = BULLETSPEEDP; 
     if(TriggerCountPlayer > 0){
         TriggerCountPlayer --;
     }
@@ -300,7 +300,7 @@ void PlayerBullet(void){
     createBullet(Trigger, BULLETNUM_INVADER); 
     
     if(bulletSpeed == 0){
-        bulletSpeed = BULLETSPEED;
+        bulletSpeed = BULLETSPEEDP;
         for(uint32_t i = 0; i < BULLETNUM_INVADER; i++){
             // manipulate player bullets
             checkBulletEnemy(&(PlayerBullets[i]));

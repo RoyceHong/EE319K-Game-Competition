@@ -10,16 +10,43 @@
 
 // Process_Move
 // Converts direction enum into velocity value
-void Process_Move(sprite_t* player, movestate_t xdirection){
-    switch(xdirection){
+void Process_Move(sprite_t* player, movestate_t direction){
+    switch(direction){
         case LEFT:
             player -> xvel = -1;
+            player -> yvel = 0;
             break;
         case HOLD:
             player -> xvel = 0;
+            player -> yvel = 0;
             break;
         case RIGHT: 
             player -> xvel = 1;
+            player -> yvel = 0;
+            break;
+        case UP:
+            player -> xvel = 0;
+            player -> yvel = -1;
+            break;
+        case DOWN:
+            player -> xvel = 0;
+            player -> yvel = 1;
+            break;
+        case UPLEFT:
+            player -> xvel = -1;
+            player -> yvel = -1;
+            break;
+        case UPRIGHT:
+            player -> xvel = 1;
+            player -> yvel = -1;
+            break;
+        case DOWNLEFT:
+            player -> xvel = -1;
+            player -> yvel = 1;
+            break;
+        case DOWNRIGHT:
+            player -> xvel = 1;
+            player -> yvel = 1;
             break;
     }
 }
@@ -38,7 +65,7 @@ void MoveX(sprite_t* object){
 
 // Universal move function, takes sprite as input and moves according to yvel
 void MoveY(sprite_t* object){
-    if( ((object -> y + object -> yvel) >= 0) && ((object -> y + object -> yvel + object -> h) <= DISPLAY_HEIGHT) ){
+    if( ((object -> y - object -> h + object -> yvel) >= 0) && ((object -> y + object -> yvel) <= DISPLAY_HEIGHT) ){
         object -> y = object -> y + object -> yvel;
     }
     if(object -> life == ALIVE){

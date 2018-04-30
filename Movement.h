@@ -8,7 +8,7 @@
 
 
 // Takes direction input and adjusts velocities for player accordingly 
-void Process_Move(sprite_t *player, movestate_t xdirection);
+void Process_Move(sprite_t *player, movestate_t direction);
 
 
 // Universal move function that moves a given sprite in the horizontal direction
