@@ -32,8 +32,8 @@ I (Enemy.h)(0x5AE3F1F5)
 I (MainMenu.h)(0x5AE3F178)
 I (Button.h)(0x5AE3FF83)
 I (DisplayMap.h)(0x5AE3F5C3)
-I (Boss.h)(0x5AE648FB)
-I (BulletHell.h)(0x5AE64741)
+I (Boss.h)(0x5AE68964)
+I (BulletHell.h)(0x5AE681C3)
 F (.\ST7735.c)(0x5ADCEE79)(-c --cpu Cortex-M4 -g -O0 --apcs=interwork --split_sections --signed_chars -I.. -I..\..\.. --C99-I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\Luminary-Drvmdk -DPART_LM4F120H5QR-o .\st7735.o --omf_browse .\st7735.crf --depend .\st7735.d)
 I (C:\Keil\ARM\ARMCC\include\stdio.h)(0x51C87C24)
 I (C:\Keil\ARM\ARMCC\include\stdint.h)(0x51C87C24)
@@ -99,20 +99,20 @@ F (.\Button.c)(0x5AE416BF)(-c --cpu Cortex-M4 -g -O0 --apcs=interwork --split_se
 I (C:\Keil\ARM\ARMCC\include\stdint.h)(0x51C87C24)
 I (Button.h)(0x5AE3FF83)
 I (tm4c123gh6pm.h)(0x5ADCEE7A)
-F (.\Boss.c)(0x5AE64B9B)(-c --cpu Cortex-M4 -g -O0 --apcs=interwork --split_sections --signed_chars -I.. -I..\..\.. --C99-I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\Luminary-Drvmdk -DPART_LM4F120H5QR-o .\boss.o --omf_browse .\boss.crf --depend .\boss.d)
+F (.\Boss.c)(0x5AE68964)(-c --cpu Cortex-M4 -g -O0 --apcs=interwork --split_sections --signed_chars -I.. -I..\..\.. --C99-I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\Luminary-Drvmdk -DPART_LM4F120H5QR-o .\boss.o --omf_browse .\boss.crf --depend .\boss.d)
 I (C:\Keil\ARM\ARMCC\include\stdint.h)(0x51C87C24)
-I (Boss.h)(0x5AE648FB)
+I (Boss.h)(0x5AE68964)
 I (player.h)(0x5AE28300)
 I (ST7735.h)(0x5ADCEE79)
 I (DisplayMap.h)(0x5AE3F5C3)
 I (Movement.h)(0x5AE67ABA)
 I (adc.h)(0x5AE675F0)
-F (.\BulletHell.c)(0x5AE648FC)(-c --cpu Cortex-M4 -g -O0 --apcs=interwork --split_sections --signed_chars -I.. -I..\..\.. --C99-I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\Luminary-Drvmdk -DPART_LM4F120H5QR-o .\bullethell.o --omf_browse .\bullethell.crf --depend .\bullethell.d)
+F (.\BulletHell.c)(0x5AE68964)(-c --cpu Cortex-M4 -g -O0 --apcs=interwork --split_sections --signed_chars -I.. -I..\..\.. --C99-I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\Luminary-Drvmdk -DPART_LM4F120H5QR-o .\bullethell.o --omf_browse .\bullethell.crf --depend .\bullethell.d)
 I (C:\Keil\ARM\ARMCC\include\stdint.h)(0x51C87C24)
-I (BulletHell.h)(0x5AE64741)
+I (BulletHell.h)(0x5AE681C3)
 I (bullet.h)(0x5AE63EA5)
 I (Player.h)(0x5AE28300)
-I (Boss.h)(0x5AE648FB)
+I (Boss.h)(0x5AE68964)
 I (Button.h)(0x5AE3FF83)
 I (ST7735.h)(0x5ADCEE79)
 I (MainMenu.h)(0x5AE3F178)

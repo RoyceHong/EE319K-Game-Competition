@@ -7,36 +7,25 @@
 #include "DisplayMap.h"
 #include "Movement.h"
 
-uint32_t Random(void);
-
 // Sprites for the boss 
 extern const uint16_t StackOverflow[];
 
-// global variable defining which boss is being fought 
-uint8_t bossNum = 0;
-// timer for boss movement 
-uint32_t bosstime = BOSSMOVE_TIMER;
-
-// color definitions
-uint16_t red, lblue, dblue, pink, green, yellow, orange;
-
-
 // velocity maps for each of the attack patterns 
-velocity_t ConeVertVel[] = {
+const velocity_t ConeVertVel[] = {
     {0, 100}, {-26, 96}, {-50, 87}, {-71, 71}, {-87, 50}, {-96, 26}, 
     {-87, 50}, {-71, 71}, {-50, 87}, {-26, 96}, {0, 100},
     {26, 96}, {50, 87}, {71, 71}, {87, 50}, {96, 26},
     {87, 50}, {71, 71}, {50,  87},  {26, 96}
 };
     
-velocity_t CircleBlastVel[] = {
+const velocity_t CircleBlastVel[] = {
     {0, 100}, {-20, 80}, {-40, 60}, {-60, 40}, {-80, 20}, {-100, 0},
     {-80, -20}, {-60, -40}, {-40, -60}, {-20, -80}, {0, -100},
     {20, -80}, {40, -60}, {60, -40}, {80, -20}, {100, 0},
     {80, 20}, {60, 40}, {40, 60}, {20, 80}
 };
 
-velocity_t BeamVel[] = {{0, 50}, {0, 50}, {0, 50}, {0, 50}, {0, 50}, {0, 50}, {0, 50}, {0, 50}};
+const velocity_t BeamVel[] = {{0, 50}, {0, 50}, {0, 50}, {0, 50}, {0, 50}, {0, 50}, {0, 50}, {0, 50}};
 
 /*
 velocity_t SpiralVel[] = {
@@ -53,7 +42,7 @@ velocity_t SpiralVel[] = {
 };
 */
 
-velocity_t SpiralVel[] = {
+const velocity_t SpiralVel[] = {
     {0, 100},  {-40, 60},  {-80, 20},  {-80, -20},  {-40, -60},  {0, -100},  {40, -60},  {80, -20},  {80, 20},  {40, 60},
     {-9, 99},  {-49, 59},  {-89, 19},  {-71, -21}, {-31, -61},  {9, -99},  {49, -59},  {89, -19}, {71, 21},  {31, 61}, 
     {-17, 98}, {-57, 58}, {-97, 18}, {-63, -22}, {-23, -62}, {17, -98},{57, -58}, {97, -18}, {63, 22}, {23, 62},
@@ -66,19 +55,31 @@ velocity_t SpiralVel[] = {
     {-71, 71}, {-89, 31}, {-49, -9}, {-9, -49},  {31, -89},  {71, -71},  {89, -31},  {49, 9}, {9, 49}, {-31, 89}
 };
 
+
 // ATTACK PATTERNS FOR BOSSES
 
 // Boss 1 Attack Patterns
 atkpattern_t Boss1[] = {
-    {1, ConeVertVel,  20, 0, 250, 8000, 1},       // Vertical Cone Attack
-    {20, CircleBlastVel, 20, 0, 500, 7500, 0},   // Circle Blast
-    {1, BeamVel, 8, 0, 400, 6000, 0},             // Straight Beam
-    {10, SpiralVel, 100, 0, 500, 10000, 0} 
+    {0, 1, ConeVertVel,  20, 0, 250, 8000},       // Vertical Cone Attack
+    {1, 20, CircleBlastVel, 20, 0, 500, 7500},   // Circle Blast
+    {2, 1, BeamVel, 8, 0, 400, 6000},             // Straight Beam
+    {3, 10, SpiralVel, 100, 0, 500, 10000} 
 };
 
 //atkpattern_t Boss2[];
 
 //atkpattern_t Boss3[];
+
+
+uint32_t Random(void);
+
+// global variable defining which boss is being fought 
+uint8_t bossNum = 0;
+// timer for boss movement 
+uint32_t bosstime = BOSSMOVE_TIMER;
+
+// color definitions
+uint16_t red, lblue, dblue, pink, green, yellow, orange;
 
 
 
@@ -94,12 +95,12 @@ boss_t Bosses[] ={
 void Boss_Init(uint8_t stage){
     ST7735_DrawBitmap(Bosses[stage].x, Bosses[stage].y, Bosses[stage].image, Bosses[stage].w, Bosses[stage].h);
 }
-    
 
-// Chooses random attack from current boss
-atkpattern_t ChooseRandAttack(void){
-    uint32_t random = (Random() % BOSS1_ATTACKNUM);
-    return Boss1[random];
+
+// chooses a random attack 
+uint8_t ChooseRandAttack(void){
+    uint8_t random = (Random() % BOSS1_ATTACKNUM);
+    return random;
 }
 
 

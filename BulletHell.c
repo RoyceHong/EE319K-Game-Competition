@@ -30,9 +30,8 @@ uint32_t HellTrigger = 0;
 // global variable determining number of bullets boss current has on screen
 uint32_t BossBulletCount = 0;
 // variable holding current attack pattern 
-atkpattern_t attack;
-atkpattern_t repeatattack;
-
+uint8_t attack;
+uint16_t bossShotState = 0; 
 
 
 // initializes boss bullets in bullet array to black  
@@ -108,8 +107,6 @@ void PlayerBulletHell(void){
 }
 
 
-uint16_t bossShotState = 0; 
-
 // creates bullets for the boss
 uint8_t createBossBullet(fireBullet_t Condition, uint8_t bossNumber, atkpattern_t pattern){
     if(Condition == FIRE){
@@ -146,15 +143,7 @@ uint32_t BossBulletSpeed;
 void BossBullet(void){
     // chooses a random attack from the bosses attack array
     if(bossShotState == 0){
-        if(attack.repeat == 0){
-            while(attack.velocity == repeatattack.velocity){
-                repeatattack = ChooseRandAttack();
-            }
-            attack = repeatattack;
-        }
-        else{
-            attack = ChooseRandAttack();
-        }
+        attack = ChooseRandAttack();
     }
     
     if(TriggerCountBoss > 0){
@@ -164,14 +153,14 @@ void BossBullet(void){
     TriggerBoss = NO_FIRE;
     
     if(TriggerCountBoss <= 1){
-        TriggerCountBoss = attack.BossTriggerCount;
+        TriggerCountBoss = Boss1[attack].BossTriggerCount;
         TriggerBoss = FIRE;
     }
     
-    createBossBullet(TriggerBoss, bossNum, attack);   
+    createBossBullet(TriggerBoss, bossNum, Boss1[attack]);   
     
     if(BossBulletSpeed == 0){
-        BossBulletSpeed = attack.bulletSpeed;
+        BossBulletSpeed = Boss1[attack].bulletSpeed;
         for(uint32_t i = 0; i < BULLETNUM_HELL; i++){
             // manipulate enemy bullets 
 //            checkBulletPlayer(&(BossBullets[i]));
