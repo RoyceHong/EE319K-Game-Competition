@@ -7,3 +7,7 @@
 .\bullet.o: enemy.h
 .\bullet.o: tm4c123gh6pm.h
 .\bullet.o: MainMenu.h
+.\bullet.o: Sound.h
+.\bullet.o: Random.h
+.\bullet.o: BulletHell.h
+.\bullet.o: Boss.h

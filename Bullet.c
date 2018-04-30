@@ -8,10 +8,10 @@
 #include "enemy.h"
 #include "tm4c123gh6pm.h"
 #include "MainMenu.h"
+#include "Sound.h"
+#include "Random.h"
+#include "BulletHell.h"
 
-// Random number functions 
-void Random_Init(uint32_t);
-uint32_t Random(void);
 
 // Player structure
 extern sprite_t Player1;
@@ -23,6 +23,8 @@ extern sprite_t Bunkers[OBSTACLE_SIZE];
 extern uint8_t buttonStatus;
 // enum determining whether game has been beaten or not 
 extern progress_t gameProgress;
+// variable indicating whether player is playing space invaders
+extern uint8_t spaceInvadersRestriction;
 
 // bullet array definitions
 bullet_t PlayerBullets[PLAYER_BULLETNUM];
@@ -33,6 +35,7 @@ fireBullet_t Trigger;
 uint32_t BulletCount = 0;
 // variable keeping track of number of bullets for enemy 
 uint32_t EnemyBulletCount = 0;
+
 
 
 // initializes all bullets in bullet array to black  
@@ -92,8 +95,10 @@ uint8_t createBullet(fireBullet_t Condition, uint16_t BulletNum){
         PlayerBullets[BulletCount].yvel = -400;
         PlayerBullets[BulletCount].xvelSum = 0;
         PlayerBullets[BulletCount].yvelSum = 0;
-        PlayerBullets[BulletCount].color = 0xFFFF; 
-
+        PlayerBullets[BulletCount].color = 0xFFFF;
+        if(spaceInvadersRestriction == 1){
+            SelectSound(SHOOT_SOUND);
+        }
     }
     return 1;
 }
@@ -131,7 +136,14 @@ uint8_t createEnemyBullet(fireBullet_t Condition, sprite_t *Enemy){
 void checkBulletPlayer(bullet_t* Shot){
     contact_t BulletStatus;
     if(Player1.life == ALIVE && (*Shot).color != BLACK){
-       BulletStatus = hitBoxCheck(Shot , &Player1);
+        // hibox is full player sprite
+        if(spaceInvadersRestriction == 1){
+            BulletStatus = hitBoxCheck(Shot , &Player1);
+        }
+        // hitbox is 4x4 square at the center of player sprite
+        else{
+            BulletStatus = hitBoxCheckHell(Shot, &Player1);
+        }
         if(BulletStatus == CONTACT){
             Player1.life = DEAD;
             // game progresses to next section by death of player

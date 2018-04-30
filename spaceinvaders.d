@@ -15,3 +15,4 @@
 .\spaceinvaders.o: Boss.h
 .\spaceinvaders.o: BulletHell.h
 .\spaceinvaders.o: CutScene.h
+.\spaceinvaders.o: Sound.h

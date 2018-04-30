@@ -5,8 +5,6 @@
 
 #include <stdint.h>
 #include "tm4c123gh6pm.h"
-
-
 #include "DAC.h"
 
 // **************DACInit*********************
@@ -16,15 +14,15 @@
 void DACInit(void)
 {
     // Turn on port A
-    SYSCTL_RCGC2_R |= 0x02;
+    SYSCTL_RCGCGPIO_R |= 0x02;
     __asm{NOP};
     __asm{NOP};
     // All pins are digital outputs
     GPIO_PORTB_AMSEL_R = 0x00; 
     GPIO_PORTB_PCTL_R = 0x00;
-    GPIO_PORTB_DIR_R = 0xFF;
+    GPIO_PORTB_DIR_R = 0x3F;
     GPIO_PORTB_AFSEL_R = 0x00;
-    GPIO_PORTB_DEN_R = 0xFF;
+    GPIO_PORTB_DEN_R = 0x3F;
 }
 
 

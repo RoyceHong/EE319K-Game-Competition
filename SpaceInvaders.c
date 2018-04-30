@@ -66,6 +66,7 @@
 #include "Boss.h"
 #include "BulletHell.h"
 #include "CutScene.h"
+#include "Sound.h"
 
 
 void DisableInterrupts(void); // Disable interrupts
@@ -92,10 +93,12 @@ int main(void){
     // Initializations
     PLL_Init(Bus80MHz);       // Bus clock is 80 MHz 
     ST7735_InitR(INITR_REDTAB);
-    
+    Sound_Init();
     
 // ************************************ MAIN MENU ************************************************ 
     // Initializations for main menu
+    ADC_Init();
+    SysTick_Init();
     Button_Init();
     // Enable Interrupts
     EnableInterrupts();
@@ -104,25 +107,25 @@ int main(void){
     
     // Loop until button press selects what to do 
     while(buttonStatus != 1){
-            // call UpdateMenu function
+            UpdateMenu();
         }
-        // acknowledge button press and reset it 
-        buttonStatus = 0;
+        MenuChoice();
         Delay100ms(10);
-        ADC_Init();
-        SysTick_Init();
         Random_Init(NVIC_ST_CURRENT_R);
 // ************************************ END MAIN MENU ******************************************** 
     
-
+/*
 // ************************************ SPACE INVADERS ******************************************* 
     // Initializations required for space invaders portion of the game 
+    spaceInvadersRestriction = 1;
     Bullet_Init();
     // Make screen blank 
     ST7735_FillScreen(0x0000);
     Player_Init();
     Bunker_Init();
     Enemy_Init();
+    // acknowledge button press and reset it 
+    buttonStatus = 0;
     // start of space invaders portion of game
     gameProgress = IN_PROGRESS;
     
@@ -134,14 +137,14 @@ int main(void){
         Enemy_Dead();
     }
     ST7735_FillRect(0, 0 , DISPLAY_WIDTH, DISPLAY_HEIGHT, BLACK);
-    Delay100ms(25);
+    Delay100ms(12);
     
 // ************************************ END SPACE INVADERS **************************************** 
 
  
 // ************************************ CUTSCENES ADDED HERE **************************************    
    SceneMain(Sayaka_Stage1);
-    
+*/    
     
 // ************************************ BULLET HELL *********************************************** 
     // Bullet hell initializations 

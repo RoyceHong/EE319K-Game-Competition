@@ -6,3 +6,4 @@
 .\boss.o: DisplayMap.h
 .\boss.o: Movement.h
 .\boss.o: adc.h
+.\boss.o: Random.h

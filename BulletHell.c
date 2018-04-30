@@ -29,10 +29,10 @@ uint32_t TriggerCountBoss = 0;
 uint32_t HellTrigger = 0;
 // global variable determining number of bullets boss current has on screen
 uint32_t BossBulletCount = 0;
-// variable holding current attack pattern 
+// variable holding index of current attack pattern 
 uint8_t attack;
 uint16_t bossShotState = 0; 
-
+uint16_t repeatHolder = 0;
 
 // initializes boss bullets in bullet array to black  
 void BossBullet_Init(void){
@@ -42,7 +42,7 @@ void BossBullet_Init(void){
 }
 
 
-// universal collision detection function
+// collision detection function for boss
 contact_t BossBoxCheck(bullet_t* bullet, boss_t* object){
     if( ((bullet -> x >= object -> x) && (bullet -> x <= (object -> x + object -> w - 1)) )
         && ((bullet -> y <= object -> y) && (bullet -> y >= (object -> y - object -> h - 2)) )){ 
@@ -108,8 +108,13 @@ void PlayerBulletHell(void){
 
 
 // creates bullets for the boss
-uint8_t createBossBullet(fireBullet_t Condition, uint8_t bossNumber, atkpattern_t pattern){
+uint8_t createBossBullet(fireBullet_t Condition, uint8_t bossNumber, atkpattern_t* pattern){
     if(Condition == FIRE){
+        if(bossShotState == 0){
+            // determines how many more repeats left for current attack
+            repeatHolder++;
+            repeatHolder = repeatHolder % pattern -> repeatVal;
+        }
         uint32_t i = 0;
         while(BossBullets[BossBulletCount].color != BLACK){
             BossBulletCount ++;
@@ -119,18 +124,18 @@ uint8_t createBossBullet(fireBullet_t Condition, uint8_t bossNumber, atkpattern_
             }
             i++; 
         }
-        for(uint32_t j = 0; j < pattern.numBullets; j++){
+        for(uint32_t j = 0; j < pattern -> numBullets; j++){
             BossBullets[BossBulletCount + j].h = 4;
             BossBullets[BossBulletCount + j].w = 4;
             BossBullets[BossBulletCount + j].x = Bosses[bossNumber].x + (Bosses[bossNumber].w/2 - 2);
             BossBullets[BossBulletCount + j].y = Bosses[bossNumber].y;
-            BossBullets[BossBulletCount + j].xvel = pattern.velocity[bossShotState].vx;
+            BossBullets[BossBulletCount + j].xvel = pattern -> velocity[bossShotState].vx;
             BossBullets[BossBulletCount + j].xvelSum = 0;
             BossBullets[BossBulletCount + j].yvelSum = 0;
-            BossBullets[BossBulletCount + j].yvel = pattern.velocity[bossShotState].vy;
-            BossBullets[BossBulletCount + j].color = pattern.color;
+            BossBullets[BossBulletCount + j].yvel = pattern -> velocity[bossShotState].vy;
+            BossBullets[BossBulletCount + j].color = pattern -> color;
             bossShotState++;
-            bossShotState = bossShotState % pattern.numStates;
+            bossShotState = bossShotState % pattern -> numStates;
         }
     }
     return 1;
@@ -142,7 +147,7 @@ uint32_t BossBulletSpeed;
 // main function in charge of manipulating the boss bullets
 void BossBullet(void){
     // chooses a random attack from the bosses attack array
-    if(bossShotState == 0){
+    if(bossShotState == 0 && repeatHolder == 0){
         attack = ChooseRandAttack();
     }
     
@@ -157,7 +162,7 @@ void BossBullet(void){
         TriggerBoss = FIRE;
     }
     
-    createBossBullet(TriggerBoss, bossNum, Boss1[attack]);   
+    createBossBullet(TriggerBoss, bossNum, &Boss1[attack]);   
     
     if(BossBulletSpeed == 0){
         BossBulletSpeed = Boss1[attack].bulletSpeed;
@@ -173,6 +178,18 @@ void BossBullet(void){
     }
 }
 
+
+// modified hitbox for player during bullet hell portion of game
+// hitbox is a 4x4 square in the center of the player sprite 
+contact_t hitBoxCheckHell(bullet_t* bullet, sprite_t* object){
+    if( (bullet -> x >= object -> x + (object -> w/2 - 3)) && (bullet -> x <= (object -> x + (object -> w)/2 + 3))
+        && (bullet -> y <= (object -> y - (object -> h)/2 + 3)) && (bullet -> y >= (object -> y - (object -> h)/2 - 3)) ){ 
+       return CONTACT;
+    }
+    else{
+       return NO_CONTACT;
+    }
+}
 
 
 

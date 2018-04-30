@@ -8,11 +8,11 @@
 #include "player.h"
 
 #ifndef BOSS1_ATTACKNUM
-#define BOSS1_ATTACKNUM 4
+#define BOSS1_ATTACKNUM 6
 #endif
 
 #ifndef BOSSMOVE_TIMER
-#define BOSSMOVE_TIMER 7000
+#define BOSSMOVE_TIMER 4500
 #endif
 
 
@@ -44,24 +44,28 @@ typedef struct atkpattern_t {
     uint16_t color;
     uint32_t bulletSpeed;
     uint32_t BossTriggerCount;
+    uint16_t repeatVal;
 }atkpattern_t;
     
 
 
 // Draws the boss on the screen 
-void Boss_Init(uint8_t stage);
+void Boss_Init(uint8_t bossNumber);
 
 
 // outputs a random attack from the bosses attacks array
 uint8_t ChooseRandAttack(void);
 
 
+// initializes colors of each of the attack patterns
 void Color_Init(void);
 
 
+// Moves the boss horizontall across the screen 
 void Move_Boss(void);
 
 
+// changes x, y coordinates of the boss
 void MoveBoss(boss_t* object);
 
 

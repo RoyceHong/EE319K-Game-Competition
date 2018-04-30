@@ -6,6 +6,7 @@
 #include "ST7735.h"
 #include "DisplayMap.h"
 #include "Movement.h"
+#include "Random.h"
 
 // Sprites for the boss 
 extern const uint16_t StackOverflow[];
@@ -25,8 +26,9 @@ const velocity_t CircleBlastVel[] = {
     {80, 20}, {60, 40}, {40, 60}, {20, 80}
 };
 
-const velocity_t BeamVel[] = {{0, 50}, {0, 50}, {0, 50}, {0, 50}, {0, 50}, {0, 50}, {0, 50}, {0, 50}};
+//const velocity_t BeamVel[] = {{0, 50}, {0, 50}, {0, 50}, {0, 50}, {0, 50}, {0, 50}, {0, 50}, {0, 50}};
 
+const velocity_t BeamVel[] = {{0, 50}};
 /*
 velocity_t SpiralVel[] = {
     {0, 100}, {-20, 80}, {-40, 60}, {-60, 40}, {-80, 20}, {-100, 0}, {-80, -20}, {-60, -40}, {-40, -60}, {-20, -80}, {0, -100}, {20, -80}, {40, -60}, {60, -40}, {80, -20}, {100, 0}, {80, 20}, {60, 40}, {40, 60}, {20, 80},
@@ -56,44 +58,54 @@ const velocity_t SpiralVel[] = {
 };
 
 
-// ATTACK PATTERNS FOR BOSSES
+const velocity_t FiveShotSpray[] = {
+    {-50, 86}, {-26, 97}, {0, 100}, {26, 97}, {50, 86}
+};
+    
 
+const velocity_t QuickSweep[] = {
+    {-50,87}, {-87*1.5, 50*1.5}, {-100*1.5, 0}, {-87*1.5, -50*1.5}, {-50*1.5, -87*1.5}, {0, -100*1.5}, {50*1.5, -87*1.5}, {87*1.5, -50*1.5}, {100*1.5, 0}, {87*1.5, 50*1.5}, {50*1.5, 87*1.5}, {0, 100*1.5},
+    {26*1.5, 97*1.5}, {71*1.5, 71*1.5}, {97*1.5, 26*1.5}, {97*1.5, -26*1.5}, {71*1.5, -71*1.5}, {26*1.5, -97*1.5}, {-26*1.5, -97*1.5}, {-71*1.5, -71*1.5}, {-97*1.5, -26*1.5}, {-97*1.5, 26*1.5}, {-71*1.5, 71*1.5}, {-26*1.5, 97*1.5}
+};
+
+
+// ATTACK PATTERNS FOR BOSSES
 // Boss 1 Attack Patterns
 atkpattern_t Boss1[] = {
-    {0, 1, ConeVertVel,  20, 0, 250, 8000},       // Vertical Cone Attack
-    {1, 20, CircleBlastVel, 20, 0, 500, 7500},   // Circle Blast
-    {2, 1, BeamVel, 8, 0, 400, 6000},             // Straight Beam
-    {3, 10, SpiralVel, 100, 0, 500, 10000} 
+    {0, 1, ConeVertVel,  20, 0, 500, 5000, 1},       // Vertical Cone Attack
+    {1, 20, CircleBlastVel, 20, 0, 500, 7500, 1},   // Circle Blast
+    {2, 1, BeamVel, 1, 0, 400, 6000, 8},             // Straight Beam
+    {3, 10, SpiralVel, 100, 0, 500, 10000, 1},       // Spiral  
+    {4, 5, FiveShotSpray, 5, 0, 500, 4000, 7},
+    {5, 1, QuickSweep, 24, 0, 500, 800, 2}
 };
 
 //atkpattern_t Boss2[];
 
 //atkpattern_t Boss3[];
 
-
-uint32_t Random(void);
+// add an array consisting of all bosses attack patterns (atkpattern_t BossAttacks)
+atkpattern_t* BossAttacks[] = {Boss1};
 
 // global variable defining which boss is being fought 
 uint8_t bossNum = 0;
 // timer for boss movement 
 uint32_t bosstime = BOSSMOVE_TIMER;
-
-// color definitions
+// variables that will hold color definitions
 uint16_t red, lblue, dblue, pink, green, yellow, orange;
-
 
 
 // array containing all the bosses 
 boss_t Bosses[] ={
- {54, 60, StackOverflow, 12, 18, 1, 0, ALIVE, 100},
+ {54, 60, StackOverflow, 12, 18, 1, 0, ALIVE, 250},
  // Boss2
  // Boss3
 };
 
  
 // Draws the boss on the screen 
-void Boss_Init(uint8_t stage){
-    ST7735_DrawBitmap(Bosses[stage].x, Bosses[stage].y, Bosses[stage].image, Bosses[stage].w, Bosses[stage].h);
+void Boss_Init(uint8_t bossNumber){
+    ST7735_DrawBitmap(Bosses[bossNumber].x, Bosses[bossNumber].y, Bosses[bossNumber].image, Bosses[bossNumber].w, Bosses[bossNumber].h);
 }
 
 
@@ -118,6 +130,8 @@ void Color_Init(void){
     Boss1[1].color = lblue;
     Boss1[2].color = yellow;
     Boss1[3].color = orange;
+    Boss1[4].color = pink;
+    Boss1[5].color = dblue;
 }
 
 
