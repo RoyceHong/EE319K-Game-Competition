@@ -26,39 +26,62 @@ image_t Sayaka_InLove = {SayakaInLove, 128, 101};
 image_t Sayaka_Scared = {SayakaScared, 128, 116};
 
 const scene_t Sayaka_Stage1[] = {
-	{{SayakaHappy, 108, 120}, "Nice Work!", 0, 0, 0, 500, {2, 2}}, 	// Reaction1 (Beat Level)
+	{{SayakaNeutral, 121, 120}, "Not Bad.", 0, 0, 0, 500, {2, 2}}, 	// Reaction1 (Beat Level)
 	{{SayakaScared, 128, 116}, "How Unfortunate...", 0, 0, 0, 0, {1, 1}},	// Reaction2 (Lost Level)
 	
-	{{SayakaNeutral, 121, 120}, "What's wrong? You seemed suprised. ", 0, 0, 0, 0, {1, 1}},
+	{{SayakaNeutral, 121, 120}, "What? Suprised? ", 0, 0, 0, 0, {1, 1}},
+    {{SayakaNeutral, 121, 120}, "Truth is, game is", "actually a simulator.", 0, 0, 0, {1, 1}},
+    {{SayakaHappy, 108, 120}, "I'm here to evaluate", "your value as garbage", 0, 0, 0, {1, 1}},
+    {{SayakaHappy, 108, 120}, "to see if you have", "any hope of escaping", 0, 0, 0, {1, 1}},
 
-	{{SayakaHappy, 108, 120}, "Maybe you still can't believe I asked you out", 0, "I always thought you were out of my league.", "No, I'm a little shocked at something else.", 0, {RIGHTCHOICE, WRONGCHOICE}},
-	{{SayakaInLove, 128, 101}, "Fufu, your always honest.", 0, 0, 0, 500,	{2, 2}},	// Reaction1 (Right)
-	{{SayakaScared, 128, 116}, "I wonder what that could be...", 0, 0, 0, 50, {1, 1}},	// Reaction2 (Wrong)
+	{{SayakaHappy, 108, 120}, "this pitiful single", "life of yours.", "Why?", "What the...", 0, {RIGHTCHOICE, WRONGCHOICE}},
+	{{SayakaInLove, 128, 101}, "It amuses me.", 0, 0, 0, 50,	{2, 2}},	// Reaction1 (Right)
+	{{SayakaBlush, 127, 120}, "That's no good...", 0, 0, 0, 0, {1, 1}},	    // Reaction2 (Wrong)
 
-	{{SayakaBlush, 127, 120}, "Whatever the case, I can't help but feel you're a little tense", 0, 0, 0, 0, {1, 1}},
-	{{SayakaNeutral, 121, 120}, "Are you feeling alright?", 0, "There have been worse days.", "Yeah, I'm fine.", 0, {RIGHTCHOICE, WRONGCHOICE}},
-	{{SayakaHappy, 108, 120}, "Your definitely not wrong about that.", 0, 0, 0, 500, {2, 2}},	// Reaction1 (Right)
-	{{SayakaHappy, 108, 120}, "That's good.", 0, 0, 0, 200, {1, 1}},				// Reaction2 (Wrong)
+	{{SayakaScared, 128, 116}, "What you say affects", "your evaluation.", 0, 0, 0, {1, 1}},
+    
+	{{SayakaInLove, 128, 101}, "So be careful what", "you say.", "Are you kidding!?", "Gotchu", 0, {WRONGCHOICE, RIGHTCHOICE}},
+	{{SayakaHappy, 108, 120}, "Good.", 0, 0, 0, 50, {2, 2}},	                        // Reaction1 (Right)
+	{{SayakaScared, 128, 116}, "You're hopeless", 0, 0, 0, 0, {1, 1}},				// Reaction2 (Wrong)
 
-	{{SayakaBlush, 127, 120}, "You must feel like things are a bit slow.", 0, 0, 0, 0, {1, 1}},
-	{{SayakaInLove, 128, 101}, "How about we kick things up a notch?", 0, 0, 0, 0, {0, 0,}}
+    {{SayakaNeutral, 121, 120}, "Also keep in mind", "that your preformance", 0, 0, 0, {1, 1}},
+    {{SayakaNeutral, 121, 120}, "on other portions", "of the simulation", 0, 0, 0, {1, 1}},
+    {{SayakaNeutral, 121, 120}, "are part of your", "final verdict.", 0, 0, 0, {1, 1}},
+    
+    {{SayakaHappy, 108, 120}, "With introductions", "out of the way,", 0, 0, 0, {1, 1}},
+    {{SayakaHappy, 108, 120}, "how about we move on", "to the next section.", "Yes", "No", 0, {RIGHTCHOICE, WRONGCHOICE}},
+	{{SayakaNeutral, 121, 120}, "Let's begin", 0, 0, 0, 50, {0, 0}},          // Right
+	{{SayakaScared, 128, 116}, "... ", 0, 0, 0, 0, {0, 0,}}                   // Wrong
 };
 
 const scene_t Sayaka_Stage2[] = {
-	{{SayakaHappy, 108, 120}, "Were you suprised?", 0, 0, 0, 500, {2, 2}},	// Reaction 1 (Beat Level)
-	{{SayakaScared, 128, 116}, "I guess I was being too harsh...", 0, 0, 0, 0, {1, 1}}, 	// Reaction 2 (Lost Level)
+	{{SayakaNeutral, 121, 120}, "Wow.", 0, 0, 0, 100, {2, 2}},	// Reaction 1 (Beat Level)
+	{{SayakaBlush, 127, 120}, "Pathetic...", 0, 0, 0, 0, {1, 1}}, 	// Reaction 2 (Lost Level)
 	
-	{{SayakaBlush, 127, 120}, "Was it too much for you?", 0, "N-Not really.", "Yeah, kinda...",  0, {WRONGCHOICE, RIGHTCHOICE}},
-	{{SayakaBlush, 127, 120}, "...", 0, 0, 0, 500, {2, 2}},		// Reaction1 (Right)
-	{{SayakaBlush, 127, 120}, "...", 0, 0, 0, 250, {1, 1}}, 		// Reaction2 (Wrong)
+	{{SayakaNeutral, 121, 120}, "How are you feeling?", 0, "I'm gucci", "I'm dying",  0, {WRONGCHOICE, RIGHTCHOICE}},
+	{{SayakaHappy, 108, 120}, "I think that's", "everyday for you.", 0, 0, 50, {2, 2}},		// Reaction1 (Right)
+	{{SayakaNeutral, 121, 120}, "Oh, are you now?", 0, 0, 0, 0, {1, 1}}, 		// Reaction2 (Wrong)
 
-	{{SayakaScared, 128, 116}, "...", 0, 0, 0, 0, {1, 1}},
-	{{SayakaScared, 128, 116}, "I guess I'm not really a good person", 0, 0, 0, 0, {1, 1}},
-	{{SayakaScared, 128, 116}, "Maybe I'm just a burden to you", 0, "Of course you're not!", "I don't really understand what you're saying.", 0, {RIGHTCHOICE, WRONGCHOICE}},
-	{{SayakaHappy, 108, 120}, "You really know how to make me smile.", 0, 0, 0, 500, {2, 2}},		// Reaction1 (Right)
-	{{SayakaBlush, 127, 120}, "Nevermind then...", 0, 0, 0, -1000, {1, 1}}, 				// Reaction2 (Wrong)
+	{{SayakaBlush, 127, 120}, "I'm not sure how", "to say this...", 0, 0, 0, {1, 1}},
+	{{SayakaBlush, 127, 120}, "But will you go on ", "a date with me?", "Of Course!", "Give me a moment", 0, {WRONGCHOICE, RIGHTCHOICE}},
+	{{SayakaNeutral, 121, 120}, "Good answer.", 0, 0, 0, 100, {2, 2}},		        // Reaction1 (Right)
+	{{SayakaScared, 128, 116}, "How desperate...", 0, 0, 0, -100, {1, 1}}, 		    // Reaction2 (Wrong)
+    
+    {{SayakaNeutral, 121, 120}, "Remember, if a girl", "asks you out,", 0, 0, 0, {1, 1}}, 
+    {{SayakaNeutral, 121, 120}, "its definitely a ", "prank.", 0, 0, 0, {1, 1}},
+    
+    {{SayakaNeutral, 121, 120}, "You are an engineer.", 0, 0, 0, 0, {1, 1}},
+    
+    {{SayakaNeutral, 121, 120}, "Any hope is just", "an illusion.", 0, 0, 0, {1, 1}},
 
-	{{SayakaNeutral, 121, 120}, "If you don't mind, I'd like to try one more time.", 0, 0, 0, 0, {0, 0}}
+	{{SayakaNeutral, 121, 120}, "Expecting some girl", "to come up and say", 0, 0, 0, {1, 1}},   
+    {{SayakaInLove, 128, 101}, "'I always loved you'", 0, 0, 0, 0, {1, 1}},
+    {{SayakaNeutral, 121, 120}, "is trash you only", "see in anime.", "I am trash", "Sounds personal", 0, {RIGHTCHOICE, WRONGCHOICE}},
+    {{SayakaHappy, 108, 120}, "I'm glad you", "understand.", 0, 0, 50, {2, 2}},		// Reaction1 (Right)
+    {{SayakaNeutral, 121, 120}, "Quiet.", 0, 0, 0, -50, {1, 1}},		// Reaction2 (Wrong)
+    
+    {{SayakaBlush, 127, 120}, "That being said...", 0, 0, 0, 0, {1, 1}},
+    {{SayakaNeutral, 121, 120}, "Let's continue,", 0, 0, 0, 0, {0, 0}}
 };
 
 
