@@ -14,18 +14,17 @@
 #define DISPLAY_HEIGHT 160
 #endif
 
+#ifndef BUFFER_WIDTH
+#define BUFFER_WIDTH 30
+#endif
 
-// ***************** Timer0_Init ****************
-// Activate TIMER0 interrupts to run user task periodically
-// Inputs:  task is a pointer to a user function
-//          period in units (1/clockfreq)
-// Outputs: none
-// **********************************************
-void Timer0_Init(void);
+#ifndef BUFFER_HEIGHT
+#define BUFFER_HEIGHT 14
+#endif
 
-
-// Timer0 Interrupt Service Routine
-void Timer0A_Handler(void);
+void bufferClear(void);
+void DrawImage_Buffer(sprite_t *object);
+void BufferMain(void);
 
 #endif
 

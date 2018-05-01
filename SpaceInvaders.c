@@ -68,6 +68,7 @@
 #include "CutScene.h"
 #include "Sound.h"
 #include "BattleSelect.h" 
+#include "Timer1.h"
 
 
 void DisableInterrupts(void); // Disable interrupts
@@ -151,8 +152,10 @@ int main(void){
     ST7735_DrawBitmap(0, 51, FinalScore, 128, 51); 
     ST7735_SetCursor(9, 4);
     LCD_OutDec(Score);
-    while(Button_In() == 0){}
-    while(Button_In() != 0){}
+    Timer1_Init();
+    while(1){
+        BufferMain();
+    }
 
 }
 
