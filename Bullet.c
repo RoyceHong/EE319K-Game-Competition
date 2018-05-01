@@ -11,6 +11,7 @@
 #include "Sound.h"
 #include "Random.h"
 #include "BulletHell.h"
+#include "Button.h"
 
 
 // Player structure
@@ -25,6 +26,7 @@ extern uint8_t buttonStatus;
 extern progress_t gameProgress;
 // variable indicating whether player is playing space invaders
 extern uint8_t spaceInvadersRestriction;
+extern uint32_t Score;
 
 // bullet array definitions
 bullet_t PlayerBullets[PLAYER_BULLETNUM];
@@ -35,6 +37,7 @@ fireBullet_t Trigger;
 uint32_t BulletCount = 0;
 // variable keeping track of number of bullets for enemy 
 uint32_t EnemyBulletCount = 0;
+uint8_t sprayDirection = 0;
 
 
 // initializes all bullets in bullet array to black  
@@ -85,12 +88,24 @@ uint8_t createBullet(fireBullet_t Condition, uint16_t BulletNum, sprite_t* playe
             }
             i++; 
         }
-
         PlayerBullets[BulletCount].h = 2;
         PlayerBullets[BulletCount].w = 2;
         PlayerBullets[BulletCount].x = player -> x + (player -> w/2) -1;
         PlayerBullets[BulletCount].y = player -> y - (player -> h) - 1;
-        PlayerBullets[BulletCount].xvel = 0;
+        if(spaceInvadersRestriction == 1){
+            PlayerBullets[BulletCount].xvel = 0;
+        }
+        else{
+            if(sprayDirection == 0){
+                PlayerBullets[BulletCount].xvel = 0;
+            }
+            if(sprayDirection == 1){
+                PlayerBullets[BulletCount].xvel = 100;
+            }
+            if(sprayDirection == 2){
+                PlayerBullets[BulletCount].xvel = -100;
+            }
+        }
         PlayerBullets[BulletCount].yvel = -400;
         PlayerBullets[BulletCount].xvelSum = 0;
         PlayerBullets[BulletCount].yvelSum = 0;
@@ -144,6 +159,7 @@ void checkBulletPlayer(bullet_t* Shot, sprite_t* player){
             BulletStatus = hitBoxCheckHell(Shot, player);
         }
         if(BulletStatus == CONTACT){
+            Score = 0;
             player -> life = DEAD;
             // game progresses to next section by death of player
             // status is FAIL

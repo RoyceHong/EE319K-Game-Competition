@@ -8,23 +8,39 @@
 #include "player.h"
 
 #ifndef BOSS1_ATTACKNUM
-#define BOSS1_ATTACKNUM 7
+#define BOSS1_ATTACKNUM 3
+#endif
+
+#ifndef BOSS2_ATTACKNUM
+#define BOSS2_ATTACKNUM 5
+#endif
+
+#ifndef BOSS3_ATTACKNUM
+#define BOSS3_ATTACKNUM 7
 #endif
 
 #ifndef BOSSMOVE_TIMER
 #define BOSSMOVE_TIMER 4500
 #endif
 
+#ifndef BOSS_X
+#define BOSS_X 54
+#endif
+
+#ifndef BOSS_Y
+#define BOSS_Y 60
+#endif
+
 #ifndef BOSS1_HEALTH
-#define BOSS1_HEALTH 250
+#define BOSS1_HEALTH 100
 #endif
 
-#ifndef BOSS1_X
-#define BOSS1_X 54
+#ifndef BOSS2_HEALTH
+#define BOSS2_HEALTH 300
 #endif
 
-#ifndef BOSS1_Y
-#define BOSS1_Y 60
+#ifndef BOSS3_HEALTH
+#define BOSS3_HEALTH 400
 #endif
 
 
@@ -39,6 +55,7 @@ typedef struct boss_t {
     int16_t yvel;
     status_t life;
     uint32_t health;
+    uint8_t attackNum;
 }boss_t;
 
 

@@ -19,10 +19,10 @@ extern uint8_t playerflag;
 // Draws the player on the screen
 void Player_Init(){
     // Draw player on screen
-    ST7735_DrawBitmap(Player1.x, Player1.y, Player1.image, Player1.w,  Player1.h);
     Player1.life = ALIVE;
     Player1.x = 52;
     Player1.y = 159;
+    ST7735_DrawBitmap(Player1.x, Player1.y, Player1.image, Player1.w,  Player1.h);
 }
 
 

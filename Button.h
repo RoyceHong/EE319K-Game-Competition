@@ -7,6 +7,9 @@
 #include <stdint.h>
 
 
+uint8_t Button_In2(void);
+
+
 // Initialize Port E buttons and edge-triggered interrupt
 void Button_Init(void);
 

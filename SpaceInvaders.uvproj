@@ -525,6 +525,11 @@
               <FileType>1</FileType>
               <FilePath>.\Timer0.c</FilePath>
             </File>
+            <File>
+              <FileName>BattleSelect.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\BattleSelect.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

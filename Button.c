@@ -5,6 +5,7 @@
 #include "tm4c123gh6pm.h"
 
 uint8_t buttonStatus = 0;
+extern uint8_t sprayDirection;
 
 void Button_Init(){
     // Enable clock
@@ -12,11 +13,11 @@ void Button_Init(){
     __asm{NOP};
     __asm{NOP};
     // PE0 digital inputs
-    GPIO_PORTE_AMSEL_R &= ~0x02;
-    GPIO_PORTE_PCTL_R &= ~0x02;
-    GPIO_PORTE_DIR_R &= ~0x02;
-    GPIO_PORTE_AFSEL_R &= ~0x02;
-    GPIO_PORTE_DEN_R |= 0x02;
+    GPIO_PORTE_AMSEL_R &= ~0x06;
+    GPIO_PORTE_PCTL_R &= ~0x06;
+    GPIO_PORTE_DIR_R &= ~0x06;
+    GPIO_PORTE_AFSEL_R &= ~0x06;
+    GPIO_PORTE_DEN_R |= 0x06;
     
     
     // set up edge-triggered interrupt for button
@@ -37,6 +38,15 @@ void Button_Init(){
 
 uint8_t Button_In(void){
     return(GPIO_PORTE_DATA_R & 0x02);
+}
+
+
+//uint8_t checkButt = 0;
+uint8_t Button_In2(void){
+    return (GPIO_PORTE_DATA_R & 0x04);
+   // if(checkButt == 0x04){
+     //   sprayDirection++;
+      //  sprayDirection = sprayDirection % 3;
 }
 
 

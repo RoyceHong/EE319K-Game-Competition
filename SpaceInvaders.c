@@ -74,21 +74,12 @@ void DisableInterrupts(void); // Disable interrupts
 void EnableInterrupts(void);  // Enable interrupts
 void Delay100ms(uint32_t count); // time delay in 0.1 seconds
 
-// determines what stage of the bullet hell the player is on
-//extern uint8_t bossNum;
-
-// holds SUCCESS, FAIL, or IN_PROGRESS
-//progress_t gameProgress;
-
-// variable keeping track of whether button has been pressed
-//extern uint8_t buttonStatus;
-
-// variable indicating space invaders horizontal restriction
-//uint8_t spaceInvadersRestriction = 1;
-
+extern uint32_t Score;
+extern const uint16_t FinalScore[];
 extern scene_t Sayaka_Stage1[];
 extern scene_t Sayaka_Stage2[];
-
+extern scene_t Sayaka_Stage3[];
+extern uint8_t bossNum;
 uint8_t GameOn = 1;
 
 extern progress_t gameProgress;
@@ -100,7 +91,6 @@ int main(void){
     ST7735_InitR(INITR_REDTAB);
     Sound_Init();
     
-// ************************************ MAIN MENU ************************************************ 
     // Initializations for main menu
     ADC_Init();
     SysTick_Init();
@@ -109,51 +99,15 @@ int main(void){
     EnableInterrupts();
     //  Print main menu on the screen 
     Menu();
-/*    
-    // Loop until button press selects what to do 
-    while(buttonStatus != 1){
-            UpdateMenu();
-        }
-        MenuChoice();
-        Delay100ms(10);
-        Random_Init(NVIC_ST_CURRENT_R);
-*/
-// ************************************ END MAIN MENU ******************************************** 
+
     SpaceInvadersInit();
     gameProgress = IN_PROGRESS;
     while(gameProgress == IN_PROGRESS){
         SpaceInvaders();
     }
-/*
-// ************************************ SPACE INVADERS ******************************************* 
-    // Initializations required for space invaders portion of the game 
-    spaceInvadersRestriction = 1;
-    Bullet_Init();
-    // Make screen blank 
-    ST7735_FillScreen(0x0000);
-    Player_Init();
-    Bunker_Init();
-    Enemy_Init();
-    // acknowledge button press and reset it 
-    buttonStatus = 0;
-    // start of space invaders portion of game
-    gameProgress = IN_PROGRESS;
+
     
-    while(gameProgress == IN_PROGRESS){ 
-        PlayerBullet();
-        EnemyBullet();
-        Move_Player();
-        Move_Enemy();
-        Enemy_Dead();
-    }
-    ST7735_FillRect(0, 0 , DISPLAY_WIDTH, DISPLAY_HEIGHT, BLACK);
-    Delay100ms(12);
-    
-// ************************************ END SPACE INVADERS **************************************** 
-*/
- 
-// ************************************ CUTSCENES ADDED HERE **************************************    
-   SceneMain(Sayaka_Stage1);   
+    SceneMain(Sayaka_Stage1);   
    
     BattleStartInit();
     gameProgress = IN_PROGRESS;
@@ -165,36 +119,42 @@ int main(void){
             GameOver();
         }
     }
-    uint8_t debug = 0;
-    debug ++;
-        
-/*
-// ************************************ BULLET HELL *********************************************** 
-    // Bullet hell initializations 
-    // allow vertical movement for bullet hell portion of game 
-    spaceInvadersRestriction = 0;
-    // fill screen black
-    ST7735_FillScreen(0x0000);
-    // disable edge interrupts for bullet hell portion of game
-    DisableEdgeInt();
-    PlayerHell_Init();
-    Boss_Init(bossNum);
-    Bullet_Init();
-    BossBullet_Init();
-    Color_Init();
-    gameProgress = IN_PROGRESS;
+    bossNum++;
+    SceneMain(Sayaka_Stage2);   
     
+    BattleStartInit();
+    gameProgress = IN_PROGRESS;
     while(gameProgress == IN_PROGRESS){
-        MoveHell_Player();
-        Move_Boss();
-        BossBullet();
-        PlayerBulletHell();
+        if(GameOn == 1){
+            BattleStart();
+        }
+        if(GameOn == 0){
+            GameOver();
+        }
     }
-// ************************************ END BULLET HELL ********************************************
-*/
-//    ST7735_FillRect(0, 0 , DISPLAY_WIDTH, DISPLAY_HEIGHT, BLACK);
-}
+    
+    bossNum++;
+    SceneMain(Sayaka_Stage3);
+    
+    BattleStartInit();
+    gameProgress = IN_PROGRESS;
+    while(gameProgress == IN_PROGRESS){
+        if(GameOn == 1){
+            BattleStart();
+        }
+        if(GameOn == 0){
+            GameOver();
+        }
+    }
+    
+    ST7735_FillRect(0, 0 , DISPLAY_WIDTH, DISPLAY_HEIGHT, BLACK);
+    ST7735_DrawBitmap(0, 51, FinalScore, 128, 51); 
+    ST7735_SetCursor(9, 4);
+    LCD_OutDec(Score);
+    while(Button_In() == 0){}
+    while(Button_In() != 0){}
 
+}
 
 
 // You can use this timer only if you learn how it works

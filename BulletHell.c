@@ -19,6 +19,9 @@ extern boss_t Bosses[];
 // array containing all the boss attack patterns 
 extern atkpattern_t Boss1[];
 
+extern atkpattern_t* BossAttacks[];
+
+extern uint8_t sprayDirection;
 // Boss bullets array, max of 200
 bullet_t BossBullets[BULLETNUM_HELL];
 // Signifies whether a bulet should be created
@@ -33,6 +36,8 @@ uint32_t BossBulletCount = 0;
 uint8_t attack;
 uint16_t bossShotState = 0; 
 uint16_t repeatHolder = 0;
+uint32_t Score;
+
 
 // initializes boss bullets in bullet array to black  
 void BossBullet_Init(void){
@@ -61,6 +66,7 @@ void checkBulletBoss(bullet_t* Shot){
        BulletStatus = BossBoxCheck(Shot , &Bosses[bossNum]);
         if(BulletStatus == CONTACT){
             Bosses[bossNum].health--;
+            Score += 5;
             if(Bosses[bossNum].health == 0){
                 Bosses[bossNum].life = DEAD;
                 // game progresses to next section by death of boss
@@ -77,15 +83,21 @@ void checkBulletBoss(bullet_t* Shot){
 
 // main function in charge of manipulating the player bullets
 void PlayerBulletHell(void){
+    uint8_t button2 = Button_In2();
+    if(button2 == 0x04){
+        sprayDirection++;
+        sprayDirection = sprayDirection % 3;
+    }
+        
     static uint32_t bulletSpeed = HELLBULLETSPEEDP;
-    uint8_t button = Button_In();    
+    uint8_t button = Button_In();
     if(HellTrigger > 0){
         HellTrigger --;
     }
     Trigger = NO_FIRE;
     
     if(HellTrigger <= 1){
-        if(button != 0){
+        if(button == 0x02){
             Trigger = FIRE;
         }
         if(Trigger == FIRE){
@@ -158,17 +170,17 @@ void BossBullet(void){
     TriggerBoss = NO_FIRE;
     
     if(TriggerCountBoss <= 1){
-        TriggerCountBoss = Boss1[attack].BossTriggerCount;
+        TriggerCountBoss = BossAttacks[bossNum][attack].BossTriggerCount;
         TriggerBoss = FIRE;
     }
     
-    createBossBullet(TriggerBoss, bossNum, &Boss1[attack]);   
+    createBossBullet(TriggerBoss, bossNum, &(BossAttacks[bossNum][attack]));   
     
     if(BossBulletSpeed == 0){
-        BossBulletSpeed = Boss1[attack].bulletSpeed;
+        BossBulletSpeed = BossAttacks[bossNum][attack].bulletSpeed;
         for(uint32_t i = 0; i < BULLETNUM_HELL; i++){
             // manipulate enemy bullets 
-            checkBulletPlayer(&(BossBullets[i]), &PlayerHell);
+ //           checkBulletPlayer(&(BossBullets[i]), &PlayerHell);
             checkBulletEdge(&(BossBullets[i]));
             moveBullet(&(BossBullets[i]));
         }

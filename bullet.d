@@ -11,3 +11,4 @@
 .\bullet.o: Random.h
 .\bullet.o: BulletHell.h
 .\bullet.o: Boss.h
+.\bullet.o: Button.h

@@ -11,6 +11,8 @@
 // Sprites for the boss 
 //extern const uint16_t StackOverflow[];
 extern const uint16_t BlueFairy[];
+extern const uint16_t ObamaBoss[];
+extern const uint16_t DinoDrag[];
 
 // velocity maps for each of the attack patterns 
 const velocity_t ConeVert[] = {
@@ -77,9 +79,23 @@ const velocity_t CrazyBlaster[] = {
 // ATTACK PATTERNS FOR BOSSES
 // Boss 1 Attack Patterns
 atkpattern_t Boss1[] = {
+    {0, 1, ConeVert,  20, 0, 500, 3500, 1},       // Vertical Cone Attack
+    {1, 20, CircleBlast, 20, 0, 500, 7500, 1},   // Circle Blast
+    {2, 1, Beam, 1, 0, 400, 4500, 9},             // Straight Beam
+};
+
+atkpattern_t Boss2[] = {
+    {0, 1, ConeVert,  20, 0, 500, 3500, 1},       // Vertical Cone Attack
+    {1, 20, CircleBlast, 20, 0, 500, 7500, 1},   // Circle Blast
+    {2, 1, Beam, 1, 0, 400, 6000, 9},             // Straight Beam
+    {4, 5, FiveShotSpray, 5, 0, 500, 5500, 7},       // Five Shot Spray
+    {5, 1, QuickSweep, 24, 0, 500, 800, 4},          // Quick Sweep
+};
+
+atkpattern_t Boss3[] = {
     {0, 1, ConeVert,  20, 0, 500, 5000, 1},       // Vertical Cone Attack
     {1, 20, CircleBlast, 20, 0, 500, 7500, 1},   // Circle Blast
-    {2, 1, Beam, 1, 0, 400, 6000, 15},             // Straight Beam
+    {2, 1, Beam, 1, 0, 400, 5000, 11},             // Straight Beam
     {3, 10, Spiral, 100, 0, 500, 11000, 1},       // Spiral  
     {4, 5, FiveShotSpray, 5, 0, 500, 5500, 7},       // Five Shot Spray
     {5, 1, QuickSweep, 24, 0, 500, 800, 4},          // Quick Sweep
@@ -91,7 +107,7 @@ atkpattern_t Boss1[] = {
 //atkpattern_t Boss3[];
 
 // add an array consisting of all bosses attack patterns (atkpattern_t BossAttacks)
-atkpattern_t* BossAttacks[] = {Boss1};//, Boss2, Boss3};
+atkpattern_t* BossAttacks[] = {Boss1, Boss2, Boss3};
 
 // global variable defining which boss is being fought 
 uint8_t bossNum = 0;
@@ -99,28 +115,33 @@ uint8_t bossNum = 0;
 uint32_t bosstime = BOSSMOVE_TIMER;
 // variables that will hold color definitions
 uint16_t red, lblue, dblue, pink, green, yellow, orange;
+extern uint16_t bossShotState;
+extern uint16_t repeatHolder;
+    
 
 
 // array containing all the bosses 
 boss_t Bosses[] ={
- {54, 60, BlueFairy, 18, 18, 1, 0, ALIVE, BOSS1_HEALTH},
- // Boss2
- // Boss3
+ {BOSS_X, BOSS_Y, BlueFairy, 18, 18, 1, 0, ALIVE, BOSS1_HEALTH, BOSS1_ATTACKNUM},
+ {BOSS_X, BOSS_Y, DinoDrag, 22, 12, 1, 0,  ALIVE, BOSS2_HEALTH, BOSS2_ATTACKNUM},
+ {BOSS_X, BOSS_Y,  ObamaBoss, 14, 22, 1, 0, ALIVE, BOSS3_HEALTH, BOSS3_ATTACKNUM}
 };
 
  
 // Draws the boss on the screen 
 void Boss_Init(uint8_t bossNumber){
+    repeatHolder = 0;
+    bossShotState = 0;
     Bosses[bossNumber].health = BOSS1_HEALTH;
-    Bosses[bossNumber].x = BOSS1_X;
-    Bosses[bossNumber].y = BOSS1_Y;
+    Bosses[bossNumber].x = BOSS_X;
+    Bosses[bossNumber].y = BOSS_Y;
     ST7735_DrawBitmap(Bosses[bossNumber].x, Bosses[bossNumber].y, Bosses[bossNumber].image, Bosses[bossNumber].w, Bosses[bossNumber].h);
 }
 
 
 // chooses a random attack 
 uint8_t ChooseRandAttack(void){
-    uint8_t random = (Random() % BOSS1_ATTACKNUM);
+    uint8_t random = (Random() % Bosses[bossNum].attackNum);
     return random;
 }
 
@@ -138,10 +159,20 @@ void Color_Init(void){
     Boss1[0].color = red;
     Boss1[1].color = lblue;
     Boss1[2].color = yellow;
-    Boss1[3].color = orange;
-    Boss1[4].color = pink;
-    Boss1[5].color = dblue;
-    Boss1[6].color = green;
+    
+    Boss2[0].color = red;
+    Boss2[1].color = lblue;
+    Boss2[2].color = yellow;
+    Boss2[3].color = orange;
+    Boss2[4].color = pink;
+    
+    Boss3[0].color = red;
+    Boss3[1].color = lblue;
+    Boss3[2].color = yellow;
+    Boss3[3].color = orange;
+    Boss3[4].color = pink;
+    Boss3[5].color = dblue;
+    Boss3[6].color = green;
 }
 
 
