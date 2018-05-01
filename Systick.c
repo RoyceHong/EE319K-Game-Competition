@@ -7,9 +7,10 @@
 #include "movement.h"
 #include "Player.h" 
 
+extern sprite_t PlayerHell;
 extern sprite_t Player1;
 uint8_t playerflag = 0;
-
+extern uint8_t spaceInvadersRestriction;
 movestate_t CurrentMove;
 // flag_t MoveStatus = BUSY;
 
@@ -29,7 +30,12 @@ void SysTick_Init(void){
 
 void SysTick_Handler(void){
     CurrentMove = ADC_Convert();
-    Process_Move(&Player1, CurrentMove);
+    if(spaceInvadersRestriction == 1){
+        Process_Move(&Player1, CurrentMove);
+    }
+    else{
+        Process_Move(&PlayerHell, CurrentMove);
+    }
     playerflag = 1; 
 }
     

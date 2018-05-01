@@ -75,7 +75,7 @@ sprite_t *enemyAttack(void){
 
 
 // creates bullets for the player 
-uint8_t createBullet(fireBullet_t Condition, uint16_t BulletNum){
+uint8_t createBullet(fireBullet_t Condition, uint16_t BulletNum, sprite_t* player){
     if(Condition == FIRE){
         uint32_t i = 0;
         while(PlayerBullets[BulletCount].color != BLACK){
@@ -89,8 +89,8 @@ uint8_t createBullet(fireBullet_t Condition, uint16_t BulletNum){
 
         PlayerBullets[BulletCount].h = 2;
         PlayerBullets[BulletCount].w = 2;
-        PlayerBullets[BulletCount].x = Player1.x + (Player1.w/2) -1;
-        PlayerBullets[BulletCount].y = Player1.y - (Player1.h) - 1;
+        PlayerBullets[BulletCount].x = player -> x + (player -> w/2) -1;
+        PlayerBullets[BulletCount].y = player -> y - (player -> h) - 1;
         PlayerBullets[BulletCount].xvel = 0;
         PlayerBullets[BulletCount].yvel = -400;
         PlayerBullets[BulletCount].xvelSum = 0;
@@ -133,19 +133,19 @@ uint8_t createEnemyBullet(fireBullet_t Condition, sprite_t *Enemy){
 
 
 // check if player has been hit by a bullet 
-void checkBulletPlayer(bullet_t* Shot){
+void checkBulletPlayer(bullet_t* Shot, sprite_t* player){
     contact_t BulletStatus;
-    if(Player1.life == ALIVE && (*Shot).color != BLACK){
+    if(player -> life == ALIVE && (*Shot).color != BLACK){
         // hibox is full player sprite
         if(spaceInvadersRestriction == 1){
-            BulletStatus = hitBoxCheck(Shot , &Player1);
+            BulletStatus = hitBoxCheck(Shot , player);
         }
         // hitbox is 4x4 square at the center of player sprite
         else{
-            BulletStatus = hitBoxCheckHell(Shot, &Player1);
+            BulletStatus = hitBoxCheckHell(Shot, player);
         }
         if(BulletStatus == CONTACT){
-            Player1.life = DEAD;
+            player -> life = DEAD;
             // game progresses to next section by death of player
             // status is FAIL
             gameProgress = FAIL;
@@ -285,7 +285,7 @@ void EnemyBullet(void){
         bulletSpeed = ENEMYBULLETSPEED;
         for(uint32_t i = 0; i < BULLETNUM_INVADER; i++){
             // manipulate enemy bullets 
-            checkBulletPlayer(&(EnemyBullets[i]));
+            checkBulletPlayer(&(EnemyBullets[i]), &Player1);
             checkBulletObstacle(&(EnemyBullets[i]));
             checkBulletEdge(&(EnemyBullets[i]));
             moveBullet(&(EnemyBullets[i]));
@@ -309,7 +309,7 @@ void PlayerBullet(void){
             TriggerCountPlayer = TRIGGERCOUNTERPLAYER;
         }
     }
-    createBullet(Trigger, BULLETNUM_INVADER); 
+    createBullet(Trigger, BULLETNUM_INVADER, &Player1); 
     
     if(bulletSpeed == 0){
         bulletSpeed = BULLETSPEEDP;

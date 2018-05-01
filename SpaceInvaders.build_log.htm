@@ -3,32 +3,87 @@
 <pre>
 <h1>µVision Build Log</h1>
 <h2>Project:</h2>
-C:\Keil\EE319KwareSpring2018\lab-10-c-spaceinvader-erick-royce\SpaceInvaders.uvproj
+C:\Users\eli42\Documents\GitHub\lab-10-c-spaceinvader-erick-royce\SpaceInvaders.uvproj
 Project File Date:  04/30/2018
 
 <h2>Output:</h2>
 Build target 'SpaceInvaders'
-compiling CutScene.c...
-linking...
-Program Size: Code=6856 RO-data=197236 RW-data=380 ZI-data=6388  
-".\SpaceInvaders.axf" - 0 Error(s), 0 Warning(s).
-
-assembling Print.s...
 compiling SpaceInvaders.c...
-compiling ST7735.c...
-compiling PLL.c...
-compiling Systick.c...
-compiling Movement.c...
-compiling DisplayMap.c...
 compiling Bullet.c...
 compiling MainMenu.c...
-compiling Player.c...
 compiling Enemy.c...
-compiling Button.c...
-compiling Boss.c...
 compiling BulletHell.c...
 compiling CutScene.c...
-compiling Timer0.c...
 linking...
-Program Size: Code=6856 RO-data=197236 RW-data=380 ZI-data=6388  
+Program Size: Code=6896 RO-data=197900 RW-data=424 ZI-data=6384  
 ".\SpaceInvaders.axf" - 0 Error(s), 0 Warning(s).
+</pre>
+</body>
+</html>
+amming Done.
+Verify OK.
+"bossNum" is undefined
+          if(Bosses[bossNum].x <= 30){
+Boss.c(155): error:  #20: identifier "bossNum" is undefined
+          if(Bosses[bossNum].x + Bosses[bossNum].w >= 90){
+Boss.c(159): error:  #20: identifier "bossNum" is undefined
+          MoveBoss(&Bosses[bossNum]);
+Boss.c: 0 warnings, 6 errors
+".\SpaceInvaders.axf" - 6 Error(s), 0 Warning(s).
+Target not created
+compiling Boss.c...
+Boss.c(74): error:  #29: expected an expression
+  const velocity_t Slow[] = {};
+Boss.c(74): error:  #1514: an empty initializer is invalid for an array with unspecified bound
+  const velocity_t Slow[] = {};
+Boss.c: 0 warnings, 2 errors
+"Boss.c" - 2 Error(s), 0 Warning(s).
+Player();
+player.h(42): warning:  #1295-D: Deprecated declaration PlayerHell_Init - give arg types
+  void PlayerHell_Init();
+DisplayMap.c: 2 warnings, 0 errors
+compiling Bullet.c...
+Player.h(34): warning:  #1295-D: Deprecated declaration MoveHell_Player - give arg types
+  void MoveHell_Player();
+Player.h(42): warning:  #1295-D: Deprecated declaration PlayerHell_Init - give arg types
+  void PlayerHell_Init();
+Bullet.c: 2 warnings, 0 errors
+compiling MainMenu.c...
+Player.h(34): warning:  #1295-D: Deprecated declaration MoveHell_Player - give arg types
+  void MoveHell_Player();
+Player.h(42): warning:  #1295-D: Deprecated declaration PlayerHell_Init - give arg types
+  void PlayerHell_Init();
+MainMenu.c: 2 warnings, 0 errors
+compiling Player.c...
+Player.h(34): warning:  #1295-D: Deprecated declaration MoveHell_Player - give arg types
+  void MoveHell_Player();
+Player.h(42): warning:  #1295-D: Deprecated declaration PlayerHell_Init - give arg types
+  void PlayerHell_Init();
+Player.c: 2 warnings, 0 errors
+compiling Enemy.c...
+player.h(34): warning:  #1295-D: Deprecated declaration MoveHell_Player - give arg types
+  void MoveHell_Player();
+player.h(42): warning:  #1295-D: Deprecated declaration PlayerHell_Init - give arg types
+  void PlayerHell_Init();
+Enemy.c: 2 warnings, 0 errors
+compiling Boss.c...
+player.h(34): warning:  #1295-D: Deprecated declaration MoveHell_Player - give arg types
+  void MoveHell_Player();
+player.h(42): warning:  #1295-D: Deprecated declaration PlayerHell_Init - give arg types
+  void PlayerHell_Init();
+Boss.c: 2 warnings, 0 errors
+compiling BulletHell.c...
+Player.h(34): warning:  #1295-D: Deprecated declaration MoveHell_Player - give arg types
+  void MoveHell_Player();
+Player.h(42): warning:  #1295-D: Deprecated declaration PlayerHell_Init - give arg types
+  void PlayerHell_Init();
+BulletHell.c: 2 warnings, 0 errors
+compiling CutScene.c...
+Player.h(34): warning:  #1295-D: Deprecated declaration MoveHell_Player - give arg types
+  void MoveHell_Player();
+Player.h(42): warning:  #1295-D: Deprecated declaration PlayerHell_Init - give arg types
+  void PlayerHell_Init();
+CutScene.c: 2 warnings, 0 errors
+linking...
+Program Size: Code=10312 RO-data=200580 RW-data=512 ZI-data=6488  
+".\SpaceInvaders.axf" - 0 Error(s), 22 Warning(s).

@@ -8,7 +8,7 @@
 #include "player.h"
 
 #ifndef BOSS1_ATTACKNUM
-#define BOSS1_ATTACKNUM 6
+#define BOSS1_ATTACKNUM 7
 #endif
 
 #ifndef BOSSMOVE_TIMER

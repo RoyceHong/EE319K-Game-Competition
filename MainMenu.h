@@ -40,4 +40,8 @@ void UpdateMenu(void);
 
 // Processes the menu choice
 void MenuChoice(void);
+
+
+void GameOver(void);
+
 #endif

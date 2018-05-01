@@ -144,7 +144,7 @@ int main(void){
  
 // ************************************ CUTSCENES ADDED HERE **************************************    
    SceneMain(Sayaka_Stage1);
-*/    
+*/   
     
 // ************************************ BULLET HELL *********************************************** 
     // Bullet hell initializations 
@@ -154,7 +154,7 @@ int main(void){
     ST7735_FillScreen(0x0000);
     // disable edge interrupts for bullet hell portion of game
     DisableEdgeInt();
-    Player_Init();
+    PlayerHell_Init();
     Boss_Init(bossNum);
     Bullet_Init();
     BossBullet_Init();
@@ -162,7 +162,7 @@ int main(void){
     gameProgress = IN_PROGRESS;
     
     while(gameProgress == IN_PROGRESS){
-        Move_Player();
+        MoveHell_Player();
         Move_Boss();
         BossBullet();
         PlayerBulletHell();

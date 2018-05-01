@@ -9,26 +9,25 @@
 #include "Random.h"
 
 // Sprites for the boss 
-extern const uint16_t StackOverflow[];
+//extern const uint16_t StackOverflow[];
+extern const uint16_t BlueFairy[];
 
 // velocity maps for each of the attack patterns 
-const velocity_t ConeVertVel[] = {
+const velocity_t ConeVert[] = {
     {0, 100}, {-26, 96}, {-50, 87}, {-71, 71}, {-87, 50}, {-96, 26}, 
     {-87, 50}, {-71, 71}, {-50, 87}, {-26, 96}, {0, 100},
     {26, 96}, {50, 87}, {71, 71}, {87, 50}, {96, 26},
     {87, 50}, {71, 71}, {50,  87},  {26, 96}
 };
     
-const velocity_t CircleBlastVel[] = {
+const velocity_t CircleBlast[] = {
     {0, 100}, {-20, 80}, {-40, 60}, {-60, 40}, {-80, 20}, {-100, 0},
     {-80, -20}, {-60, -40}, {-40, -60}, {-20, -80}, {0, -100},
     {20, -80}, {40, -60}, {60, -40}, {80, -20}, {100, 0},
     {80, 20}, {60, 40}, {40, 60}, {20, 80}
 };
 
-//const velocity_t BeamVel[] = {{0, 50}, {0, 50}, {0, 50}, {0, 50}, {0, 50}, {0, 50}, {0, 50}, {0, 50}};
-
-const velocity_t BeamVel[] = {{0, 50}};
+const velocity_t Beam[] = {{0, 50}};
 /*
 velocity_t SpiralVel[] = {
     {0, 100}, {-20, 80}, {-40, 60}, {-60, 40}, {-80, 20}, {-100, 0}, {-80, -20}, {-60, -40}, {-40, -60}, {-20, -80}, {0, -100}, {20, -80}, {40, -60}, {60, -40}, {80, -20}, {100, 0}, {80, 20}, {60, 40}, {40, 60}, {20, 80},
@@ -44,7 +43,7 @@ velocity_t SpiralVel[] = {
 };
 */
 
-const velocity_t SpiralVel[] = {
+const velocity_t Spiral[] = {
     {0, 100},  {-40, 60},  {-80, 20},  {-80, -20},  {-40, -60},  {0, -100},  {40, -60},  {80, -20},  {80, 20},  {40, 60},
     {-9, 99},  {-49, 59},  {-89, 19},  {-71, -21}, {-31, -61},  {9, -99},  {49, -59},  {89, -19}, {71, 21},  {31, 61}, 
     {-17, 98}, {-57, 58}, {-97, 18}, {-63, -22}, {-23, -62}, {17, -98},{57, -58}, {97, -18}, {63, 22}, {23, 62},
@@ -68,16 +67,23 @@ const velocity_t QuickSweep[] = {
     {26*1.5, 97*1.5}, {71*1.5, 71*1.5}, {97*1.5, 26*1.5}, {97*1.5, -26*1.5}, {71*1.5, -71*1.5}, {26*1.5, -97*1.5}, {-26*1.5, -97*1.5}, {-71*1.5, -71*1.5}, {-97*1.5, -26*1.5}, {-97*1.5, 26*1.5}, {-71*1.5, 71*1.5}, {-26*1.5, 97*1.5}
 };
 
+const velocity_t CrazyBlaster[] = {
+    {-3*2, 100*2}, {50*2, 86*2}, {0, 100*2}, {34*2, 94*2}, {-34*2, 94*2}, {9*2, 100*2}, {-21*2, 98*2}, {19*2, 98*2}, {-9*2, 100*2}, {3*2, 100*2}
+};
+
+//const velocity_t Slow[] = {};
+    
 
 // ATTACK PATTERNS FOR BOSSES
 // Boss 1 Attack Patterns
 atkpattern_t Boss1[] = {
-    {0, 1, ConeVertVel,  20, 0, 500, 5000, 1},       // Vertical Cone Attack
-    {1, 20, CircleBlastVel, 20, 0, 500, 7500, 1},   // Circle Blast
-    {2, 1, BeamVel, 1, 0, 400, 6000, 8},             // Straight Beam
-    {3, 10, SpiralVel, 100, 0, 500, 10000, 1},       // Spiral  
-    {4, 5, FiveShotSpray, 5, 0, 500, 4000, 7},
-    {5, 1, QuickSweep, 24, 0, 500, 800, 2}
+    {0, 1, ConeVert,  20, 0, 500, 5000, 1},       // Vertical Cone Attack
+    {1, 20, CircleBlast, 20, 0, 500, 7500, 1},   // Circle Blast
+    {2, 1, Beam, 1, 0, 400, 6000, 15},             // Straight Beam
+    {3, 10, Spiral, 100, 0, 500, 11000, 1},       // Spiral  
+    {4, 5, FiveShotSpray, 5, 0, 500, 5500, 7},       // Five Shot Spray
+    {5, 1, QuickSweep, 24, 0, 500, 800, 4},          // Quick Sweep
+    {6, 1, CrazyBlaster, 10, 0, 500, 3000, 3}        // CrazyBlaster
 };
 
 //atkpattern_t Boss2[];
@@ -85,7 +91,7 @@ atkpattern_t Boss1[] = {
 //atkpattern_t Boss3[];
 
 // add an array consisting of all bosses attack patterns (atkpattern_t BossAttacks)
-atkpattern_t* BossAttacks[] = {Boss1};
+atkpattern_t* BossAttacks[] = {Boss1};//, Boss2, Boss3};
 
 // global variable defining which boss is being fought 
 uint8_t bossNum = 0;
@@ -97,7 +103,7 @@ uint16_t red, lblue, dblue, pink, green, yellow, orange;
 
 // array containing all the bosses 
 boss_t Bosses[] ={
- {54, 60, StackOverflow, 12, 18, 1, 0, ALIVE, 250},
+ {54, 60, BlueFairy, 18, 18, 1, 0, ALIVE, 250},
  // Boss2
  // Boss3
 };
@@ -132,6 +138,7 @@ void Color_Init(void){
     Boss1[3].color = orange;
     Boss1[4].color = pink;
     Boss1[5].color = dblue;
+    Boss1[6].color = green;
 }
 
 
