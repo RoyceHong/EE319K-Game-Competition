@@ -79,6 +79,7 @@ void MenuChoice(void){
 void GameOver(void){
     uint8_t retrybutton = Button_In();
     PlayerHasDied = 1;
+    SelectSound(GAME_OVER_SOUND);
     ST7735_FillRect(0, 0 , DISPLAY_WIDTH, DISPLAY_HEIGHT, 0);
     ST7735_DrawBitmap(14, 40, GameOverImg, 100, 25);
     ST7735_DrawBitmap(37, 80, Retry, 55, 16);

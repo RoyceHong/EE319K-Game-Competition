@@ -30,14 +30,18 @@
 #define INVADER_KILL_SOUND 4
 #endif
 
-/*
-#ifndef INVADER_DIE_SOUND
+
+/*#ifndef INVADER_DIE_SOUND
 #define INVADER_DIE_SOUND 5
 #endif
 */
 
 #ifndef BULLET_FIRE_SOUND
 #define BULLET_FIRE_SOUND 6
+#endif
+
+#ifndef GAME_OVER_SOUND
+#define GAME_OVER_SOUND 7
 #endif
 
 typedef enum {SOUNDON, SOUNDOFF} sound_t;

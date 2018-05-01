@@ -163,7 +163,9 @@ void checkBulletPlayer(bullet_t* Shot, sprite_t* player){
         }
         if(BulletStatus == CONTACT){
             Score = 0;
-//            SelectSound(INVADER_DIE_SOUND);
+            if(spaceInvadersRestriction == 1){
+//                SelectSound(INVADER_DIE_SOUND);
+            }
             player -> life = DEAD;
             // game progresses to next section by death of player
             // status is FAIL

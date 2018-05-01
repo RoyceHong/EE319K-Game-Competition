@@ -16,7 +16,7 @@
 #endif
 
 #ifndef BOSS3_ATTACKNUM
-#define BOSS3_ATTACKNUM 7
+#define BOSS3_ATTACKNUM 8
 #endif
 
 #ifndef BOSSMOVE_TIMER
