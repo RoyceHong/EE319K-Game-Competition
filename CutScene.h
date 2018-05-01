@@ -33,20 +33,15 @@ typedef struct scene_t{
 	char *PlayerOption1;
 	char *PlayerOption2;
 	int32_t Points;
-	uint8_t NextScene[2];
+	int8_t NextScene[2];
 	
 } scene_t;
 
-extern const uint16_t SayakaHappy[];
-extern const uint16_t SayakaBlush[];
-extern const uint16_t SayakaNeutral[];
-extern const uint16_t SayakaInLove[];
-extern const uint16_t SayakaScared[];
 
 
 
 void displayScene(scene_t* StageScene);
-uint8_t Select(scene_t* StageScene);
+int8_t Select(scene_t* StageScene);
 void SceneMain(scene_t* SayakaStage);
 
 

@@ -22,6 +22,10 @@
 #define MENU_SOUND_2 2
 #endif
 
+#ifndef DIALOGUE_SOUND
+#define DIALOGUE_SOUND 3
+#endif
+
 typedef enum {SOUNDON, SOUNDOFF} sound_t;
 
 typedef struct music_t {

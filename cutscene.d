@@ -7,3 +7,4 @@
 .\cutscene.o: Movement.h
 .\cutscene.o: adc.h
 .\cutscene.o: Button.h
+.\cutscene.o: Sound.h
