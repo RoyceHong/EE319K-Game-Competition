@@ -5,85 +5,62 @@
 #include "MainMenu.h"
 #include "Movement.h"
 #include "Button.h"
+#include "Sound.h"
 
 
-extern const uint16_t SayakaHappy[];
-extern const uint16_t SayakaBlush[];
-extern const uint16_t SayakaNeutral[];
-extern const uint16_t SayakaInLove[];
-extern const uint16_t SayakaScared[];
 extern const uint16_t Arrow[];
 extern progress_t gameProgress;
 extern movestate_t CurrentMove;
+extern music_t DialogueSound;
+
+extern const uint16_t Trumpalump[];
+extern const uint16_t HappyTrump[];
+extern const uint16_t TrumpF[];
+extern const uint16_t SleepyTrump[];
+extern const uint16_t TrumpAh[];
 
 // Sprite must be < 6 pix wide
 sprite_t PlayerSelect = {1,  146, Arrow,  4, 7, 0, 0, ALIVE};
 
-image_t Sayaka_Happy = {SayakaHappy, 108, 120};
-image_t Sayaka_Blush = {SayakaBlush, 127, 120};
-image_t Sayaka_Neutral = {SayakaNeutral, 121, 120};
-image_t Sayaka_InLove = {SayakaInLove, 128, 101};
-image_t Sayaka_Scared = {SayakaScared, 128, 116};
+image_t Trump_alump = {Trumpalump, 128, 113};
+image_t Happy_Trump = {HappyTrump, 128, 92};
+image_t Trump_F = {TrumpF, 128, 123};
+image_t Sleepy_Trump = {SleepyTrump, 128, 81};
+image_t Trump_Ah = {TrumpAh, 128, 90};
 
 
 
 const scene_t Sayaka_Stage1[] = {
-	{{SayakaNeutral, 121, 120}, "Not bad.", 0, 0, 0, 500, {2, 2}}, 	// Reaction1 (Beat Level)
-	{{SayakaScared, 128, 116}, "How unfortunate...", 0, 0, 0, 0, {1, 1}},	// Reaction2 (Lost Level)
-	
-	{{SayakaNeutral, 121, 120}, "What? Surprised? ", 0, 0, 0, 0, {1, 1}},
-    {{SayakaNeutral, 121, 120}, "Truth is, this game is", "actually a simulator.", 0, 0, 0, {1, 1}},
-    {{SayakaHappy, 108, 120}, "I'm here to evaluate", "your value as garbage", 0, 0, 0, {1, 1}},
-    {{SayakaHappy, 108, 120}, "to see if you have", "any hope of escaping", 0, 0, 0, {1, 1}},
-
-	{{SayakaHappy, 108, 120}, "this pitiful single", "life of yours.", "Why?", "What the...", 0, {RIGHTCHOICE, WRONGCHOICE}},
-	{{SayakaInLove, 128, 101}, "It amuses me.", 0, 0, 0, 50,	{2, 2}},	// Reaction1 (Right)
-	{{SayakaBlush, 127, 120}, "That's no good...", 0, 0, 0, 0, {1, 1}},	    // Reaction2 (Wrong)
-
-	{{SayakaScared, 128, 116}, "What you say affects", "your evaluation.", 0, 0, 0, {1, 1}},
+	{{HappyTrump, 128, 92}, "Thank you for saving", "America from the", 0, 0, 500, {2, 2}}, 	// Reaction1 (Beat Level)
+	{{Trumpalump, 128, 113}, "You failed to save", "America from the", 0, 0, 0, {1, 1}},	// Reaction2 (Lost Level)	
+	{{HappyTrump, 128, 92}, "space invaders.", 0, 0, 0, 0, {1, 1}},
     
-	{{SayakaInLove, 128, 101}, "So be careful what", "you say.", "Are you kidding!?", "Gotchu", 0, {WRONGCHOICE, RIGHTCHOICE}},
-	{{SayakaHappy, 108, 120}, "Good.", 0, 0, 0, 50, {2, 2}},	                        // Reaction1 (Right)
-	{{SayakaScared, 128, 116}, "You're hopeless", 0, 0, 0, 0, {1, 1}},				// Reaction2 (Wrong)
-
-    {{SayakaNeutral, 121, 120}, "Also keep in mind", "that your performance", 0, 0, 0, {1, 1}},
-    {{SayakaNeutral, 121, 120}, "on other portions", "of the simulation", 0, 0, 0, {1, 1}},
-    {{SayakaNeutral, 121, 120}, "are part of your", "final verdict.", 0, 0, 0, {1, 1}},
+    {{Trumpalump, 128, 113}, "However, it seems", "like an even greater", 0, 0, 0, {1, 1}},
+    {{Trumpalump, 128, 113}, "threat has appeared.", 0, 0, 0, 0, {1, 1}},
     
-    {{SayakaHappy, 108, 120}, "With introductions", "out of the way,", 0, 0, 0, {1, 1}},
-    {{SayakaHappy, 108, 120}, "how about we move on", "to the next section.", "Yes", "No", 0, {RIGHTCHOICE, WRONGCHOICE}},
-	{{SayakaNeutral, 121, 120}, "Let's begin", 0, 0, 0, 50, {0, 0}},          // Right
-	{{SayakaScared, 128, 116}, "... ", 0, 0, 0, 0, {0, 0,}}                   // Wrong
+    {{TrumpAh, 128, 90}, "I have a lot of ", "money, so I can give", 0, 0, 0, {1, 1}},
+	{{TrumpAh, 128, 90}, "you a small loan of", "one million dollars", 0, 0, 0, {1, 1}},
+	{{TrumpAh, 128, 90}, "to upgrade your ", "spaceship.", 0, 0, 0,	{1, 1}},		    
+
+	{{Trumpalump, 128, 113}, "Will you go out to ", "serve your country?", "Yes ", "No", 0, {RIGHTCHOICE, WRONGCHOICE}},
+    {{SleepyTrump, 128, 81}, "I wish you good luck.", 0, 0, 0, 0, {0, 0}},	                        // Reaction1 (Right)
+    {{TrumpF, 128, 123}, "...", 0, 0, 0, 0, {-2, -2}}				// Reaction2 (Wrong)  
 };
 
 const scene_t Sayaka_Stage2[] = {
-	{{SayakaNeutral, 121, 120}, "Wow.", 0, 0, 0, 100, {2, 2}},	// Reaction 1 (Beat Level)
-	{{SayakaBlush, 127, 120}, "Pathetic...", 0, 0, 0, 0, {1, 1}}, 	// Reaction 2 (Lost Level)
-	
-	{{SayakaNeutral, 121, 120}, "How are you feeling?", 0, "I'm gucci.", "I'm dying.",  0, {WRONGCHOICE, RIGHTCHOICE}},
-	{{SayakaHappy, 108, 120}, "I think that's", "everyday for you.", 0, 0, 50, {2, 2}},		// Reaction1 (Right)
-	{{SayakaNeutral, 121, 120}, "Oh, are you now?", 0, 0, 0, 0, {1, 1}}, 		// Reaction2 (Wrong)
-
-	{{SayakaBlush, 127, 120}, "I'm not sure how", "to say this...", 0, 0, 0, {1, 1}},
-	{{SayakaBlush, 127, 120}, "But will you go on ", "a date with me?", "Of course!", "Give me a moment.", 0, {WRONGCHOICE, RIGHTCHOICE}},
-	{{SayakaNeutral, 121, 120}, "Good answer.", 0, 0, 0, 100, {2, 2}},		        // Reaction1 (Right)
-	{{SayakaScared, 128, 116}, "How desperate...", 0, 0, 0, -100, {1, 1}}, 		    // Reaction2 (Wrong)
+	{{HappyTrump, 128, 92}, "Once again you have", "saved America from ", 0, 0, 100, {2, 2}},	// Reaction 1 (Beat Level)
+	{{Trumpalump, 128, 113}, "You have brought", "America closer to", 0, 0, 0, {1, 1}}, 	// Reaction 2 (Lost Level)	
+	{{HappyTrump, 128, 92}, "distruction.", 0, 0, 0,  0, {1, 1}},
     
-    {{SayakaNeutral, 121, 120}, "Remember, if a girl", "asks you out,", 0, 0, 0, {1, 1}}, 
-    {{SayakaNeutral, 121, 120}, "its definitely a ", "prank.", 0, 0, 0, {1, 1}},
+	{{SleepyTrump, 128, 81}, "We're going to make ", "a great wall. ", 0, 0, 50, {1, 1}},		
     
-    {{SayakaNeutral, 121, 120}, "You are an engineer.", 0, 0, 0, 0, {1, 1}},
+	{{TrumpAh, 128, 90}, "Believe me, we're ", "going to take care", 0, 0, 0, {1, 1}}, 		// Reaction2 (Wrong)
+	{{Trumpalump, 128, 113}, "of them.", "But before that I'm,", 0, 0, 0, {1, 1}},
     
-    {{SayakaNeutral, 121, 120}, "Any hope is just", "an illusion.", 0, 0, 0, {1, 1}},
-
-	{{SayakaNeutral, 121, 120}, "Expecting some girl", "to come up and say", 0, 0, 0, {1, 1}},   
-    {{SayakaInLove, 128, 101}, "'I love you'", 0, 0, 0, 0, {1, 1}},
-    {{SayakaNeutral, 121, 120}, "is trash you only", "see in fiction.", "I am trash.", "Sounds personal.", 0, {RIGHTCHOICE, WRONGCHOICE}},
-    {{SayakaHappy, 108, 120}, "I'm glad you", "understand.", 0, 0, 50, {2, 2}},		// Reaction1 (Right)
-    {{SayakaNeutral, 121, 120}, "Quiet.", 0, 0, 0, -50, {1, 1}},		// Reaction2 (Wrong)
+	{{Trumpalump, 128, 113}, "you to continue your", "service..", "Any for you Trump", "No thanks", 0, {RIGHTCHOICE, WRONGCHOICE}},
+	{{SleepyTrump, 128, 81}, "Godspeed brave", "soldier.", 0, 0, 100, {0, 0}},		        // Reaction1 (Right)
+	{{TrumpF, 128, 123}, "...", 0, 0, 0, -100, {-2, -2}}		    // Reaction2 (Wrong) 
     
-    {{SayakaBlush, 127, 120}, "That being said...", 0, 0, 0, 0, {1, 1}},
-    {{SayakaNeutral, 121, 120}, "Let's continue.", 0, 0, 0, 0, {0, 0}}
 };
 
 
@@ -106,6 +83,7 @@ void displayScene(scene_t* StageScene){
 	//DrawString Sayaka Dialogue
     uint16_t Line = 12;
     uint16_t Column = 0;
+    SelectSound(DIALOGUE_SOUND);
     uint16_t CharPrinted = ST7735_DrawString(Column, Line, StageScene -> SayakaDialogue, 0xFFFF);
     Line += 1;
     if(StageScene -> SayakaDialogue2 != 0){
@@ -127,7 +105,7 @@ void displayScene(scene_t* StageScene){
 }
 
 
-uint8_t Select(scene_t* StageScene){
+int8_t Select(scene_t* StageScene){
 	uint8_t SelectedMove = OPTIONONE;
     if(StageScene -> NextScene[OPTIONONE] != StageScene -> NextScene[OPTIONTWO]){
         PlayerSelect.y = 146;
@@ -155,7 +133,7 @@ uint8_t Select(scene_t* StageScene){
 
 }
 
-uint8_t Current_Scene;
+int8_t Current_Scene;
 
 void SceneMain(scene_t* SayakaStage){
 	if(gameProgress == SUCCESS){
@@ -167,7 +145,7 @@ void SceneMain(scene_t* SayakaStage){
 
     while(1){
         displayScene(&SayakaStage[Current_Scene]);
-        uint8_t changeScene = Select(&SayakaStage[Current_Scene]);
+        int8_t changeScene = Select(&SayakaStage[Current_Scene]);
         Current_Scene = Current_Scene + changeScene ;
         if(changeScene == 0){
             break;
