@@ -26,6 +26,20 @@
 #define DIALOGUE_SOUND 3
 #endif
 
+#ifndef INVADER_KILL_SOUND
+#define INVADER_KILL_SOUND 4
+#endif
+
+/*
+#ifndef INVADER_DIE_SOUND
+#define INVADER_DIE_SOUND 5
+#endif
+*/
+
+#ifndef BULLET_FIRE_SOUND
+#define BULLET_FIRE_SOUND 6
+#endif
+
 typedef enum {SOUNDON, SOUNDOFF} sound_t;
 
 typedef struct music_t {

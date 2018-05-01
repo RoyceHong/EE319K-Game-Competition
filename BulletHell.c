@@ -180,7 +180,7 @@ void BossBullet(void){
         BossBulletSpeed = BossAttacks[bossNum][attack].bulletSpeed;
         for(uint32_t i = 0; i < BULLETNUM_HELL; i++){
             // manipulate enemy bullets 
- //           checkBulletPlayer(&(BossBullets[i]), &PlayerHell);
+            checkBulletPlayer(&(BossBullets[i]), &PlayerHell);
             checkBulletEdge(&(BossBullets[i]));
             moveBullet(&(BossBullets[i]));
         }

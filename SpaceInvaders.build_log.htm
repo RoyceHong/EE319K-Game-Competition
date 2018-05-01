@@ -10,7 +10,7 @@ Project File Date:  05/01/2018
 Build target 'SpaceInvaders'
 compiling Boss.c...
 linking...
-Program Size: Code=11648 RO-data=244840 RW-data=824 ZI-data=6888  
+Program Size: Code=11712 RO-data=249636 RW-data=840 ZI-data=6888  
 ".\SpaceInvaders.axf" - 0 Error(s), 0 Warning(s).
 Load "C:\\Users\\eli42\\Documents\\GitHub\\lab-10-c-spaceinvader-erick-royce\\SpaceInvaders.axf" 
 Connecting: Mode=JTAG, Speed=1000000Hz
@@ -20,36 +20,8 @@ Verify OK.
 </pre>
 </body>
 </html>
- MainMenu.c...
-compiling Player.c...
-compiling Enemy.c...
-compiling Button.c...
-compiling Boss.c...
-compiling BulletHell.c...
-compiling CutScene.c...
-compiling Timer0.c...
-compiling BattleSelect.c...
-linking...
-Program Size: Code=11632 RO-data=244840 RW-data=824 ZI-data=6888  
-".\SpaceInvaders.axf" - 0 Error(s), 0 Warning(s).
-t Button_In(void){
-Button.c(43): error:  #147: declaration is incompatible with "uint8_t Button_In2(void)" (declared at line 10 of "Button.h")
-  void Button_In2(void){
-Button.c: 0 warnings, 2 errors
-compiling BulletHell.c...
-BulletHell.c(82): error:  #144: a value of type "void" cannot be used to initialize an entity of type "uint8_t"
-      uint8_t button = Button_In();
-BulletHell.c: 0 warnings, 1 error
-compiling CutScene.c...
-CutScene.c(99): error:  #41: expression must have arithmetic or pointer type
-      while(Button_In() == 0){}
-CutScene.c(100): error:  #41: expression must have arithmetic or pointer type
-      while(Button_In() != 0){}
-CutScene.c(120): error:  #41: expression must have arithmetic or pointer type
-          while(Button_In() == 0){
-CutScene.c(135): error:  #41: expression must have arithmetic or pointer type
-          while(Button_In() != 0){}
-CutScene.c: 0 warnings, 4 errors
-compiling BattleSelect.c...
-".\SpaceInvaders.axf" - 10 Error(s), 0 Warning(s).
-Target not created
+paceinvader-erick-royce\\SpaceInvaders.axf" 
+Connecting: Mode=JTAG, Speed=1000000Hz
+Erase Done.
+Programming Done.
+Verify OK.

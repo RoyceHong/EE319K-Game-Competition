@@ -93,7 +93,7 @@ atkpattern_t Boss2[] = {
 };
 
 atkpattern_t Boss3[] = {
-    {0, 1, ConeVert,  20, 0, 500, 5000, 1},       // Vertical Cone Attack
+    {0, 1, ConeVert,  20, 0, 500, 4000, 1},       // Vertical Cone Attack
     {1, 20, CircleBlast, 20, 0, 500, 7500, 1},   // Circle Blast
     {2, 1, Beam, 1, 0, 400, 5000, 11},             // Straight Beam
     {3, 10, Spiral, 100, 0, 500, 11000, 1},       // Spiral  

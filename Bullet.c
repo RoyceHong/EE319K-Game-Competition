@@ -113,6 +113,9 @@ uint8_t createBullet(fireBullet_t Condition, uint16_t BulletNum, sprite_t* playe
         if(spaceInvadersRestriction == 1){
             SelectSound(SHOOT_SOUND);
         }
+        if(spaceInvadersRestriction == 0){
+            SelectSound(BULLET_FIRE_SOUND);
+        }
     }
     return 1;
 }
@@ -160,6 +163,7 @@ void checkBulletPlayer(bullet_t* Shot, sprite_t* player){
         }
         if(BulletStatus == CONTACT){
             Score = 0;
+//            SelectSound(INVADER_DIE_SOUND);
             player -> life = DEAD;
             // game progresses to next section by death of player
             // status is FAIL
@@ -184,6 +188,7 @@ void checkBulletEnemy(bullet_t* Shot){
                 if(Enemies[i][j].life == ALIVE){
                    BulletStatus = hitBoxCheck(Shot , &Enemies[i][j]);
                     if(BulletStatus == CONTACT){
+                        SelectSound(INVADER_KILL_SOUND);
                         Enemies[i][j].life = DEAD;
                         ST7735_FillRect(Enemies[i][j].x, Enemies[i][j].y - Enemies[i][j].h , Enemies[i][j].w, Enemies[i][j].h, BLACK);
                         // Additional Animation should be added here

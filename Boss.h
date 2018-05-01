@@ -32,7 +32,7 @@
 #endif
 
 #ifndef BOSS1_HEALTH
-#define BOSS1_HEALTH 100
+#define BOSS1_HEALTH 350
 #endif
 
 #ifndef BOSS2_HEALTH
