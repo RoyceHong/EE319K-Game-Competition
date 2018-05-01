@@ -9,10 +9,10 @@
 #include "MainMenu.h"
 
 extern progress_t gameProgress;
-extern sprite_t Player1;
 extern bullet_t PlayerBullets[PLAYER_BULLETNUM];
 extern fireBullet_t Trigger;
 extern uint8_t bossNum;
+extern sprite_t PlayerHell;
 
 // array containing all the bosses 
 extern boss_t Bosses[];
@@ -92,7 +92,7 @@ void PlayerBulletHell(void){
             HellTrigger = BULLETHELL_PTRIGGER;
         }
     }
-    createBullet(Trigger, PLAYER_BULLETNUM); 
+    createBullet(Trigger, PLAYER_BULLETNUM, &PlayerHell); 
     
     if(bulletSpeed == 0){
         bulletSpeed = HELLBULLETSPEEDP;
@@ -168,7 +168,7 @@ void BossBullet(void){
         BossBulletSpeed = Boss1[attack].bulletSpeed;
         for(uint32_t i = 0; i < BULLETNUM_HELL; i++){
             // manipulate enemy bullets 
-//            checkBulletPlayer(&(BossBullets[i]));
+//            checkBulletPlayer(&(BossBullets[i]), &PlayerHell);
             checkBulletEdge(&(BossBullets[i]));
             moveBullet(&(BossBullets[i]));
         }
@@ -183,7 +183,7 @@ void BossBullet(void){
 // hitbox is a 4x4 square in the center of the player sprite 
 contact_t hitBoxCheckHell(bullet_t* bullet, sprite_t* object){
     if( (bullet -> x >= object -> x + (object -> w/2 - 3)) && (bullet -> x <= (object -> x + (object -> w)/2 + 3))
-        && (bullet -> y <= (object -> y - (object -> h)/2 + 3)) && (bullet -> y >= (object -> y - (object -> h)/2 - 3)) ){ 
+        && (bullet -> y <= (object -> y - 1)) && (bullet -> y >= (object -> y - 7))){ 
        return CONTACT;
     }
     else{

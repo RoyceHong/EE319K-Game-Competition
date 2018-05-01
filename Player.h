@@ -30,8 +30,16 @@ typedef struct sprite_t{
 void Player_Init(void);
 
 
+// Move player for bullet hell 
+void MoveHell_Player(void);
+
+
 // Move the player 
 void Move_Player(void);
+
+
+// Player init for bullet hell
+void PlayerHell_Init(void);
 
 
 #endif

@@ -8,8 +8,10 @@
 
 extern uint8_t spaceInvadersRestriction;
 extern const uint16_t PlayerRightFrame_1[];
+extern const uint16_t PlayerShip2[];
 // Player1 initial definition 
 sprite_t Player1 = {52,  159,  PlayerRightFrame_1,  16, 11, 0, 0, ALIVE};
+sprite_t PlayerHell = {48, 159, PlayerShip2, 17, 12, 0, 0, ALIVE};
 
 // flag that detects when player should be moved
 extern uint8_t playerflag;
@@ -21,14 +23,29 @@ void Player_Init(){
     Player1.life = ALIVE;
 }
 
+
+void PlayerHell_Init(){
+    ST7735_DrawBitmap(PlayerHell.x, PlayerHell.y, PlayerHell.image, PlayerHell.w,  PlayerHell.h);
+    PlayerHell.life = ALIVE;
+}
+
+
 // Moves the player 
 void Move_Player(){
      // loop that controls the rate at which player moves
     if(playerflag == 1){
         MoveX(&Player1);
-        if(spaceInvadersRestriction == 0){
-            MoveY(&Player1);
-        }
+        playerflag = 0;
+    }
+}
+
+
+// Moves the player 
+void MoveHell_Player(){
+     // loop that controls the rate at which player moves
+    if(playerflag == 1){
+        MoveX(&PlayerHell);
+        MoveY(&PlayerHell);
         playerflag = 0;
     }
 }

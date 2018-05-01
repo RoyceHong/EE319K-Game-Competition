@@ -70,7 +70,7 @@ sprite_t *enemyAttack(void);
 
 
 // creates bullets for the player 
-uint8_t createBullet(fireBullet_t Condition, uint16_t BulletNum);
+uint8_t createBullet(fireBullet_t Condition, uint16_t BulletNum, sprite_t* player);
 
 
 // creates bullets for the enemy 
@@ -78,7 +78,7 @@ uint8_t createEnemyBullet(fireBullet_t Condition, sprite_t *Enemy);
 
 
 // check if player has been hit by a bullet 
-void checkBulletPlayer(bullet_t* Shot);
+void checkBulletPlayer(bullet_t* Shot, sprite_t* player);
 
 
 // check if enemy has been hit by a bullet

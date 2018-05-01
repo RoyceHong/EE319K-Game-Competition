@@ -55,3 +55,8 @@ void MenuChoice(void){
     }
 }
 
+
+void GameOver(void){
+    
+}
+
