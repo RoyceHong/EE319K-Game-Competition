@@ -25,12 +25,14 @@ image_t Sayaka_Neutral = {SayakaNeutral, 121, 120};
 image_t Sayaka_InLove = {SayakaInLove, 128, 101};
 image_t Sayaka_Scared = {SayakaScared, 128, 116};
 
+
+
 const scene_t Sayaka_Stage1[] = {
-	{{SayakaNeutral, 121, 120}, "Not Bad.", 0, 0, 0, 500, {2, 2}}, 	// Reaction1 (Beat Level)
-	{{SayakaScared, 128, 116}, "How Unfortunate...", 0, 0, 0, 0, {1, 1}},	// Reaction2 (Lost Level)
+	{{SayakaNeutral, 121, 120}, "Not bad.", 0, 0, 0, 500, {2, 2}}, 	// Reaction1 (Beat Level)
+	{{SayakaScared, 128, 116}, "How unfortunate...", 0, 0, 0, 0, {1, 1}},	// Reaction2 (Lost Level)
 	
-	{{SayakaNeutral, 121, 120}, "What? Suprised? ", 0, 0, 0, 0, {1, 1}},
-    {{SayakaNeutral, 121, 120}, "Truth is, game is", "actually a simulator.", 0, 0, 0, {1, 1}},
+	{{SayakaNeutral, 121, 120}, "What? Surprised? ", 0, 0, 0, 0, {1, 1}},
+    {{SayakaNeutral, 121, 120}, "Truth is, this game is", "actually a simulator.", 0, 0, 0, {1, 1}},
     {{SayakaHappy, 108, 120}, "I'm here to evaluate", "your value as garbage", 0, 0, 0, {1, 1}},
     {{SayakaHappy, 108, 120}, "to see if you have", "any hope of escaping", 0, 0, 0, {1, 1}},
 
@@ -44,7 +46,7 @@ const scene_t Sayaka_Stage1[] = {
 	{{SayakaHappy, 108, 120}, "Good.", 0, 0, 0, 50, {2, 2}},	                        // Reaction1 (Right)
 	{{SayakaScared, 128, 116}, "You're hopeless", 0, 0, 0, 0, {1, 1}},				// Reaction2 (Wrong)
 
-    {{SayakaNeutral, 121, 120}, "Also keep in mind", "that your preformance", 0, 0, 0, {1, 1}},
+    {{SayakaNeutral, 121, 120}, "Also keep in mind", "that your performance", 0, 0, 0, {1, 1}},
     {{SayakaNeutral, 121, 120}, "on other portions", "of the simulation", 0, 0, 0, {1, 1}},
     {{SayakaNeutral, 121, 120}, "are part of your", "final verdict.", 0, 0, 0, {1, 1}},
     
@@ -58,12 +60,12 @@ const scene_t Sayaka_Stage2[] = {
 	{{SayakaNeutral, 121, 120}, "Wow.", 0, 0, 0, 100, {2, 2}},	// Reaction 1 (Beat Level)
 	{{SayakaBlush, 127, 120}, "Pathetic...", 0, 0, 0, 0, {1, 1}}, 	// Reaction 2 (Lost Level)
 	
-	{{SayakaNeutral, 121, 120}, "How are you feeling?", 0, "I'm gucci", "I'm dying",  0, {WRONGCHOICE, RIGHTCHOICE}},
+	{{SayakaNeutral, 121, 120}, "How are you feeling?", 0, "I'm gucci.", "I'm dying.",  0, {WRONGCHOICE, RIGHTCHOICE}},
 	{{SayakaHappy, 108, 120}, "I think that's", "everyday for you.", 0, 0, 50, {2, 2}},		// Reaction1 (Right)
 	{{SayakaNeutral, 121, 120}, "Oh, are you now?", 0, 0, 0, 0, {1, 1}}, 		// Reaction2 (Wrong)
 
 	{{SayakaBlush, 127, 120}, "I'm not sure how", "to say this...", 0, 0, 0, {1, 1}},
-	{{SayakaBlush, 127, 120}, "But will you go on ", "a date with me?", "Of Course!", "Give me a moment", 0, {WRONGCHOICE, RIGHTCHOICE}},
+	{{SayakaBlush, 127, 120}, "But will you go on ", "a date with me?", "Of course!", "Give me a moment.", 0, {WRONGCHOICE, RIGHTCHOICE}},
 	{{SayakaNeutral, 121, 120}, "Good answer.", 0, 0, 0, 100, {2, 2}},		        // Reaction1 (Right)
 	{{SayakaScared, 128, 116}, "How desperate...", 0, 0, 0, -100, {1, 1}}, 		    // Reaction2 (Wrong)
     
@@ -75,13 +77,13 @@ const scene_t Sayaka_Stage2[] = {
     {{SayakaNeutral, 121, 120}, "Any hope is just", "an illusion.", 0, 0, 0, {1, 1}},
 
 	{{SayakaNeutral, 121, 120}, "Expecting some girl", "to come up and say", 0, 0, 0, {1, 1}},   
-    {{SayakaInLove, 128, 101}, "'I always loved you'", 0, 0, 0, 0, {1, 1}},
-    {{SayakaNeutral, 121, 120}, "is trash you only", "see in fiction.", "I am trash", "Sounds personal", 0, {RIGHTCHOICE, WRONGCHOICE}},
+    {{SayakaInLove, 128, 101}, "'I love you'", 0, 0, 0, 0, {1, 1}},
+    {{SayakaNeutral, 121, 120}, "is trash you only", "see in fiction.", "I am trash.", "Sounds personal.", 0, {RIGHTCHOICE, WRONGCHOICE}},
     {{SayakaHappy, 108, 120}, "I'm glad you", "understand.", 0, 0, 50, {2, 2}},		// Reaction1 (Right)
     {{SayakaNeutral, 121, 120}, "Quiet.", 0, 0, 0, -50, {1, 1}},		// Reaction2 (Wrong)
     
     {{SayakaBlush, 127, 120}, "That being said...", 0, 0, 0, 0, {1, 1}},
-    {{SayakaNeutral, 121, 120}, "Let's continue,", 0, 0, 0, 0, {0, 0}}
+    {{SayakaNeutral, 121, 120}, "Let's continue.", 0, 0, 0, 0, {0, 0}}
 };
 
 
@@ -98,9 +100,9 @@ const scene_t Sayaka_Stage2[] = {
 void displayScene(scene_t* StageScene){
 	// drawBitMAP StageScene->Image
     ST7735_FillRect(0, 0, 128, 160, 0x0000);
-    ST7735_DrawBitmap(0, 118, (StageScene -> SayakaChan).image, (StageScene -> SayakaChan).w, (StageScene -> SayakaChan).h);
+    ST7735_DrawBitmap(0, 116, (StageScene -> SayakaChan).image, (StageScene -> SayakaChan).w, (StageScene -> SayakaChan).h);
 	//Draw Line
-    ST7735_FillRect(0, 119, 128, 1, 0xFFFF);
+    ST7735_FillRect(0, 117, 128, 1, 0xFFFF);
 	//DrawString Sayaka Dialogue
     uint16_t Line = 12;
     uint16_t Column = 0;
