@@ -76,7 +76,7 @@ const scene_t Sayaka_Stage2[] = {
 
 	{{SayakaNeutral, 121, 120}, "Expecting some girl", "to come up and say", 0, 0, 0, {1, 1}},   
     {{SayakaInLove, 128, 101}, "'I always loved you'", 0, 0, 0, 0, {1, 1}},
-    {{SayakaNeutral, 121, 120}, "is trash you only", "see in anime.", "I am trash", "Sounds personal", 0, {RIGHTCHOICE, WRONGCHOICE}},
+    {{SayakaNeutral, 121, 120}, "is trash you only", "see in fiction.", "I am trash", "Sounds personal", 0, {RIGHTCHOICE, WRONGCHOICE}},
     {{SayakaHappy, 108, 120}, "I'm glad you", "understand.", 0, 0, 50, {2, 2}},		// Reaction1 (Right)
     {{SayakaNeutral, 121, 120}, "Quiet.", 0, 0, 0, -50, {1, 1}},		// Reaction2 (Wrong)
     
