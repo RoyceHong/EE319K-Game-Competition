@@ -16,7 +16,6 @@ extern music_t DialogueSound;
 extern const uint16_t Trumpalump[];
 extern const uint16_t HappyTrump[];
 extern const uint16_t TrumpF[];
-extern const uint16_t SleepyTrump[];
 extern const uint16_t TrumpAh[];
 extern const uint16_t Obama[];
 
@@ -26,7 +25,6 @@ sprite_t PlayerSelect = {1,  146, Arrow,  4, 7, 0, 0, ALIVE};
 image_t Trump_alump = {Trumpalump, 128, 113};
 image_t Happy_Trump = {HappyTrump, 128, 92};
 image_t Trump_F = {TrumpF, 128, 123};
-image_t Sleepy_Trump = {SleepyTrump, 128, 81};
 image_t Trump_Ah = {TrumpAh, 128, 90};
 image_t Obama_Obama = {Obama, 128, 116};
 
@@ -44,7 +42,7 @@ const scene_t Sayaka_Stage1[] = {
 	{{TrumpAh, 128, 90}, "to upgrade your ", "spaceship.", 0, 0, 0,	{1, 1}},		    
 
 	{{Trumpalump, 128, 113}, "Will you go out to ", "serve your country?", "Yes ", "No", 0, {RIGHTCHOICE, WRONGCHOICE}},
-    {{SleepyTrump, 128, 81}, "I wish you good luck.", 0, 0, 0, 0, {0, 0}},	                        // Reaction1 (Right)
+    {{Trumpalump, 128, 113}, "I wish you good luck.", 0, 0, 0, 0, {0, 0}},	                        // Reaction1 (Right)
     {{TrumpF, 128, 123}, "...", 0, 0, 0, 0, {-2, -2}}				// Reaction2 (Wrong)  
 };
 
@@ -53,13 +51,13 @@ const scene_t Sayaka_Stage2[] = {
 	{{Trumpalump, 128, 113}, "You have brought", "America closer to", 0, 0, 0, {1, 1}}, 	// Reaction 2 (Lost Level)	
 	{{HappyTrump, 128, 92}, "destruction.", 0, 0, 0,  0, {1, 1}},
     
-	{{SleepyTrump, 128, 81}, "We're going to make ", "a great wall. ", 0, 0, 50, {1, 1}},		
+	{{Trumpalump, 128, 113}, "We're going to make ", "a great wall. ", 0, 0, 50, {1, 1}},		
     
 	{{TrumpAh, 128, 90}, "Believe me, we're ", "going to take care", 0, 0, 0, {1, 1}}, 		// Reaction2 (Wrong)
 	{{Trumpalump, 128, 113}, "of them. But before", "that I require", 0, 0, 0, {1, 1}},
     
 	{{Trumpalump, 128, 113}, "you to continue your", "service.", "Anything for you", "No thanks", 0, {RIGHTCHOICE, WRONGCHOICE}},
-	{{SleepyTrump, 128, 81}, "Godspeed brave", "soldier.", 0, 0, 100, {0, 0}},		        // Reaction1 (Right)
+	{{Trumpalump, 128, 113}, "Godspeed brave", "soldier.", 0, 0, 100, {0, 0}},		        // Reaction1 (Right)
 	{{TrumpF, 128, 123}, "...", 0, 0, 0, -100, {-2, -2}}		    // Reaction2 (Wrong) 
     
 };
@@ -69,7 +67,7 @@ const scene_t Sayaka_Stage3[] = {
 	{{Trumpalump, 128, 113}, "You have displayed", "the best courage in", 0, 0, 0, {1, 1}}, 		
 	{{Trumpalump, 128, 113}, "your journey so far.", 0, 0, 0,  0, {1, 1}},
     
-	{{SleepyTrump, 128, 81}, "But I have something", "to tell you.", 0, 0, 0, {1, 1}},		
+	{{Trumpalump, 128, 113}, "But I have something", "to tell you.", 0, 0, 0, {1, 1}},		
     
 	{{TrumpF, 128, 123}, "You thought you were", "following your hero,", 0, 0, 0, {1, 1}}, 		
 	{{TrumpF, 128, 123}, "Trump.", 0, 0, 0, 0, {1, 1}},
