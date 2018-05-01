@@ -6,3 +6,7 @@
 .\mainmenu.o: DisplayMap.h
 .\mainmenu.o: ADC.h
 .\mainmenu.o: Sound.h
+.\mainmenu.o: Button.h
+.\mainmenu.o: Random.h
+.\mainmenu.o: tm4c123gh6pm.h
+.\mainmenu.o: BattleSelect.h

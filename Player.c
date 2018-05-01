@@ -21,12 +21,16 @@ void Player_Init(){
     // Draw player on screen
     ST7735_DrawBitmap(Player1.x, Player1.y, Player1.image, Player1.w,  Player1.h);
     Player1.life = ALIVE;
+    Player1.x = 52;
+    Player1.y = 159;
 }
 
 
 void PlayerHell_Init(){
-    ST7735_DrawBitmap(PlayerHell.x, PlayerHell.y, PlayerHell.image, PlayerHell.w,  PlayerHell.h);
     PlayerHell.life = ALIVE;
+    PlayerHell.x = 48;
+    PlayerHell.y = 159;
+    ST7735_DrawBitmap(PlayerHell.x, PlayerHell.y, PlayerHell.image, PlayerHell.w,  PlayerHell.h);
 }
 
 

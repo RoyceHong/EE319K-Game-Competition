@@ -11,7 +11,7 @@
 #endif
 
 #ifndef PLAYER_BULLETNUM
-#define PLAYER_BULLETNUM 25
+#define PLAYER_BULLETNUM 50
 #endif
 
 #ifndef BLACK

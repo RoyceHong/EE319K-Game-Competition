@@ -37,7 +37,6 @@ uint32_t BulletCount = 0;
 uint32_t EnemyBulletCount = 0;
 
 
-
 // initializes all bullets in bullet array to black  
 void Bullet_Init(void){
     for(uint32_t i = 0; i < PLAYER_BULLETNUM; i++){
@@ -149,6 +148,7 @@ void checkBulletPlayer(bullet_t* Shot, sprite_t* player){
             // game progresses to next section by death of player
             // status is FAIL
             gameProgress = FAIL;
+            GameOver();
             // Additional Animation should be added here
             (*Shot).color = BLACK;
             uint16_t FillColor = BLACK;

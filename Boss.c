@@ -103,7 +103,7 @@ uint16_t red, lblue, dblue, pink, green, yellow, orange;
 
 // array containing all the bosses 
 boss_t Bosses[] ={
- {54, 60, BlueFairy, 18, 18, 1, 0, ALIVE, 250},
+ {54, 60, BlueFairy, 18, 18, 1, 0, ALIVE, BOSS1_HEALTH},
  // Boss2
  // Boss3
 };
@@ -111,6 +111,9 @@ boss_t Bosses[] ={
  
 // Draws the boss on the screen 
 void Boss_Init(uint8_t bossNumber){
+    Bosses[bossNumber].health = BOSS1_HEALTH;
+    Bosses[bossNumber].x = BOSS1_X;
+    Bosses[bossNumber].y = BOSS1_Y;
     ST7735_DrawBitmap(Bosses[bossNumber].x, Bosses[bossNumber].y, Bosses[bossNumber].image, Bosses[bossNumber].w, Bosses[bossNumber].h);
 }
 

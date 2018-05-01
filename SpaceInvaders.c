@@ -67,6 +67,7 @@
 #include "BulletHell.h"
 #include "CutScene.h"
 #include "Sound.h"
+#include "BattleSelect.h" 
 
 
 void DisableInterrupts(void); // Disable interrupts
@@ -74,19 +75,23 @@ void EnableInterrupts(void);  // Enable interrupts
 void Delay100ms(uint32_t count); // time delay in 0.1 seconds
 
 // determines what stage of the bullet hell the player is on
-extern uint8_t bossNum;
+//extern uint8_t bossNum;
 
 // holds SUCCESS, FAIL, or IN_PROGRESS
-progress_t gameProgress;
+//progress_t gameProgress;
 
 // variable keeping track of whether button has been pressed
-extern uint8_t buttonStatus;
+//extern uint8_t buttonStatus;
 
 // variable indicating space invaders horizontal restriction
-uint8_t spaceInvadersRestriction = 1;
+//uint8_t spaceInvadersRestriction = 1;
 
 extern scene_t Sayaka_Stage1[];
 extern scene_t Sayaka_Stage2[];
+
+uint8_t GameOn = 1;
+
+extern progress_t gameProgress;
 
 
 int main(void){
@@ -104,7 +109,7 @@ int main(void){
     EnableInterrupts();
     //  Print main menu on the screen 
     Menu();
-    
+/*    
     // Loop until button press selects what to do 
     while(buttonStatus != 1){
             UpdateMenu();
@@ -112,8 +117,13 @@ int main(void){
         MenuChoice();
         Delay100ms(10);
         Random_Init(NVIC_ST_CURRENT_R);
+*/
 // ************************************ END MAIN MENU ******************************************** 
-    
+    SpaceInvadersInit();
+    gameProgress = IN_PROGRESS;
+    while(gameProgress == IN_PROGRESS){
+        SpaceInvaders();
+    }
 /*
 // ************************************ SPACE INVADERS ******************************************* 
     // Initializations required for space invaders portion of the game 
@@ -140,12 +150,25 @@ int main(void){
     Delay100ms(12);
     
 // ************************************ END SPACE INVADERS **************************************** 
-
+*/
  
 // ************************************ CUTSCENES ADDED HERE **************************************    
-   SceneMain(Sayaka_Stage1);
-*/   
-    
+   SceneMain(Sayaka_Stage1);   
+   
+    BattleStartInit();
+    gameProgress = IN_PROGRESS;
+    while(gameProgress == IN_PROGRESS){
+        if(GameOn == 1){
+            BattleStart();
+        }
+        if(GameOn == 0){
+            GameOver();
+        }
+    }
+    uint8_t debug = 0;
+    debug ++;
+        
+/*
 // ************************************ BULLET HELL *********************************************** 
     // Bullet hell initializations 
     // allow vertical movement for bullet hell portion of game 
@@ -167,9 +190,9 @@ int main(void){
         BossBullet();
         PlayerBulletHell();
     }
-// ************************************ END BULLET HELL *******************************************
-    
-    ST7735_FillRect(0, 0 , DISPLAY_WIDTH, DISPLAY_HEIGHT, BLACK);
+// ************************************ END BULLET HELL ********************************************
+*/
+//    ST7735_FillRect(0, 0 , DISPLAY_WIDTH, DISPLAY_HEIGHT, BLACK);
 }
 
 
@@ -184,3 +207,4 @@ void Delay100ms(uint32_t count){uint32_t volatile time;
     count--;
     }
 }
+

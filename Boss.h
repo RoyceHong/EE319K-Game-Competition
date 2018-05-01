@@ -15,6 +15,18 @@
 #define BOSSMOVE_TIMER 4500
 #endif
 
+#ifndef BOSS1_HEALTH
+#define BOSS1_HEALTH 250
+#endif
+
+#ifndef BOSS1_X
+#define BOSS1_X 54
+#endif
+
+#ifndef BOSS1_Y
+#define BOSS1_Y 60
+#endif
+
 
 // Boss structure  
 typedef struct boss_t {
