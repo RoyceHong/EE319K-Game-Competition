@@ -29,7 +29,10 @@ image_t Trump_F = {TrumpF, 128, 123};
 image_t Sleepy_Trump = {SleepyTrump, 128, 81};
 image_t Trump_Ah = {TrumpAh, 128, 90};
 image_t Obama_Obama = {Obama, 128, 116};
+<<<<<<< HEAD
 
+=======
+>>>>>>> e2286b3a6ec03dfca8b2d18b3839470795012441
 
 
 
@@ -63,6 +66,22 @@ const scene_t Sayaka_Stage2[] = {
 	{{Trumpalump, 128, 113}, "you to continue your", "service.", "Anything for you", "No thanks", 0, {RIGHTCHOICE, WRONGCHOICE}},
 	{{SleepyTrump, 128, 81}, "Godspeed brave", "soldier.", 0, 0, 100, {0, 0}},		        // Reaction1 (Right)
 	{{TrumpF, 128, 123}, "...", 0, 0, 0, -100, {-2, -2}}		    // Reaction2 (Wrong) 
+    
+};
+
+const scene_t Sayaka_Stage3[] = {
+	{{Trumpalump, 128, 113}, "You have displayed", "the best courage in", 0, 0, 0, {2, 2}},	    
+	{{Trumpalump, 128, 113}, "You have displayed", "the best courage in", 0, 0, 0, {1, 1}}, 		
+	{{Trumpalump, 128, 113}, "your journey so far.", 0, 0, 0,  0, {1, 1}},
+    
+	{{SleepyTrump, 128, 81}, "But I have something", "to tell you.", 0, 0, 0, {1, 1}},		
+    
+	{{TrumpF, 128, 123}, "You thought you were", "following your hero,", 0, 0, 0, {1, 1}}, 		
+	{{TrumpF, 128, 123}, "Trump.", 0, 0, 0, 0, {1, 1}},
+    
+	{{Obama, 128, 116}, "But it was I, ", "OBAMA!", "Nani!?", "Omae mo shindeiru", 0, {RIGHTCHOICE, WRONGCHOICE}},
+	{{Obama, 128, 116}, "Uuuhhh...", "Yes we can.", 0, 0, 0, {0, 0}},		        // Reaction1 (Right)
+	{{Obama, 128, 116}, "Uuuhhh...", "Yes we can.", 0, 0, 0, {0, 0}}		    // Reaction2 (Wrong) 
     
 };
 
